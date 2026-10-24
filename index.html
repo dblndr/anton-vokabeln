@@ -35,6 +35,10 @@ input[type=text]:focus{border-color:var(--blue)}
 .bad{background:var(--red);color:#fff}
 .ghost{background:#eef2f8;color:var(--ink)}
 .speak{background:var(--yellow);color:var(--ink);padding:8px 12px;font-size:1.1rem}
+.speak.slow{background:#fff3c4}
+.speakrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.soundhint{font-size:.8rem;color:#667;margin-top:4px}
+.soundhint.warn{color:#b00;font-weight:700}
 .fb{border-radius:14px;padding:14px;margin:12px 0;font-size:1.15rem;display:none}
 .fb.show{display:block}
 .fb.good{background:#e3f8ee;border:2px solid var(--green)}
@@ -87,9 +91,11 @@ td,th{padding:7px 6px;border-bottom:1px solid #edf1f7;text-align:left;vertical-a
     <div class="dir" id="dirLabel">Englisch → Deutsch</div>
     <div class="prompt" id="prompt">…</div>
     <div class="row" style="align-items:center">
-      <button class="speak hidden" id="speakPrompt" title="Vorlesen">🔊 Anhören</button>
+      <button class="speak hidden" id="speakPrompt" type="button" title="Englisch vorlesen">🔊 Anhören</button>
+      <button class="speak slow hidden" id="speakPromptSlow" type="button" title="Langsam vorlesen">🐢 Langsam</button>
       <span class="hint" id="promptHint"></span>
     </div>
+    <div class="soundhint" id="soundHint">🔈 Kein Ton? Am iPhone/iPad Stummschalter (Seitentaste) ausschalten und lauter drehen.</div>
     <form id="answerForm" autocomplete="off">
       <input type="text" id="answer" placeholder="Deine Übersetzung …" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done">
       <div class="row" id="askButtons">
@@ -342,13 +348,15 @@ function newCard(){
   if(v.zahl) hint += " · Zahl " + v.zahl;
   $("promptHint").textContent = hint;
   $("speakPrompt").classList.toggle("hidden", !(d==="en" && canSpeak()));
+  $("speakPromptSlow").classList.toggle("hidden", !(d==="en" && canSpeak()));
+  if(canSpeak()){ clearTimeout(speakWatch); setSoundHint("🔈 Kein Ton? Am iPhone/iPad Stummschalter (Seitentaste) ausschalten und lauter drehen.", false); }
   updateTop();
   setTimeout(()=>{ try{ $("answer").focus({preventScroll:true}); }catch(e){} }, 50);
 }
 function solutionHTML(v,d){
   const sol = d==="en" ? v.de : v.en;
   let h = `<div>Lösung: <b>${esc(sol)}</b></div>`;
-  if(d==="de" && canSpeak()) h += `<div style="margin-top:8px"><button class="speak" type="button" data-say="${esc(v.en)}">🔊 Anhören</button></div>`;
+  h += speakButtons(v.en);
   return h;
 }
 function showFeedback(kind, html){
@@ -376,10 +384,10 @@ $("answerForm").addEventListener("submit", e=>{
   if(r.res==="richtig"){
     const sol = d==="en" ? v.de : v.en;
     html = `<div><b>Richtig! 🎉</b></div>` + (r.also ? `<div>Auch richtig – gesucht war hier: <b>${esc(sol)}</b></div>` : (norm(sol, d==="en"?"de":"en")!==norm(val, d==="en"?"de":"en") ? `<div class="small">Im Heft: ${esc(sol)}</div>` : ""));
-    if(d==="de" && canSpeak()) html += `<div style="margin-top:8px"><button class="speak" type="button" data-say="${esc(v.en)}">🔊 Anhören</button></div>`;
+    html += speakButtons(v.en);
     showFeedback("good", html); finishAnswer("richtig", html);
   } else if(r.res==="fast"){
-    html = `<div><b>Fast richtig! 👍</b> Achte auf die Schreibweise:</div><div>Richtig ist: <b>${esc(r.match)}</b></div><div class="small">Du hast geschrieben: ${esc(val)}</div>`;
+    html = `<div><b>Fast richtig! 👍</b> Achte auf die Schreibweise:</div><div>Richtig ist: <b>${esc(r.match)}</b></div><div class="small">Du hast geschrieben: ${esc(val)}</div>` + speakButtons(v.en);
     showFeedback("almost", html); finishAnswer("fast", html);
   } else {
     html = `<div><b>Leider falsch.</b> Die kommt gleich nochmal dran. 💪</div>` + solutionHTML(v,d) + `<div class="small">Deine Antwort: ${esc(val)}</div>`;
@@ -397,16 +405,74 @@ $("didntBtn").onclick = ()=>{ $("selfButtons").classList.add("hidden"); finishAn
 $("nextBtn").onclick = newCard;
 $("overrideBtn").onclick = ()=>{ undoLastAsCorrect(current); $("overrideBtn").classList.add("hidden"); showFeedback("good", "<div><b>Okay, als richtig gezählt ✅</b></div>"+solutionHTML(current.v,current.dir)); updateTop(); };
 document.addEventListener("keydown", e=>{ if(e.key==="Enter" && answered && document.activeElement!==$("answer")){ e.preventDefault(); newCard(); }});
-document.addEventListener("click", e=>{ const b=e.target.closest("[data-say]"); if(b) say(b.getAttribute("data-say")); });
-$("speakPrompt").onclick = ()=> current && say(current.v.en);
+document.addEventListener("click", e=>{ const b=e.target.closest("[data-say]"); if(b){ e.preventDefault(); say(b.getAttribute("data-say"), b.getAttribute("data-slow")==="1"); } });
+$("speakPrompt").onclick = ()=>{ if(current) say(current.v.en, false); };
+$("speakPromptSlow").onclick = ()=>{ if(current) say(current.v.en, true); };
 
 function canSpeak(){ return typeof window.speechSynthesis!=="undefined" && typeof window.SpeechSynthesisUtterance!=="undefined"; }
-function say(text){
+// --- Vorlesen (Web Speech API), robust für iOS/iPadOS Safari, Chrome, Firefox ---
+// Wichtig: say() läuft synchron im Klick-Handler (iOS verlangt eine direkte Nutzergeste).
+let voicesCache = [];
+let enVoice = null;
+let lastUtterance = null; // globale Referenz: verhindert, dass iOS/Chrome die Utterance per GC verwirft
+let speakWatch = null;
+const NOVELTY = /bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|albert|fred|junior|ralph|kathy|grandma|grandpa|eddy|flo|reed|rocko|sandy|shelley/i;
+function loadVoices(){
   if(!canSpeak()) return;
-  const t = String(text).replace(/\([^)]*\)/g," ").replace(/\//g,", ").replace(/\.\.\./g," ");
-  const u = new SpeechSynthesisUtterance(t); u.lang="en-GB"; u.rate=0.85;
-  const vs = speechSynthesis.getVoices(); const gb = vs.find(x=>/en[-_]GB/i.test(x.lang)); if(gb) u.voice=gb;
-  speechSynthesis.cancel(); speechSynthesis.speak(u);
+  try{ voicesCache = speechSynthesis.getVoices() || []; }catch(e){ voicesCache = []; }
+  enVoice = pickEnVoice(voicesCache);
+}
+function pickEnVoice(vs){
+  const en = vs.filter(x=>/^en([-_]|$)/i.test(x.lang||""));
+  if(!en.length) return null;
+  const score = x=>{
+    let p=0; const l=(x.lang||"").replace("_","-").toLowerCase(), n=x.name||"";
+    if(l==="en-gb") p+=40; else if(l==="en-us") p+=30; else if(l==="en-au"||l==="en-ie") p+=20; else p+=10;
+    if(/enhanced|premium|natural|neural|google/i.test(n)) p+=8;
+    if(/daniel|serena|kate|arthur|martha|samantha|karen|libby|sonia|ryan/i.test(n)) p+=5;
+    if(NOVELTY.test(n)) p-=100;
+    if(x.localService) p+=2;
+    return p;
+  };
+  return en.slice().sort((a,b)=>score(b)-score(a))[0];
+}
+if(canSpeak()){
+  loadVoices();
+  try{ speechSynthesis.addEventListener ? speechSynthesis.addEventListener("voiceschanged", loadVoices) : (speechSynthesis.onvoiceschanged = loadVoices); }catch(e){ speechSynthesis.onvoiceschanged = loadVoices; }
+}
+// Safari 16.4+: Audio als "Wiedergabe" markieren (hilft, wenn der Stummschalter sonst alles stummschaltet)
+try{ if(navigator.audioSession) navigator.audioSession.type = "playback"; }catch(e){}
+function setSoundHint(msg, warn){
+  const h=$("soundHint"); if(!h) return;
+  h.textContent = msg; h.classList.toggle("warn", !!warn);
+}
+function speechText(text){
+  return String(text).replace(/\([^)]*\)/g," ").replace(/\b(sg|pl)\b\.?/g," ").replace(/\//g,", ").replace(/\.\.\./g," ").replace(/\s+/g," ").trim();
+}
+function say(text, slow){
+  if(!canSpeak()){ setSoundHint("⚠️ Dieser Browser kann leider nicht vorlesen. Bitte Safari oder Chrome verwenden.", true); return; }
+  const t = speechText(text); if(!t) return;
+  const synth = window.speechSynthesis;
+  if(!voicesCache.length) loadVoices();
+  // Nur abbrechen, wenn wirklich etwas läuft: cancel() direkt vor speak() verschluckt auf iOS sonst manchmal die Ausgabe
+  try{ if(synth.speaking || synth.pending) synth.cancel(); }catch(e){}
+  try{ if(synth.paused) synth.resume(); }catch(e){}
+  const u = new SpeechSynthesisUtterance(t);
+  if(enVoice){ u.voice = enVoice; u.lang = enVoice.lang; } else { u.lang = "en-GB"; }
+  u.rate = slow ? 0.6 : 0.9; u.pitch = 1; u.volume = 1;
+  let started = false;
+  u.onstart = ()=>{ started = true; setSoundHint("🔊 " + t + (slow ? " (langsam)" : ""), false); };
+  u.onend = ()=>{ if(lastUtterance===u) lastUtterance=null; };
+  u.onerror = ev=>{ if(ev && (ev.error==="interrupted"||ev.error==="canceled")) return; setSoundHint("⚠️ Vorlesen hat nicht geklappt ("+(ev&&ev.error||"Fehler")+"). Lautstärke/Stummschalter prüfen und nochmal tippen.", true); };
+  lastUtterance = u; window.__lastUtterance = u;
+  synth.speak(u);
+  clearTimeout(speakWatch);
+  speakWatch = setTimeout(()=>{ if(!started && lastUtterance===u && !synth.speaking) setSoundHint("🔈 Nichts zu hören? Am iPhone/iPad Stummschalter aus, lauter drehen und nochmal tippen. Ggf. unter Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen eine englische Stimme laden.", true); }, 2500);
+}
+function speakButtons(en){
+  if(!canSpeak()) return "";
+  const a = esc(en);
+  return `<div class="speakrow"><button class="speak" type="button" data-say="${a}">🔊 Anhören</button><button class="speak slow" type="button" data-say="${a}" data-slow="1">🐢 Langsam</button></div>`;
 }
 function esc(s){ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 
@@ -491,9 +557,9 @@ document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
   if(t.dataset.view==="auswahl") renderSel();
   if(t.dataset.view==="lernen"){ updateTop(); if(!current || answered) newCard(); }
 });
-if(canSpeak()) try{ speechSynthesis.getVoices(); }catch(e){}
+if(!canSpeak()) setSoundHint("ℹ️ Vorlesen wird von diesem Browser nicht unterstützt.", false);
 renderSel(); newCard();
-window.VT = {check, norm, pickNext, record, weight, level, pool, get state(){return state;}, set state(s){state=s;}, importJSON, defaultState, newCard, get current(){return current;}};
+window.VT = {say, pickEnVoice, speechText, get enVoice(){return enVoice;}, check, norm, pickNext, record, weight, level, pool, get state(){return state;}, set state(s){state=s;}, importJSON, defaultState, newCard, get current(){return current;}};
 })();
 </script>
 </body>
