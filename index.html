@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Antons Vokabel-Trainer</title>
+<title>Englisch-Vokabeltrainer – Pick-up A</title>
 <style>
 :root{--bg:#eef6ff;--card:#fff;--ink:#1d2b3a;--muted:#6b7a8c;--blue:#2f7cf6;--green:#22b573;--red:#f2545b;--orange:#ff9f1c;--yellow:#ffd23f;--radius:18px}
 *{box-sizing:border-box}
@@ -64,7 +64,7 @@ td,th{padding:7px 6px;border-bottom:1px solid #edf1f7;text-align:left;vertical-a
 <body>
 <div class="wrap">
 <header>
-  <h1>🇬🇧 Antons Vokabel-Trainer</h1>
+  <h1>🇬🇧 Englisch-Vokabeltrainer – Pick-up A</h1>
   <nav>
     <button class="tab on" data-view="lernen">Lernen</button>
     <button class="tab" data-view="auswahl">Auswahl</button>
@@ -465,8 +465,8 @@ function renderStats(){
 }
 $("statFilter").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; statF=b.dataset.f; document.querySelectorAll("#statFilter button").forEach(x=>x.classList.toggle("on",x===b)); renderStats(); });
 $("exportBtn").onclick=()=>{
-  const blob = new Blob([JSON.stringify({app:"anton-vokabeln", exportiert:new Date().toISOString(), state},null,1)],{type:"application/json"});
-  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="anton-vokabeln-fortschritt-"+new Date().toISOString().slice(0,10)+".json";
+  const blob = new Blob([JSON.stringify({app:"vokabel-trainer", exportiert:new Date().toISOString(), state},null,1)],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="vokabeltrainer-fortschritt-"+new Date().toISOString().slice(0,10)+".json";
   document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},500);
   $("ioMsg").textContent="Fortschritt exportiert ✅";
 };
