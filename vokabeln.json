@@ -1,0 +1,2324 @@
+[
+ {
+  "id": "v001",
+  "en": "I'm from Greenwich.",
+  "de": "Ich bin aus Greenwich.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v002",
+  "en": "Look!",
+  "de": "Schau/Schaut mal!",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Schau mal!",
+   "Schaut mal!"
+  ]
+ },
+ {
+  "id": "v003",
+  "en": "two boys and a dog",
+  "de": "zwei Jungen und ein Hund",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v004",
+  "en": "in Greenwich Park",
+  "de": "im Greenwich-Park",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v005",
+  "en": "Dogs are my friends, but not cats.",
+  "de": "Hunde sind meine Freunde, aber Katzen nicht.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v006",
+  "en": "I'm a mouse.",
+  "de": "Ich bin eine Maus.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v007",
+  "en": "mouse (sg), mice (pl)",
+  "de": "Maus, Mäuse (Pl.)",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok",
+  "en_alt": [
+   "mouse, mice",
+   "mouse mice",
+   "mouse"
+  ],
+  "de_alt": [
+   "Maus, Mäuse",
+   "Maus Mäuse",
+   "Maus"
+  ]
+ },
+ {
+  "id": "v008",
+  "en": "Here's your ball.",
+  "de": "Hier ist dein Ball.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v009",
+  "en": "Hello.",
+  "de": "Hallo.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v010",
+  "en": "I'm Pia.",
+  "de": "Ich heiße Pia./Ich bin Pia.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Ich heiße Pia.",
+   "Ich bin Pia."
+  ]
+ },
+ {
+  "id": "v011",
+  "en": "You're a nice dog.",
+  "de": "Du bist ein lieber Hund.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v012",
+  "en": "What's your name?",
+  "de": "Wie heißt du?/Wie heißen Sie?",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Wie heißt du?",
+   "Wie heißen Sie?"
+  ]
+ },
+ {
+  "id": "v013",
+  "en": "Sorry!",
+  "de": "Entschuldigung!/Tut mir leid!",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Entschuldigung!",
+   "Tut mir leid!"
+  ]
+ },
+ {
+  "id": "v014",
+  "en": "My dog is crazy.",
+  "de": "Mein Hund ist verrückt!",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 1,
+  "thema": "Begrüßung & Greenwich",
+  "quelle_foto": "IMG_6630.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v015",
+  "en": "My name is Luke.",
+  "de": "Ich heiße Luke.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 2,
+  "thema": "Woher kommst du?",
+  "quelle_foto": "IMG_6632.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v016",
+  "en": "We're from Greenwich.",
+  "de": "Wir sind aus Greenwich.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 2,
+  "thema": "Woher kommst du?",
+  "quelle_foto": "IMG_6632.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v017",
+  "en": "Where are you from?",
+  "de": "Woher kommst du?/Woher kommt ihr?/Woher kommen Sie?",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 2,
+  "thema": "Woher kommst du?",
+  "quelle_foto": "IMG_6632.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Woher kommst du?",
+   "Woher kommt ihr?",
+   "Woher kommen Sie?"
+  ]
+ },
+ {
+  "id": "v018",
+  "en": "Are you on holiday?",
+  "de": "Sind Sie im Urlaub?/Seid ihr im Urlaub?/Bist du im Urlaub?",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 2,
+  "thema": "Woher kommst du?",
+  "quelle_foto": "IMG_6632.HEIC",
+  "status": "ok",
+  "heft_en": "Are you on holiday",
+  "de_alt": [
+   "Sind Sie im Urlaub?",
+   "Seid ihr im Urlaub?",
+   "Bist du im Urlaub?"
+  ]
+ },
+ {
+  "id": "v019",
+  "en": "yes",
+  "de": "ja",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 2,
+  "thema": "Woher kommst du?",
+  "quelle_foto": "IMG_6632.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v020",
+  "en": "I'm here with my parents.",
+  "de": "Ich bin mit meinen Eltern hier.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 2,
+  "thema": "Woher kommst du?",
+  "quelle_foto": "IMG_6632.HEIC",
+  "status": "ok",
+  "heft_de": "Ich bin mit meinen Eltern hie[r] (Zeilenende im Foto abgeschnitten)"
+ },
+ {
+  "id": "v021",
+  "en": "How old are you?",
+  "de": "Wie alt bist du?/Wie alt sind Sie?",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 2,
+  "thema": "Woher kommst du?",
+  "quelle_foto": "IMG_6632.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Wie alt bist du?",
+   "Wie alt sind Sie?"
+  ]
+ },
+ {
+  "id": "v022",
+  "en": "You too?",
+  "de": "Du auch?",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 2,
+  "thema": "Woher kommst du?",
+  "quelle_foto": "IMG_6632.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v023",
+  "en": "no",
+  "de": "nein",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 2,
+  "thema": "Woher kommst du?",
+  "quelle_foto": "IMG_6632.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v024",
+  "en": "German",
+  "de": "deutsch/Deutsch/aus Deutschland/Deutsche/-r",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 2,
+  "thema": "Woher kommst du?",
+  "quelle_foto": "IMG_6632.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "deutsch",
+   "aus Deutschland",
+   "Deutsche",
+   "Deutscher"
+  ]
+ },
+ {
+  "id": "v025",
+  "en": "different",
+  "de": "anders/unterschiedlich/verschieden",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 2,
+  "thema": "Woher kommst du?",
+  "quelle_foto": "IMG_6632.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v026",
+  "en": "I'm English.",
+  "de": "Ich bin Engländer/-in.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "heft_en": "I'm English",
+  "de_alt": [
+   "Ich bin Engländer.",
+   "Ich bin Engländerin."
+  ]
+ },
+ {
+  "id": "v027",
+  "en": "one",
+  "de": "eins",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "1"
+ },
+ {
+  "id": "v028",
+  "en": "two",
+  "de": "zwei",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "2"
+ },
+ {
+  "id": "v029",
+  "en": "three",
+  "de": "drei",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "3"
+ },
+ {
+  "id": "v030",
+  "en": "four",
+  "de": "vier",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "4"
+ },
+ {
+  "id": "v031",
+  "en": "five",
+  "de": "fünf",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "5"
+ },
+ {
+  "id": "v032",
+  "en": "six",
+  "de": "sechs",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "6"
+ },
+ {
+  "id": "v033",
+  "en": "seven",
+  "de": "sieben",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "7"
+ },
+ {
+  "id": "v034",
+  "en": "eight",
+  "de": "acht",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "8"
+ },
+ {
+  "id": "v035",
+  "en": "nine",
+  "de": "neun",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "9"
+ },
+ {
+  "id": "v036",
+  "en": "ten",
+  "de": "zehn",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "10"
+ },
+ {
+  "id": "v037",
+  "en": "eleven",
+  "de": "elf",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "11"
+ },
+ {
+  "id": "v038",
+  "en": "twelve",
+  "de": "zwölf",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "zahl": "12"
+ },
+ {
+  "id": "v039",
+  "en": "I love dogs.",
+  "de": "Ich liebe Hunde./Ich mag Hunde total gerne.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Ich liebe Hunde.",
+   "Ich mag Hunde total gerne."
+  ]
+ },
+ {
+  "id": "v040",
+  "en": "Dogs love squirrels.",
+  "de": "Hunde lieben Eichhörnchen.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 3,
+  "thema": "Zahlen 1–12",
+  "quelle_foto": "IMG_6633.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v041",
+  "en": "That was close!",
+  "de": "Das war knapp!",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v042",
+  "en": "animal",
+  "de": "Tier",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v043",
+  "en": "Thank you.",
+  "de": "Danke.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v044",
+  "en": "This is Pia.",
+  "de": "Das (hier) ist Pia.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v045",
+  "en": "a girl from Germany",
+  "de": "ein Mädchen aus Deutschland",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v046",
+  "en": "school",
+  "de": "Schule",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v047",
+  "en": "Greenwich Park is big.",
+  "de": "Der Greenwich-Park ist groß.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v048",
+  "en": "It's great for cycling.",
+  "de": "Er ist super zum Radfahren.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v049",
+  "en": "I don't like cycling.",
+  "de": "Ich fahre nicht gern Rad.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v050",
+  "en": "My favourite sport is football.",
+  "de": "Mein Lieblingssport ist Fußball.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v051",
+  "en": "I like the boating lake.",
+  "de": "Ich mag den See mit den Booten./Mir gefällt der See mit den Booten.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Ich mag den See mit den Booten.",
+   "Mir gefällt der See mit den Booten."
+  ]
+ },
+ {
+  "id": "v052",
+  "en": "What's that?",
+  "de": "Was ist das?",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v053",
+  "en": "Let's go!",
+  "de": "Lass/Lasst uns hingehen!/Los, gehen wir hin!",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok",
+  "heft_de": "Lass/Lasst uns hingehen!/Los gehen wir hin!",
+  "de_alt": [
+   "Lass uns hingehen!",
+   "Lasst uns hingehen!",
+   "Los, gehen wir hin!"
+  ]
+ },
+ {
+  "id": "v054",
+  "en": "It's fun.",
+  "de": "Es macht Spaß.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 4,
+  "thema": "Im Park",
+  "quelle_foto": "IMG_6634.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v055",
+  "en": "puzzle",
+  "de": "Rätsel",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v056",
+  "en": "rat",
+  "de": "Ratte",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok",
+  "auch_in": [
+   "IMG_6637"
+  ]
+ },
+ {
+  "id": "v057",
+  "en": "I'm not scared of dogs.",
+  "de": "Ich habe keine Angst vor Hunden.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v058",
+  "en": "I'm scared of cats.",
+  "de": "Ich habe Angst vor Katzen.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v059",
+  "en": "Worms are OK.",
+  "de": "Würmer sind o.k.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok",
+  "de_alt": [
+   "Würmer sind o.k.",
+   "Würmer sind ok"
+  ]
+ },
+ {
+  "id": "v060",
+  "en": "Rabbits are nice.",
+  "de": "Kaninchen sind nett.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v061",
+  "en": "They're my friends.",
+  "de": "Sie sind meine Freunde.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v062",
+  "en": "They don't eat mice.",
+  "de": "Sie essen keine Mäuse.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v063",
+  "en": "word",
+  "de": "Wort",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v064",
+  "en": "horse",
+  "de": "Pferd",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v065",
+  "en": "cat",
+  "de": "Katze",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v066",
+  "en": "worm",
+  "de": "Wurm",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok",
+  "hinweis_intern": "u sieht im Heft fast wie a aus ('Warm'), gemeint ist Wurm"
+ },
+ {
+  "id": "v067",
+  "en": "parrot",
+  "de": "Papagei",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v068",
+  "en": "bear",
+  "de": "Bär",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v069",
+  "en": "rabbit",
+  "de": "Kaninchen",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 5,
+  "thema": "Tiere",
+  "quelle_foto": "IMG_6635.HEIC (+ IMG_6636.HEIC, gleiche Seite)",
+  "status": "ok"
+ },
+ {
+  "id": "v070",
+  "en": "mouse",
+  "de": "Maus",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v071",
+  "en": "dog",
+  "de": "Hund",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v072",
+  "en": "budgie",
+  "de": "Wellensittich",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "korrigiert",
+  "heft_en": "badgie",
+  "hinweis_intern": "im Heft 'badgie' geschrieben, richtig: budgie"
+ },
+ {
+  "id": "v073",
+  "en": "fish",
+  "de": "Fisch",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v074",
+  "en": "hamster",
+  "de": "Hamster",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v075",
+  "en": "Inline skating is great.",
+  "de": "Inlineskatesfahren ist toll.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Inlineskatesfahren ist toll.",
+   "Inlineskaten ist toll.",
+   "Inlineskatefahren ist toll."
+  ]
+ },
+ {
+  "id": "v076",
+  "en": "Volleyball is a great sport.",
+  "de": "Volleyball ist ein toller Sport.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v077",
+  "en": "the same",
+  "de": "der-/die-/dasselbe / der/die/das gleiche",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "derselbe",
+   "dieselbe",
+   "dasselbe",
+   "der gleiche",
+   "die gleiche",
+   "das gleiche",
+   "der-/die-/dasselbe"
+  ]
+ },
+ {
+  "id": "v078",
+  "en": "colour",
+  "de": "Farbe",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v079",
+  "en": "correct",
+  "de": "richtig/korrekt",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v080",
+  "en": "What's your favourite colour?",
+  "de": "Was ist deine Lieblingsfarbe?",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok",
+  "heft_en": "What's your favourite colour"
+ },
+ {
+  "id": "v081",
+  "en": "picture",
+  "de": "Bild/Foto",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v082",
+  "en": "people",
+  "de": "Leute/Menschen",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 6,
+  "thema": "Haustiere & Sport",
+  "quelle_foto": "IMG_6637.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v083",
+  "en": "thing",
+  "de": "Ding/Sache",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v084",
+  "en": "number",
+  "de": "Zahl/Nummer",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v085",
+  "en": "Boat number eight is pink.",
+  "de": "Boot Nummer acht ist rosa.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v086",
+  "en": "I can see Sherlock.",
+  "de": "Ich kann Sherlock sehen./Ich sehe Sherlock.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Ich kann Sherlock sehen.",
+   "Ich sehe Sherlock."
+  ]
+ },
+ {
+  "id": "v087",
+  "en": "Roll two dice.",
+  "de": "Würfle/Würfelt mit zwei Würfeln.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Würfle mit zwei Würfeln.",
+   "Würfelt mit zwei Würfeln.",
+   "Würfel mit zwei Würfeln."
+  ]
+ },
+ {
+  "id": "v088",
+  "en": "Four and six is ten.",
+  "de": "Vier plus sechs ist zehn.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v089",
+  "en": "please",
+  "de": "bitte",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v090",
+  "en": "Can you name four sports?",
+  "de": "Kannst du vier Sportarten nennen?",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v091",
+  "en": "Say your phone number.",
+  "de": "Sag deine Telefonnummer.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v092",
+  "en": "What colour is Sherlock?",
+  "de": "Welche Farbe hat Sherlock?",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v093",
+  "en": "alphabet",
+  "de": "Alphabet",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "korrigiert",
+  "heft_de": "Alphbet",
+  "hinweis_intern": "im Heft 'Alphbet' geschrieben, richtig: Alphabet"
+ },
+ {
+  "id": "v094",
+  "en": "Rap like me.",
+  "de": "Rappe/Rappt wie ich.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Rappe wie ich.",
+   "Rappt wie ich.",
+   "Rapp wie ich."
+  ]
+ },
+ {
+  "id": "v095",
+  "en": "I love you.",
+  "de": "Ich liebe dich./Ich mag dich.",
+  "abschnitt": "Pick-up A: I'm from Greenwich",
+  "seite": 7,
+  "thema": "Sherlock & Spiele",
+  "quelle_foto": "IMG_6638.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "Ich liebe dich.",
+   "Ich mag dich."
+  ]
+ },
+ {
+  "id": "v096",
+  "en": "at home",
+  "de": "zu Hause",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v097",
+  "en": "family",
+  "de": "Familie",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v098",
+  "en": "to live",
+  "de": "wohnen/leben",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v099",
+  "en": "flat",
+  "de": "Wohnung",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v100",
+  "en": "in the street",
+  "de": "in der Straße/auf der Straße",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v101",
+  "en": "house",
+  "de": "Haus",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v102",
+  "en": "door",
+  "de": "Tür",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v103",
+  "en": "TV (= television)",
+  "de": "Fernsehen/Fernseher",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok",
+  "en_alt": [
+   "TV",
+   "television"
+  ]
+ },
+ {
+  "id": "v104",
+  "en": "chair",
+  "de": "Stuhl/Sessel",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v105",
+  "en": "table",
+  "de": "Tisch",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v106",
+  "en": "shower",
+  "de": "Dusche",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v107",
+  "en": "bath",
+  "de": "Bad/Badewanne",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v108",
+  "en": "toilet",
+  "de": "Toilette",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v109",
+  "en": "bed",
+  "de": "Bett",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v110",
+  "en": "wardrobe",
+  "de": "Kleiderschrank",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 8,
+  "thema": "Wohnung & Möbel",
+  "quelle_foto": "IMG_6639.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v111",
+  "en": "cupboard",
+  "de": "Küchenschrank/Schrank",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v112",
+  "en": "cooker",
+  "de": "Herd",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v113",
+  "en": "living room",
+  "de": "Wohnzimmer",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v114",
+  "en": "bedroom",
+  "de": "Schlafzimmer",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v115",
+  "en": "kitchen",
+  "de": "Küche",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v116",
+  "en": "bathroom",
+  "de": "Bad/Badezimmer",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v117",
+  "en": "good",
+  "de": "gut",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v118",
+  "en": "biscuit",
+  "de": "Keks",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v119",
+  "en": "under",
+  "de": "unter",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok",
+  "auch_in": [
+   "IMG_6644"
+  ]
+ },
+ {
+  "id": "v120",
+  "en": "to help",
+  "de": "helfen",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v121",
+  "en": "to collect",
+  "de": "sammeln",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v122",
+  "en": "new",
+  "de": "neu",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v123",
+  "en": "small",
+  "de": "klein",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 9,
+  "thema": "Zimmer",
+  "quelle_foto": "IMG_6640.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v124",
+  "en": "sister",
+  "de": "Schwester",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v125",
+  "en": "little",
+  "de": "klein",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v126",
+  "en": "brother",
+  "de": "Bruder",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v127",
+  "en": "father",
+  "de": "Vater",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v128",
+  "en": "mother",
+  "de": "Mutter",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v129",
+  "en": "cousin",
+  "de": "Cousin/Cousine",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v130",
+  "en": "an",
+  "de": "ein/-e",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "ein",
+   "eine"
+  ]
+ },
+ {
+  "id": "v131",
+  "en": "only child",
+  "de": "Einzelkind",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v132",
+  "en": "dad",
+  "de": "Papa",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v133",
+  "en": "she's",
+  "de": "sie ist",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v134",
+  "en": "isn't",
+  "de": "ist nicht",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v135",
+  "en": "always",
+  "de": "immer; ständig",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v136",
+  "en": "easy",
+  "de": "einfach; leicht",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v137",
+  "en": "he's",
+  "de": "er ist",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v138",
+  "en": "mum",
+  "de": "Mama",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 10,
+  "thema": "Familie",
+  "quelle_foto": "IMG_6641.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v139",
+  "en": "uncle",
+  "de": "Onkel",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v140",
+  "en": "aunt",
+  "de": "Tante",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v141",
+  "en": "grandad",
+  "de": "Opa",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v142",
+  "en": "grandma",
+  "de": "Oma",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v143",
+  "en": "family tree",
+  "de": "Stammbaum",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v144",
+  "en": "Tell me about ...",
+  "de": "Erzähl mir von ...",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok",
+  "heft_de": "Erzähl mir von",
+  "en_alt": [
+   "Tell me about"
+  ],
+  "de_alt": [
+   "Erzähl mir von",
+   "Erzähle mir von"
+  ]
+ },
+ {
+  "id": "v145",
+  "en": "guinea pig",
+  "de": "Meerschweinchen",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v146",
+  "en": "quiet",
+  "de": "still; ruhig; leise",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v147",
+  "en": "language",
+  "de": "Sprache",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok",
+  "heft_en": "Language"
+ },
+ {
+  "id": "v148",
+  "en": "only",
+  "de": "erst; bloß; nur",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v149",
+  "en": "wrong",
+  "de": "falsch",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v150",
+  "en": "Thanks",
+  "de": "Danke",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v151",
+  "en": "very",
+  "de": "sehr",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v152",
+  "en": "some",
+  "de": "einige; ein paar; etwas",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v153",
+  "en": "to say hello (to)",
+  "de": "grüßen; Grüße ausrichten (an)",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 11,
+  "thema": "Familie & Wörter",
+  "quelle_foto": "IMG_6642.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v154",
+  "en": "to",
+  "de": "zu; nach; auf; in",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v155",
+  "en": "problem",
+  "de": "Problem; Schwierigkeit",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v156",
+  "en": "there",
+  "de": "da; dort; dahin; dorthin",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "UNSICHER",
+  "heft_en": "there is/are",
+  "hinweis_intern": "Im Heft steht links 'there is/are', rechts aber 'da; dort; dahin; dorthin' (= there). 'there is/are' hieße 'es gibt'. In der App als 'there' abgefragt – bitte im Heft/Buch prüfen."
+ },
+ {
+  "id": "v157",
+  "en": "garden",
+  "de": "Garten",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v158",
+  "en": "behind",
+  "de": "hinter",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok",
+  "auch_in": [
+   "IMG_6644"
+  ]
+ },
+ {
+  "id": "v159",
+  "en": "Mr",
+  "de": "Herr (Anrede)",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v160",
+  "en": "Mrs",
+  "de": "Frau (Anrede)",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v161",
+  "en": "now",
+  "de": "jetzt; nun",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v162",
+  "en": "car",
+  "de": "Auto",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v163",
+  "en": "everywhere",
+  "de": "überall; überallhin",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v164",
+  "en": "again",
+  "de": "wieder; noch einmal; noch mal",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v165",
+  "en": "floor",
+  "de": "Fußboden",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v166",
+  "en": "next to",
+  "de": "neben",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "korrigiert",
+  "heft_en": "next too",
+  "hinweis_intern": "im Heft 'next too', richtig 'next to' (auf Foto IMG_6644 korrekt)",
+  "auch_in": [
+   "IMG_6644"
+  ]
+ },
+ {
+  "id": "v167",
+  "en": "in front of",
+  "de": "vor",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok",
+  "auch_in": [
+   "IMG_6644"
+  ]
+ },
+ {
+  "id": "v168",
+  "en": "to listen (to)",
+  "de": "zuhören; anhören",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 12,
+  "thema": "Wo ist was?",
+  "quelle_foto": "IMG_6643.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v169",
+  "en": "idea",
+  "de": "Idee; Einfall",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 13,
+  "thema": "Präpositionen",
+  "quelle_foto": "IMG_6644.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v170",
+  "en": "loft",
+  "de": "Dachboden",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 13,
+  "thema": "Präpositionen",
+  "quelle_foto": "IMG_6644.HEIC",
+  "status": "korrigiert",
+  "heft_de": "Dauchboden",
+  "hinweis_intern": "im Heft 'Dauchboden', richtig: Dachboden"
+ },
+ {
+  "id": "v171",
+  "en": "own",
+  "de": "eigene/-r/-s",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 13,
+  "thema": "Präpositionen",
+  "quelle_foto": "IMG_6644.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "eigene",
+   "eigener",
+   "eigenes"
+  ]
+ },
+ {
+  "id": "v172",
+  "en": "of",
+  "de": "von",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 13,
+  "thema": "Präpositionen",
+  "quelle_foto": "IMG_6644.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v173",
+  "en": "in the middle (of)",
+  "de": "in der Mitte (von); mitten in",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 13,
+  "thema": "Präpositionen",
+  "quelle_foto": "IMG_6644.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v174",
+  "en": "on the right",
+  "de": "auf der rechten Seite; rechts",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 13,
+  "thema": "Präpositionen",
+  "quelle_foto": "IMG_6644.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v175",
+  "en": "on the left",
+  "de": "auf der linken Seite; links",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 13,
+  "thema": "Präpositionen",
+  "quelle_foto": "IMG_6644.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v176",
+  "en": "on",
+  "de": "auf; an; bei",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 13,
+  "thema": "Präpositionen",
+  "quelle_foto": "IMG_6644.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v177",
+  "en": "at",
+  "de": "bei; an",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 13,
+  "thema": "Präpositionen",
+  "quelle_foto": "IMG_6644.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v178",
+  "en": "in",
+  "de": "in",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 13,
+  "thema": "Präpositionen",
+  "quelle_foto": "IMG_6644.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v179",
+  "en": "lamp",
+  "de": "Lampe",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v180",
+  "en": "mirror",
+  "de": "Spiegel",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v181",
+  "en": "shelf",
+  "de": "Regal",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v182",
+  "en": "shelves",
+  "de": "Regale",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "korrigiert",
+  "heft_en": "shelfs",
+  "hinweis_intern": "im Heft 'shelfs', richtige Mehrzahl: shelves"
+ },
+ {
+  "id": "v183",
+  "en": "rug",
+  "de": "Teppich; Vorleger",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v184",
+  "en": "guitar",
+  "de": "Gitarre",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v185",
+  "en": "skateboard",
+  "de": "Skateboard",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v186",
+  "en": "poster",
+  "de": "Poster",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v187",
+  "en": "toy",
+  "de": "Spielzeug",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v188",
+  "en": "cuddly toy",
+  "de": "Stofftier",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v189",
+  "en": "computer",
+  "de": "Computer",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v190",
+  "en": "from ... to",
+  "de": "von ... bis",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok",
+  "en_alt": [
+   "from to"
+  ],
+  "de_alt": [
+   "von bis"
+  ]
+ },
+ {
+  "id": "v191",
+  "en": "thirteen",
+  "de": "dreizehn",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok",
+  "zahl": "13"
+ },
+ {
+  "id": "v192",
+  "en": "fourteen",
+  "de": "vierzehn",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok",
+  "zahl": "14"
+ },
+ {
+  "id": "v193",
+  "en": "fifteen",
+  "de": "fünfzehn",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 14,
+  "thema": "Mein Zimmer & Zahlen 13–15",
+  "quelle_foto": "IMG_6645.HEIC",
+  "status": "ok",
+  "zahl": "15"
+ },
+ {
+  "id": "v194",
+  "en": "sixteen",
+  "de": "sechzehn",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "16"
+ },
+ {
+  "id": "v195",
+  "en": "seventeen",
+  "de": "siebzehn",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "17"
+ },
+ {
+  "id": "v196",
+  "en": "eighteen",
+  "de": "achtzehn",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "18"
+ },
+ {
+  "id": "v197",
+  "en": "nineteen",
+  "de": "neunzehn",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "19"
+ },
+ {
+  "id": "v198",
+  "en": "twenty",
+  "de": "zwanzig",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "20"
+ },
+ {
+  "id": "v199",
+  "en": "twenty-one",
+  "de": "einundzwanzig",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "korrigiert",
+  "heft_de": "einandzwanzig",
+  "hinweis_intern": "im Heft 'einandzwanzig', richtig: einundzwanzig",
+  "zahl": "21"
+ },
+ {
+  "id": "v200",
+  "en": "thirty",
+  "de": "dreißig",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "30"
+ },
+ {
+  "id": "v201",
+  "en": "forty",
+  "de": "vierzig",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "40"
+ },
+ {
+  "id": "v202",
+  "en": "fifty",
+  "de": "fünfzig",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "50"
+ },
+ {
+  "id": "v203",
+  "en": "sixty",
+  "de": "sechzig",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "60"
+ },
+ {
+  "id": "v204",
+  "en": "seventy",
+  "de": "siebzig",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "70"
+ },
+ {
+  "id": "v205",
+  "en": "eighty",
+  "de": "achtzig",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "80"
+ },
+ {
+  "id": "v206",
+  "en": "ninety",
+  "de": "neunzig",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "90"
+ },
+ {
+  "id": "v207",
+  "en": "a/one hundred",
+  "de": "hundert/einhundert",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok",
+  "zahl": "100",
+  "en_alt": [
+   "a hundred",
+   "one hundred",
+   "hundred"
+  ]
+ },
+ {
+  "id": "v208",
+  "en": "answer",
+  "de": "Antwort",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 15,
+  "thema": "Zahlen 16–100",
+  "quelle_foto": "IMG_6646.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v209",
+  "en": "wall",
+  "de": "Wand; Mauer",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 16,
+  "thema": "Wand & Küche",
+  "quelle_foto": "IMG_6647.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v210",
+  "en": "fridge",
+  "de": "Kühlschrank",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 16,
+  "thema": "Wand & Küche",
+  "quelle_foto": "IMG_6647.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v211",
+  "en": "address",
+  "de": "Adresse",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 16,
+  "thema": "Wand & Küche",
+  "quelle_foto": "IMG_6647.HEIC",
+  "status": "ok"
+ },
+ {
+  "id": "v212",
+  "en": "its",
+  "de": "sein/-e; ihr/-e",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 16,
+  "thema": "Wand & Küche",
+  "quelle_foto": "IMG_6647.HEIC",
+  "status": "ok",
+  "de_alt": [
+   "sein",
+   "seine",
+   "ihr",
+   "ihre"
+  ]
+ }
+]

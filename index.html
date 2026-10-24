@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Antons Vokabel-Trainer</title>
+<style>
+:root{--bg:#eef6ff;--card:#fff;--ink:#1d2b3a;--muted:#6b7a8c;--blue:#2f7cf6;--green:#22b573;--red:#f2545b;--orange:#ff9f1c;--yellow:#ffd23f;--radius:18px}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Comic Neue",sans-serif;-webkit-text-size-adjust:100%}
+body{padding:env(safe-area-inset-top) 12px calc(env(safe-area-inset-bottom) + 12px)}
+.wrap{max-width:720px;margin:0 auto}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0}
+header h1{font-size:1.3rem;margin:0}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+button{font:inherit;border:0;border-radius:14px;padding:12px 16px;cursor:pointer;touch-action:manipulation}
+.tab{background:#dbe8fb;color:var(--ink);padding:9px 12px;font-size:.95rem}
+.tab.on{background:var(--blue);color:#fff}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:0 6px 20px rgba(30,60,110,.10);padding:20px;margin:12px 0}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:600}
+.pill{background:#f1f5fb;border-radius:999px;padding:6px 12px;font-size:.95rem}
+.bar{height:14px;background:#e3ebf6;border-radius:999px;overflow:hidden;margin:10px 0 2px}
+.bar>div{height:100%;background:linear-gradient(90deg,var(--green),#7ed957);width:0;transition:width .4s}
+.small{font-size:.85rem;color:var(--muted)}
+.dir{font-size:.9rem;font-weight:700;color:var(--blue);letter-spacing:.02em}
+.prompt{font-size:2rem;font-weight:800;margin:14px 0 6px;line-height:1.2;word-wrap:break-word}
+.hint{color:var(--muted);min-height:1.2em}
+input[type=text]{width:100%;font-size:1.4rem;padding:14px 16px;border-radius:14px;border:3px solid #cfdcef;outline:none;margin:12px 0}
+input[type=text]:focus{border-color:var(--blue)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>button{flex:1 1 140px;font-size:1.1rem;font-weight:700}
+.primary{background:var(--blue);color:#fff}
+.ok{background:var(--green);color:#fff}
+.bad{background:var(--red);color:#fff}
+.ghost{background:#eef2f8;color:var(--ink)}
+.speak{background:var(--yellow);color:var(--ink);padding:8px 12px;font-size:1.1rem}
+.fb{border-radius:14px;padding:14px;margin:12px 0;font-size:1.15rem;display:none}
+.fb.show{display:block}
+.fb.good{background:#e3f8ee;border:2px solid var(--green)}
+.fb.almost{background:#fff4e0;border:2px solid var(--orange)}
+.fb.wrong{background:#fde8e9;border:2px solid var(--red)}
+.fb b{font-size:1.25rem}
+.sel{display:grid;grid-template-columns:1fr;gap:8px}
+.sel label{display:flex;align-items:center;gap:10px;background:#f6f9fd;padding:10px 12px;border-radius:12px;font-size:1rem}
+.sel input{width:22px;height:22px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{background:#eef2f8}
+.seg button.on{background:var(--blue);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.stats div{background:#f6f9fd;border-radius:12px;padding:12px}
+.stats b{display:block;font-size:1.8rem}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+td,th{padding:7px 6px;border-bottom:1px solid #edf1f7;text-align:left;vertical-align:top}
+.tag{display:inline-block;border-radius:8px;padding:2px 7px;font-size:.78rem;font-weight:700}
+.t-neu{background:#eef2f8}.t-schwer{background:#fde8e9;color:#b3262d}.t-lernt{background:#fff4e0;color:#a35d00}.t-gelernt{background:#e3f8ee;color:#137a4a}
+.hidden{display:none!important}
+.pop{animation:pop .5s}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+.celebrate{font-size:2.4rem;text-align:center}
+@media (max-width:480px){.prompt{font-size:1.6rem}header h1{font-size:1.1rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>🇬🇧 Antons Vokabel-Trainer</h1>
+  <nav>
+    <button class="tab on" data-view="lernen">Lernen</button>
+    <button class="tab" data-view="auswahl">Auswahl</button>
+    <button class="tab" data-view="statistik">Statistik</button>
+  </nav>
+</header>
+
+<section id="v-lernen">
+  <div class="card">
+    <div class="top">
+      <span class="pill" id="streakPill">🔥 Serie: 0</span>
+      <span class="pill" id="sessionPill">Heute: 0 ✔ / 0</span>
+      <span class="pill" id="bestPill">🏆 Beste Serie: 0</span>
+    </div>
+    <div class="bar"><div id="masteryBar"></div></div>
+    <div class="small" id="masteryText">0 % gelernt</div>
+  </div>
+
+  <div class="card" id="quizCard">
+    <div class="dir" id="dirLabel">Englisch → Deutsch</div>
+    <div class="prompt" id="prompt">…</div>
+    <div class="row" style="align-items:center">
+      <button class="speak hidden" id="speakPrompt" title="Vorlesen">🔊 Anhören</button>
+      <span class="hint" id="promptHint"></span>
+    </div>
+    <form id="answerForm" autocomplete="off">
+      <input type="text" id="answer" placeholder="Deine Übersetzung …" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done">
+      <div class="row" id="askButtons">
+        <button type="submit" class="primary">Prüfen ✔</button>
+        <button type="button" class="ghost" id="revealBtn">Lösung zeigen 👀</button>
+      </div>
+    </form>
+    <div class="fb" id="feedback"></div>
+    <div class="row hidden" id="selfButtons">
+      <button class="ok" id="knewBtn">Ich wusste es ✅</button>
+      <button class="bad" id="didntBtn">Wusste ich nicht ❌</button>
+    </div>
+    <div class="row hidden" id="nextButtons">
+      <button class="ghost hidden" id="overrideBtn">Ich hatte doch recht 🙋</button>
+      <button class="primary" id="nextBtn">Weiter ➜</button>
+    </div>
+  </div>
+  <div class="card hidden" id="emptyCard">Keine Vokabeln ausgewählt. Bitte unter <b>Auswahl</b> mindestens eine Seite anhaken.</div>
+</section>
+
+<section id="v-auswahl" class="hidden">
+  <div class="card">
+    <h3 style="margin-top:0">Richtung</h3>
+    <div class="seg" id="dirSeg">
+      <button data-dir="mix" class="on">Gemischt 🔀</button>
+      <button data-dir="en">Englisch → Deutsch</button>
+      <button data-dir="de">Deutsch → Englisch</button>
+    </div>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Welche Seiten üben?</h3>
+    <div class="row" style="margin-bottom:10px">
+      <button class="ghost" id="selAll">Alle</button>
+      <button class="ghost" id="selNone">Keine</button>
+      <button class="ghost" id="selHard">Nur schwere 💪</button>
+    </div>
+    <div class="sel" id="selList"></div>
+  </div>
+</section>
+
+<section id="v-statistik" class="hidden">
+  <div class="card">
+    <div class="stats">
+      <div><b id="cntGelernt">0</b>gelernt ✅</div>
+      <div><b id="cntSchwer">0</b>schwer 💪</div>
+      <div><b id="cntNeu">0</b>neu ✨</div>
+    </div>
+    <p class="small">Gezählt wird pro Vokabel und Richtung (EN→DE und DE→EN getrennt). „Gelernt“ = mindestens 3× hintereinander richtig.</p>
+  </div>
+  <div class="card">
+    <div class="seg" id="statFilter">
+      <button data-f="alle" class="on">Alle</button>
+      <button data-f="schwer">Schwer</button>
+      <button data-f="lernt">Am Lernen</button>
+      <button data-f="gelernt">Gelernt</button>
+      <button data-f="neu">Neu</button>
+    </div>
+    <div style="overflow-x:auto;margin-top:10px"><table id="statTable"></table></div>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Fortschritt sichern</h3>
+    <div class="row">
+      <button class="primary" id="exportBtn">Exportieren 💾</button>
+      <button class="ghost" id="importBtn">Importieren 📂</button>
+      <button class="bad" id="resetBtn">Zurücksetzen 🗑</button>
+    </div>
+    <input type="file" id="importFile" accept="application/json,.json" class="hidden">
+    <p class="small" id="ioMsg">Der Fortschritt wird automatisch in diesem Browser gespeichert. Mit Export/Import kannst du ihn auf ein anderes Gerät mitnehmen.</p>
+  </div>
+</section>
+</div>
+
+<script>
+const VOKABELN = [{"id": "v001", "en": "I'm from Greenwich.", "de": "Ich bin aus Greenwich.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich"}, {"id": "v002", "en": "Look!", "de": "Schau/Schaut mal!", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich", "de_alt": ["Schau mal!", "Schaut mal!"]}, {"id": "v003", "en": "two boys and a dog", "de": "zwei Jungen und ein Hund", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich"}, {"id": "v004", "en": "in Greenwich Park", "de": "im Greenwich-Park", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich"}, {"id": "v005", "en": "Dogs are my friends, but not cats.", "de": "Hunde sind meine Freunde, aber Katzen nicht.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich"}, {"id": "v006", "en": "I'm a mouse.", "de": "Ich bin eine Maus.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich"}, {"id": "v007", "en": "mouse (sg), mice (pl)", "de": "Maus, Mäuse (Pl.)", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich", "en_alt": ["mouse, mice", "mouse mice", "mouse"], "de_alt": ["Maus, Mäuse", "Maus Mäuse", "Maus"]}, {"id": "v008", "en": "Here's your ball.", "de": "Hier ist dein Ball.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich"}, {"id": "v009", "en": "Hello.", "de": "Hallo.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich"}, {"id": "v010", "en": "I'm Pia.", "de": "Ich heiße Pia./Ich bin Pia.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich", "de_alt": ["Ich heiße Pia.", "Ich bin Pia."]}, {"id": "v011", "en": "You're a nice dog.", "de": "Du bist ein lieber Hund.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich"}, {"id": "v012", "en": "What's your name?", "de": "Wie heißt du?/Wie heißen Sie?", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich", "de_alt": ["Wie heißt du?", "Wie heißen Sie?"]}, {"id": "v013", "en": "Sorry!", "de": "Entschuldigung!/Tut mir leid!", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich", "de_alt": ["Entschuldigung!", "Tut mir leid!"]}, {"id": "v014", "en": "My dog is crazy.", "de": "Mein Hund ist verrückt!", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 1, "thema": "Begrüßung & Greenwich"}, {"id": "v015", "en": "My name is Luke.", "de": "Ich heiße Luke.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 2, "thema": "Woher kommst du?"}, {"id": "v016", "en": "We're from Greenwich.", "de": "Wir sind aus Greenwich.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 2, "thema": "Woher kommst du?"}, {"id": "v017", "en": "Where are you from?", "de": "Woher kommst du?/Woher kommt ihr?/Woher kommen Sie?", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 2, "thema": "Woher kommst du?", "de_alt": ["Woher kommst du?", "Woher kommt ihr?", "Woher kommen Sie?"]}, {"id": "v018", "en": "Are you on holiday?", "de": "Sind Sie im Urlaub?/Seid ihr im Urlaub?/Bist du im Urlaub?", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 2, "thema": "Woher kommst du?", "de_alt": ["Sind Sie im Urlaub?", "Seid ihr im Urlaub?", "Bist du im Urlaub?"]}, {"id": "v019", "en": "yes", "de": "ja", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 2, "thema": "Woher kommst du?"}, {"id": "v020", "en": "I'm here with my parents.", "de": "Ich bin mit meinen Eltern hier.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 2, "thema": "Woher kommst du?"}, {"id": "v021", "en": "How old are you?", "de": "Wie alt bist du?/Wie alt sind Sie?", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 2, "thema": "Woher kommst du?", "de_alt": ["Wie alt bist du?", "Wie alt sind Sie?"]}, {"id": "v022", "en": "You too?", "de": "Du auch?", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 2, "thema": "Woher kommst du?"}, {"id": "v023", "en": "no", "de": "nein", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 2, "thema": "Woher kommst du?"}, {"id": "v024", "en": "German", "de": "deutsch/Deutsch/aus Deutschland/Deutsche/-r", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 2, "thema": "Woher kommst du?", "de_alt": ["deutsch", "aus Deutschland", "Deutsche", "Deutscher"]}, {"id": "v025", "en": "different", "de": "anders/unterschiedlich/verschieden", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 2, "thema": "Woher kommst du?"}, {"id": "v026", "en": "I'm English.", "de": "Ich bin Engländer/-in.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "de_alt": ["Ich bin Engländer.", "Ich bin Engländerin."]}, {"id": "v027", "en": "one", "de": "eins", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "1"}, {"id": "v028", "en": "two", "de": "zwei", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "2"}, {"id": "v029", "en": "three", "de": "drei", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "3"}, {"id": "v030", "en": "four", "de": "vier", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "4"}, {"id": "v031", "en": "five", "de": "fünf", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "5"}, {"id": "v032", "en": "six", "de": "sechs", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "6"}, {"id": "v033", "en": "seven", "de": "sieben", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "7"}, {"id": "v034", "en": "eight", "de": "acht", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "8"}, {"id": "v035", "en": "nine", "de": "neun", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "9"}, {"id": "v036", "en": "ten", "de": "zehn", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "10"}, {"id": "v037", "en": "eleven", "de": "elf", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "11"}, {"id": "v038", "en": "twelve", "de": "zwölf", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "zahl": "12"}, {"id": "v039", "en": "I love dogs.", "de": "Ich liebe Hunde./Ich mag Hunde total gerne.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12", "de_alt": ["Ich liebe Hunde.", "Ich mag Hunde total gerne."]}, {"id": "v040", "en": "Dogs love squirrels.", "de": "Hunde lieben Eichhörnchen.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 3, "thema": "Zahlen 1–12"}, {"id": "v041", "en": "That was close!", "de": "Das war knapp!", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v042", "en": "animal", "de": "Tier", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v043", "en": "Thank you.", "de": "Danke.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v044", "en": "This is Pia.", "de": "Das (hier) ist Pia.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v045", "en": "a girl from Germany", "de": "ein Mädchen aus Deutschland", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v046", "en": "school", "de": "Schule", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v047", "en": "Greenwich Park is big.", "de": "Der Greenwich-Park ist groß.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v048", "en": "It's great for cycling.", "de": "Er ist super zum Radfahren.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v049", "en": "I don't like cycling.", "de": "Ich fahre nicht gern Rad.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v050", "en": "My favourite sport is football.", "de": "Mein Lieblingssport ist Fußball.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v051", "en": "I like the boating lake.", "de": "Ich mag den See mit den Booten./Mir gefällt der See mit den Booten.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park", "de_alt": ["Ich mag den See mit den Booten.", "Mir gefällt der See mit den Booten."]}, {"id": "v052", "en": "What's that?", "de": "Was ist das?", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v053", "en": "Let's go!", "de": "Lass/Lasst uns hingehen!/Los, gehen wir hin!", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park", "de_alt": ["Lass uns hingehen!", "Lasst uns hingehen!", "Los, gehen wir hin!"]}, {"id": "v054", "en": "It's fun.", "de": "Es macht Spaß.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 4, "thema": "Im Park"}, {"id": "v055", "en": "puzzle", "de": "Rätsel", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v056", "en": "rat", "de": "Ratte", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v057", "en": "I'm not scared of dogs.", "de": "Ich habe keine Angst vor Hunden.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v058", "en": "I'm scared of cats.", "de": "Ich habe Angst vor Katzen.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v059", "en": "Worms are OK.", "de": "Würmer sind o.k.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere", "de_alt": ["Würmer sind o.k.", "Würmer sind ok"]}, {"id": "v060", "en": "Rabbits are nice.", "de": "Kaninchen sind nett.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v061", "en": "They're my friends.", "de": "Sie sind meine Freunde.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v062", "en": "They don't eat mice.", "de": "Sie essen keine Mäuse.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v063", "en": "word", "de": "Wort", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v064", "en": "horse", "de": "Pferd", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v065", "en": "cat", "de": "Katze", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v066", "en": "worm", "de": "Wurm", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v067", "en": "parrot", "de": "Papagei", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v068", "en": "bear", "de": "Bär", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v069", "en": "rabbit", "de": "Kaninchen", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 5, "thema": "Tiere"}, {"id": "v070", "en": "mouse", "de": "Maus", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport"}, {"id": "v071", "en": "dog", "de": "Hund", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport"}, {"id": "v072", "en": "budgie", "de": "Wellensittich", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport"}, {"id": "v073", "en": "fish", "de": "Fisch", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport"}, {"id": "v074", "en": "hamster", "de": "Hamster", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport"}, {"id": "v075", "en": "Inline skating is great.", "de": "Inlineskatesfahren ist toll.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport", "de_alt": ["Inlineskatesfahren ist toll.", "Inlineskaten ist toll.", "Inlineskatefahren ist toll."]}, {"id": "v076", "en": "Volleyball is a great sport.", "de": "Volleyball ist ein toller Sport.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport"}, {"id": "v077", "en": "the same", "de": "der-/die-/dasselbe / der/die/das gleiche", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport", "de_alt": ["derselbe", "dieselbe", "dasselbe", "der gleiche", "die gleiche", "das gleiche", "der-/die-/dasselbe"]}, {"id": "v078", "en": "colour", "de": "Farbe", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport"}, {"id": "v079", "en": "correct", "de": "richtig/korrekt", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport"}, {"id": "v080", "en": "What's your favourite colour?", "de": "Was ist deine Lieblingsfarbe?", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport"}, {"id": "v081", "en": "picture", "de": "Bild/Foto", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport"}, {"id": "v082", "en": "people", "de": "Leute/Menschen", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 6, "thema": "Haustiere & Sport"}, {"id": "v083", "en": "thing", "de": "Ding/Sache", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele"}, {"id": "v084", "en": "number", "de": "Zahl/Nummer", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele"}, {"id": "v085", "en": "Boat number eight is pink.", "de": "Boot Nummer acht ist rosa.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele"}, {"id": "v086", "en": "I can see Sherlock.", "de": "Ich kann Sherlock sehen./Ich sehe Sherlock.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele", "de_alt": ["Ich kann Sherlock sehen.", "Ich sehe Sherlock."]}, {"id": "v087", "en": "Roll two dice.", "de": "Würfle/Würfelt mit zwei Würfeln.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele", "de_alt": ["Würfle mit zwei Würfeln.", "Würfelt mit zwei Würfeln.", "Würfel mit zwei Würfeln."]}, {"id": "v088", "en": "Four and six is ten.", "de": "Vier plus sechs ist zehn.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele"}, {"id": "v089", "en": "please", "de": "bitte", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele"}, {"id": "v090", "en": "Can you name four sports?", "de": "Kannst du vier Sportarten nennen?", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele"}, {"id": "v091", "en": "Say your phone number.", "de": "Sag deine Telefonnummer.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele"}, {"id": "v092", "en": "What colour is Sherlock?", "de": "Welche Farbe hat Sherlock?", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele"}, {"id": "v093", "en": "alphabet", "de": "Alphabet", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele"}, {"id": "v094", "en": "Rap like me.", "de": "Rappe/Rappt wie ich.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele", "de_alt": ["Rappe wie ich.", "Rappt wie ich.", "Rapp wie ich."]}, {"id": "v095", "en": "I love you.", "de": "Ich liebe dich./Ich mag dich.", "abschnitt": "Pick-up A: I'm from Greenwich", "seite": 7, "thema": "Sherlock & Spiele", "de_alt": ["Ich liebe dich.", "Ich mag dich."]}, {"id": "v096", "en": "at home", "de": "zu Hause", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v097", "en": "family", "de": "Familie", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v098", "en": "to live", "de": "wohnen/leben", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v099", "en": "flat", "de": "Wohnung", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v100", "en": "in the street", "de": "in der Straße/auf der Straße", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v101", "en": "house", "de": "Haus", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v102", "en": "door", "de": "Tür", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v103", "en": "TV (= television)", "de": "Fernsehen/Fernseher", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel", "en_alt": ["TV", "television"]}, {"id": "v104", "en": "chair", "de": "Stuhl/Sessel", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v105", "en": "table", "de": "Tisch", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v106", "en": "shower", "de": "Dusche", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v107", "en": "bath", "de": "Bad/Badewanne", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v108", "en": "toilet", "de": "Toilette", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v109", "en": "bed", "de": "Bett", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v110", "en": "wardrobe", "de": "Kleiderschrank", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 8, "thema": "Wohnung & Möbel"}, {"id": "v111", "en": "cupboard", "de": "Küchenschrank/Schrank", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v112", "en": "cooker", "de": "Herd", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v113", "en": "living room", "de": "Wohnzimmer", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v114", "en": "bedroom", "de": "Schlafzimmer", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v115", "en": "kitchen", "de": "Küche", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v116", "en": "bathroom", "de": "Bad/Badezimmer", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v117", "en": "good", "de": "gut", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v118", "en": "biscuit", "de": "Keks", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v119", "en": "under", "de": "unter", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v120", "en": "to help", "de": "helfen", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v121", "en": "to collect", "de": "sammeln", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v122", "en": "new", "de": "neu", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v123", "en": "small", "de": "klein", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 9, "thema": "Zimmer"}, {"id": "v124", "en": "sister", "de": "Schwester", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v125", "en": "little", "de": "klein", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v126", "en": "brother", "de": "Bruder", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v127", "en": "father", "de": "Vater", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v128", "en": "mother", "de": "Mutter", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v129", "en": "cousin", "de": "Cousin/Cousine", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v130", "en": "an", "de": "ein/-e", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie", "de_alt": ["ein", "eine"]}, {"id": "v131", "en": "only child", "de": "Einzelkind", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v132", "en": "dad", "de": "Papa", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v133", "en": "she's", "de": "sie ist", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v134", "en": "isn't", "de": "ist nicht", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v135", "en": "always", "de": "immer; ständig", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v136", "en": "easy", "de": "einfach; leicht", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v137", "en": "he's", "de": "er ist", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v138", "en": "mum", "de": "Mama", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 10, "thema": "Familie"}, {"id": "v139", "en": "uncle", "de": "Onkel", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v140", "en": "aunt", "de": "Tante", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v141", "en": "grandad", "de": "Opa", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v142", "en": "grandma", "de": "Oma", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v143", "en": "family tree", "de": "Stammbaum", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v144", "en": "Tell me about ...", "de": "Erzähl mir von ...", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter", "en_alt": ["Tell me about"], "de_alt": ["Erzähl mir von", "Erzähle mir von"]}, {"id": "v145", "en": "guinea pig", "de": "Meerschweinchen", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v146", "en": "quiet", "de": "still; ruhig; leise", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v147", "en": "language", "de": "Sprache", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v148", "en": "only", "de": "erst; bloß; nur", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v149", "en": "wrong", "de": "falsch", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v150", "en": "Thanks", "de": "Danke", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v151", "en": "very", "de": "sehr", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v152", "en": "some", "de": "einige; ein paar; etwas", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v153", "en": "to say hello (to)", "de": "grüßen; Grüße ausrichten (an)", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 11, "thema": "Familie & Wörter"}, {"id": "v154", "en": "to", "de": "zu; nach; auf; in", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v155", "en": "problem", "de": "Problem; Schwierigkeit", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v156", "en": "there", "de": "da; dort; dahin; dorthin", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v157", "en": "garden", "de": "Garten", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v158", "en": "behind", "de": "hinter", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v159", "en": "Mr", "de": "Herr (Anrede)", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v160", "en": "Mrs", "de": "Frau (Anrede)", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v161", "en": "now", "de": "jetzt; nun", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v162", "en": "car", "de": "Auto", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v163", "en": "everywhere", "de": "überall; überallhin", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v164", "en": "again", "de": "wieder; noch einmal; noch mal", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v165", "en": "floor", "de": "Fußboden", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v166", "en": "next to", "de": "neben", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v167", "en": "in front of", "de": "vor", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v168", "en": "to listen (to)", "de": "zuhören; anhören", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 12, "thema": "Wo ist was?"}, {"id": "v169", "en": "idea", "de": "Idee; Einfall", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 13, "thema": "Präpositionen"}, {"id": "v170", "en": "loft", "de": "Dachboden", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 13, "thema": "Präpositionen"}, {"id": "v171", "en": "own", "de": "eigene/-r/-s", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 13, "thema": "Präpositionen", "de_alt": ["eigene", "eigener", "eigenes"]}, {"id": "v172", "en": "of", "de": "von", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 13, "thema": "Präpositionen"}, {"id": "v173", "en": "in the middle (of)", "de": "in der Mitte (von); mitten in", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 13, "thema": "Präpositionen"}, {"id": "v174", "en": "on the right", "de": "auf der rechten Seite; rechts", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 13, "thema": "Präpositionen"}, {"id": "v175", "en": "on the left", "de": "auf der linken Seite; links", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 13, "thema": "Präpositionen"}, {"id": "v176", "en": "on", "de": "auf; an; bei", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 13, "thema": "Präpositionen"}, {"id": "v177", "en": "at", "de": "bei; an", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 13, "thema": "Präpositionen"}, {"id": "v178", "en": "in", "de": "in", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 13, "thema": "Präpositionen"}, {"id": "v179", "en": "lamp", "de": "Lampe", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15"}, {"id": "v180", "en": "mirror", "de": "Spiegel", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15"}, {"id": "v181", "en": "shelf", "de": "Regal", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15"}, {"id": "v182", "en": "shelves", "de": "Regale", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15"}, {"id": "v183", "en": "rug", "de": "Teppich; Vorleger", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15"}, {"id": "v184", "en": "guitar", "de": "Gitarre", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15"}, {"id": "v185", "en": "skateboard", "de": "Skateboard", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15"}, {"id": "v186", "en": "poster", "de": "Poster", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15"}, {"id": "v187", "en": "toy", "de": "Spielzeug", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15"}, {"id": "v188", "en": "cuddly toy", "de": "Stofftier", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15"}, {"id": "v189", "en": "computer", "de": "Computer", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15"}, {"id": "v190", "en": "from ... to", "de": "von ... bis", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15", "en_alt": ["from to"], "de_alt": ["von bis"]}, {"id": "v191", "en": "thirteen", "de": "dreizehn", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15", "zahl": "13"}, {"id": "v192", "en": "fourteen", "de": "vierzehn", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15", "zahl": "14"}, {"id": "v193", "en": "fifteen", "de": "fünfzehn", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 14, "thema": "Mein Zimmer & Zahlen 13–15", "zahl": "15"}, {"id": "v194", "en": "sixteen", "de": "sechzehn", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "16"}, {"id": "v195", "en": "seventeen", "de": "siebzehn", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "17"}, {"id": "v196", "en": "eighteen", "de": "achtzehn", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "18"}, {"id": "v197", "en": "nineteen", "de": "neunzehn", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "19"}, {"id": "v198", "en": "twenty", "de": "zwanzig", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "20"}, {"id": "v199", "en": "twenty-one", "de": "einundzwanzig", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "21"}, {"id": "v200", "en": "thirty", "de": "dreißig", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "30"}, {"id": "v201", "en": "forty", "de": "vierzig", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "40"}, {"id": "v202", "en": "fifty", "de": "fünfzig", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "50"}, {"id": "v203", "en": "sixty", "de": "sechzig", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "60"}, {"id": "v204", "en": "seventy", "de": "siebzig", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "70"}, {"id": "v205", "en": "eighty", "de": "achtzig", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "80"}, {"id": "v206", "en": "ninety", "de": "neunzig", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "90"}, {"id": "v207", "en": "a/one hundred", "de": "hundert/einhundert", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100", "zahl": "100", "en_alt": ["a hundred", "one hundred", "hundred"]}, {"id": "v208", "en": "answer", "de": "Antwort", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 15, "thema": "Zahlen 16–100"}, {"id": "v209", "en": "wall", "de": "Wand; Mauer", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 16, "thema": "Wand & Küche"}, {"id": "v210", "en": "fridge", "de": "Kühlschrank", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 16, "thema": "Wand & Küche"}, {"id": "v211", "en": "address", "de": "Adresse", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 16, "thema": "Wand & Küche"}, {"id": "v212", "en": "its", "de": "sein/-e; ihr/-e", "abschnitt": "Zuhause & Familie (ohne Überschrift)", "seite": 16, "thema": "Wand & Küche", "de_alt": ["sein", "seine", "ihr", "ihre"]}];
+(function(){
+"use strict";
+const STORE_KEY = "anton-vokabeln-v1";
+const GELERNT_SERIE = 3;
+const REQUEUE_AFTER = [3, 5];   // falsche Karten kommen nach 3–5 Karten wieder
+
+// ---------- Normalisierung & Prüfung ----------
+const CONTR = [[/\bi'm\b/g,"i am"],[/\byou're\b/g,"you are"],[/\bwe're\b/g,"we are"],[/\bthey're\b/g,"they are"],[/\bit's\b/g,"it is"],[/\bhe's\b/g,"he is"],[/\bshe's\b/g,"she is"],[/\bwhat's\b/g,"what is"],[/\bhere's\b/g,"here is"],[/\bthat's\b/g,"that is"],[/\bdon't\b/g,"do not"],[/\bdoesn't\b/g,"does not"],[/\bisn't\b/g,"is not"],[/\baren't\b/g,"are not"],[/\bcan't\b/g,"cannot"],[/\blet's\b/g,"let us"],[/\bim\b/g,"i am"],[/\bdont\b/g,"do not"],[/\bisnt\b/g,"is not"],[/\bwhats\b/g,"what is"],[/\btheyre\b/g,"they are"],[/\byoure\b/g,"you are"],[/\bheres\b/g,"here is"],[/\bthats\b/g,"that is"],[/\bdoesnt\b/g,"does not"],[/\barent\b/g,"are not"],[/\bcant\b/g,"cannot"]];
+const ART_EN = /^(the|a|an|to) (?=\S)/;
+const ART_DE = /^(der|die|das|den|dem|ein|eine|einen|einem|einer) (?=\S)/;
+function baseNorm(s, lang){
+  s = String(s).toLowerCase().normalize("NFC").replace(/[’‘´`]/g,"'");
+  if(lang==="en"){ for(const [re,rep] of CONTR) s = s.replace(re,rep); }
+  s = s.replace(/ß/g,"ss").replace(/\.\.\.|…/g," ").replace(/[-–]/g," ");
+  s = s.replace(/[.,!?;:"'()¡¿=]/g," ").replace(/\s+/g," ").trim();
+  return s;
+}
+function stripArt(s, lang){
+  const re = lang==="en" ? ART_EN : ART_DE;
+  let t = s; for(let i=0;i<2;i++){ const u=t.replace(re,""); if(u && u!==t) t=u; }
+  return t;
+}
+function norm(s, lang){ return stripArt(baseNorm(s,lang), lang); }
+function splitAlts(text){
+  // Varianten: Klammerinhalt optional; Trennung an / und ;
+  return String(text).split(/\s*[;\/]\s*/).map(x=>x.trim()).filter(x=>x && !/^-/.test(x));
+}
+function withParenVariants(list){
+  const out = new Set();
+  for(const a of list){
+    out.add(a);
+    if(/\(.*\)/.test(a)){
+      out.add(a.replace(/\([^)]*\)/g," ").replace(/\s+/g," ").trim());
+      out.add(a.replace(/[()]/g," ").replace(/\s+/g," ").trim());
+    }
+  }
+  return [...out].filter(Boolean);
+}
+function acceptedFor(v, lang){
+  const explicit = lang==="en" ? v.en_alt : v.de_alt;
+  const full = lang==="en" ? v.en : v.de;
+  let list = [full].concat(explicit || splitAlts(full));
+  return withParenVariants(list);
+}
+function lev(a,b){
+  if(a===b) return 0; const m=a.length,n=b.length; if(Math.abs(m-n)>1) return 2;
+  let prev=Array.from({length:n+1},(_,i)=>i);
+  for(let i=1;i<=m;i++){ const cur=[i]; for(let j=1;j<=n;j++){ cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1)); } prev=cur; }
+  return prev[n];
+}
+// Ergebnis: {res:"richtig"|"fast"|"falsch", match, also}
+function check(v, dir, answer){
+  const lang = dir==="en" ? "de" : "en";   // dir = Richtung der Frage: "en" heißt EN→DE, Antwort deutsch
+  const a = norm(answer, lang);
+  if(!a) return {res:"falsch"};
+  const alts = acceptedFor(v, lang);
+  for(const alt of alts){ if(norm(alt,lang)===a) return {res:"richtig", match:alt}; }
+  // Synonym aus anderer Vokabel mit gleicher Frage (z.B. klein → small / little)
+  const promptLang = dir==="en" ? "en" : "de";
+  const promptSet = new Set(acceptedFor(v,promptLang).map(x=>norm(x,promptLang)));
+  for(const o of VOKABELN){
+    if(o===v) continue;
+    const oSet = acceptedFor(o,promptLang).map(x=>norm(x,promptLang));
+    if(!oSet.some(x=>promptSet.has(x))) continue;
+    for(const alt of acceptedFor(o,lang)) if(norm(alt,lang)===a) return {res:"richtig", match:alt, also:true};
+  }
+  for(const alt of alts){
+    const n = norm(alt,lang);
+    if(n.replace(/ /g,"").length>=5 && lev(n,a)===1) return {res:"fast", match:alt};
+  }
+  return {res:"falsch"};
+}
+
+// ---------- Zustand ----------
+const defaultState = () => ({version:1, stats:{}, settings:{dir:"mix", seiten:null}, turn:0, queue:[], best:0, streak:0, history:[]});
+let state = load();
+function load(){
+  try{ const s = JSON.parse(localStorage.getItem(STORE_KEY)); if(s && s.version===1) return Object.assign(defaultState(), s); }catch(e){}
+  return defaultState();
+}
+function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){} }
+const key = (v,dir)=> v.id+"|"+dir;
+function st(k){ return state.stats[k] || (state.stats[k]={r:0,f:0,s:0,n:0,last:-99}); }
+function level(k){
+  const s = state.stats[k];
+  if(!s || s.n===0) return "neu";
+  if(s.s>=GELERNT_SERIE) return "gelernt";
+  if(s.f>s.r || s.s===0) return "schwer";
+  return "lernt";
+}
+// Gewicht: neue mittel, schwere hoch, gelernte niedrig (aber nie 0)
+function weight(k){
+  const s = state.stats[k];
+  if(!s || s.n===0) return 3;
+  let w = (1 + 2*s.f) / (1 + 0.6*s.r);
+  w *= Math.pow(0.55, s.s);
+  if(s.s===0) w += 2.5;           // zuletzt falsch
+  const since = state.turn - s.last;
+  w *= Math.min(1.6, 0.5 + since/12); // länger nicht gesehen → etwas wahrscheinlicher
+  return Math.max(0.2, w);
+}
+function seitenAktiv(){
+  const all = [...new Set(VOKABELN.map(v=>v.seite))];
+  return state.settings.seiten ? all.filter(x=>state.settings.seiten.includes(x)) : all;
+}
+function pool(){
+  const seiten = new Set(seitenAktiv());
+  const dirs = state.settings.dir==="mix" ? ["en","de"] : [state.settings.dir];
+  const out = [];
+  for(const v of VOKABELN){ if(!seiten.has(v.seite)) continue; for(const d of dirs) out.push({v,dir:d,k:key(v,d)}); }
+  if(state.settings.nurSchwer){ const h = out.filter(c=>level(c.k)==="schwer"); if(h.length) return h; }
+  return out;
+}
+function pickNext(rand=Math.random){
+  const P = pool(); if(!P.length) return null;
+  const byKey = new Map(P.map(c=>[c.k,c]));
+  // 1) fällige Wiederholung falscher Karten
+  state.queue = state.queue.filter(q=>byKey.has(q.k));
+  const due = state.queue.find(q=>q.due<=state.turn);
+  if(due){ state.queue = state.queue.filter(q=>q!==due); return byKey.get(due.k); }
+  // 2) gewichteter Zufall, kürzlich gezeigte Karten (auch andere Richtung) meiden
+  const recent = new Set(state.history.slice(-3).map(k=>k.split("|")[0]));
+  let cand = P.filter(c=>!recent.has(c.v.id));
+  if(!cand.length) cand = P;
+  const ws = cand.map(c=>weight(c.k));
+  let sum = ws.reduce((a,b)=>a+b,0), r = rand()*sum;
+  for(let i=0;i<cand.length;i++){ r-=ws[i]; if(r<=0) return cand[i]; }
+  return cand[cand.length-1];
+}
+function record(card, result){ // result: "richtig" | "fast" | "falsch"
+  const s = st(card.k);
+  s.n++; s.last = state.turn;
+  if(result==="richtig"){ s.r++; s.s++; state.streak++; }
+  else if(result==="fast"){ s.r++; state.streak++; }
+  else { s.f++; s.s=0; state.streak=0;
+    const gap = REQUEUE_AFTER[0] + Math.floor(Math.random()*(REQUEUE_AFTER[1]-REQUEUE_AFTER[0]+1));
+    state.queue = state.queue.filter(q=>q.k!==card.k); state.queue.push({k:card.k, due:state.turn+gap});
+  }
+  state.best = Math.max(state.best, state.streak);
+  state.history.push(card.k); if(state.history.length>20) state.history.shift();
+  state.turn++;
+  sess.total++; if(result!=="falsch") sess.ok++;
+  save();
+}
+function undoLastAsCorrect(card){ // „Ich hatte doch recht“
+  const s = st(card.k);
+  if(s.f>0) s.f--; s.r++; s.s = (s.prevS||0)+1;
+  state.queue = state.queue.filter(q=>q.k!==card.k);
+  state.streak = (state.prevStreak||0)+1; state.best=Math.max(state.best,state.streak);
+  sess.ok++; save();
+}
+
+// ---------- UI ----------
+const $ = id=>document.getElementById(id);
+const sess = {ok:0,total:0};
+let current=null, answered=false;
+function display(v, lang){
+  if(lang==="en") return v.en + (v.zahl ? "" : "");
+  return v.de;
+}
+function newCard(){
+  current = pickNext(); answered=false;
+  $("feedback").className="fb"; $("feedback").innerHTML="";
+  $("selfButtons").classList.add("hidden"); $("nextButtons").classList.add("hidden"); $("overrideBtn").classList.add("hidden");
+  $("askButtons").classList.remove("hidden"); $("answer").disabled=false; $("answer").value="";
+  if(!current){ $("quizCard").classList.add("hidden"); $("emptyCard").classList.remove("hidden"); return; }
+  $("quizCard").classList.remove("hidden"); $("emptyCard").classList.add("hidden");
+  const v=current.v, d=current.dir;
+  $("dirLabel").textContent = d==="en" ? "🇬🇧 Englisch → 🇩🇪 Deutsch" : "🇩🇪 Deutsch → 🇬🇧 Englisch";
+  $("prompt").textContent = d==="en" ? v.en : v.de;
+  $("answer").placeholder = d==="en" ? "Auf Deutsch …" : "In English …";
+  $("answer").lang = d==="en" ? "de" : "en";
+  const lv = level(current.k);
+  const tag = {neu:"✨ neue Karte", schwer:"💪 schwer", lernt:"📈 am Lernen", gelernt:"✅ gelernt"}[lv];
+  let hint = tag + " · S. " + v.seite;
+  if(v.zahl) hint += " · Zahl " + v.zahl;
+  $("promptHint").textContent = hint;
+  $("speakPrompt").classList.toggle("hidden", !(d==="en" && canSpeak()));
+  updateTop();
+  setTimeout(()=>{ try{ $("answer").focus({preventScroll:true}); }catch(e){} }, 50);
+}
+function solutionHTML(v,d){
+  const sol = d==="en" ? v.de : v.en;
+  let h = `<div>Lösung: <b>${esc(sol)}</b></div>`;
+  if(d==="de" && canSpeak()) h += `<div style="margin-top:8px"><button class="speak" type="button" data-say="${esc(v.en)}">🔊 Anhören</button></div>`;
+  return h;
+}
+function showFeedback(kind, html){
+  const fb=$("feedback"); fb.className="fb show "+kind; fb.innerHTML=html; fb.classList.add("pop");
+}
+function finishAnswer(result, extraHTML){
+  answered=true;
+  state.prevStreak = state.streak; st(current.k).prevS = st(current.k).s;
+  record(current, result);
+  $("askButtons").classList.add("hidden"); $("answer").disabled=true;
+  $("nextButtons").classList.remove("hidden");
+  $("overrideBtn").classList.toggle("hidden", result!=="falsch" || !$("answer").value.trim());
+  updateTop();
+  const s=state.streak;
+  if(result!=="falsch" && s>0 && s%10===0) showFeedback("good", extraHTML + `<div class="celebrate">🎉 ${s} richtig in Folge! 🎉</div>`);
+  setTimeout(()=>{ try{ $("nextBtn").focus({preventScroll:true}); }catch(e){} },30);
+}
+$("answerForm").addEventListener("submit", e=>{
+  e.preventDefault(); if(!current||answered) return;
+  const val=$("answer").value;
+  if(!val.trim()){ reveal(); return; }
+  const r = check(current.v, current.dir, val);
+  const v=current.v, d=current.dir;
+  let html;
+  if(r.res==="richtig"){
+    const sol = d==="en" ? v.de : v.en;
+    html = `<div><b>Richtig! 🎉</b></div>` + (r.also ? `<div>Auch richtig – gesucht war hier: <b>${esc(sol)}</b></div>` : (norm(sol, d==="en"?"de":"en")!==norm(val, d==="en"?"de":"en") ? `<div class="small">Im Heft: ${esc(sol)}</div>` : ""));
+    if(d==="de" && canSpeak()) html += `<div style="margin-top:8px"><button class="speak" type="button" data-say="${esc(v.en)}">🔊 Anhören</button></div>`;
+    showFeedback("good", html); finishAnswer("richtig", html);
+  } else if(r.res==="fast"){
+    html = `<div><b>Fast richtig! 👍</b> Achte auf die Schreibweise:</div><div>Richtig ist: <b>${esc(r.match)}</b></div><div class="small">Du hast geschrieben: ${esc(val)}</div>`;
+    showFeedback("almost", html); finishAnswer("fast", html);
+  } else {
+    html = `<div><b>Leider falsch.</b> Die kommt gleich nochmal dran. 💪</div>` + solutionHTML(v,d) + `<div class="small">Deine Antwort: ${esc(val)}</div>`;
+    showFeedback("wrong", html); finishAnswer("falsch", html);
+  }
+});
+function reveal(){
+  if(!current||answered) return;
+  showFeedback("almost", solutionHTML(current.v,current.dir) + `<div class="small">Sei ehrlich: Hättest du es gewusst?</div>`);
+  $("askButtons").classList.add("hidden"); $("selfButtons").classList.remove("hidden"); $("answer").disabled=true;
+}
+$("revealBtn").onclick = reveal;
+$("knewBtn").onclick = ()=>{ $("selfButtons").classList.add("hidden"); finishAnswer("richtig",""); showFeedback("good", solutionHTML(current.v,current.dir)+"<div><b>Super! ✅</b></div>"); };
+$("didntBtn").onclick = ()=>{ $("selfButtons").classList.add("hidden"); finishAnswer("falsch",""); showFeedback("wrong", solutionHTML(current.v,current.dir)+"<div>Kein Problem – die kommt bald wieder. 💪</div>"); };
+$("nextBtn").onclick = newCard;
+$("overrideBtn").onclick = ()=>{ undoLastAsCorrect(current); $("overrideBtn").classList.add("hidden"); showFeedback("good", "<div><b>Okay, als richtig gezählt ✅</b></div>"+solutionHTML(current.v,current.dir)); updateTop(); };
+document.addEventListener("keydown", e=>{ if(e.key==="Enter" && answered && document.activeElement!==$("answer")){ e.preventDefault(); newCard(); }});
+document.addEventListener("click", e=>{ const b=e.target.closest("[data-say]"); if(b) say(b.getAttribute("data-say")); });
+$("speakPrompt").onclick = ()=> current && say(current.v.en);
+
+function canSpeak(){ return typeof window.speechSynthesis!=="undefined" && typeof window.SpeechSynthesisUtterance!=="undefined"; }
+function say(text){
+  if(!canSpeak()) return;
+  const t = String(text).replace(/\([^)]*\)/g," ").replace(/\//g,", ").replace(/\.\.\./g," ");
+  const u = new SpeechSynthesisUtterance(t); u.lang="en-GB"; u.rate=0.85;
+  const vs = speechSynthesis.getVoices(); const gb = vs.find(x=>/en[-_]GB/i.test(x.lang)); if(gb) u.voice=gb;
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+}
+function esc(s){ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+function counts(){
+  const c={neu:0,schwer:0,lernt:0,gelernt:0};
+  for(const v of VOKABELN) for(const d of ["en","de"]) c[level(key(v,d))]++;
+  return c;
+}
+function updateTop(){
+  $("streakPill").textContent = "🔥 Serie: "+state.streak;
+  $("bestPill").textContent = "🏆 Beste Serie: "+state.best;
+  $("sessionPill").textContent = `Heute: ${sess.ok} ✔ / ${sess.total}`;
+  const P = pool(); const g = P.filter(c=>level(c.k)==="gelernt").length;
+  const pct = P.length ? Math.round(100*g/P.length) : 0;
+  $("masteryBar").style.width = pct+"%";
+  $("masteryText").textContent = `${pct} % der ausgewählten Karten gelernt (${g} von ${P.length})`;
+}
+
+// Auswahl
+function renderSel(){
+  const seiten = [...new Map(VOKABELN.map(v=>[v.seite,v])).values()];
+  const act = new Set(seitenAktiv());
+  let html="", lastAb=null;
+  for(const v of seiten){
+    if(v.abschnitt!==lastAb){ html += `<div style="font-weight:800;margin-top:8px">${esc(v.abschnitt)}</div>`; lastAb=v.abschnitt; }
+    const n = VOKABELN.filter(x=>x.seite===v.seite).length;
+    html += `<label><input type="checkbox" data-seite="${v.seite}" ${act.has(v.seite)?"checked":""}> Seite ${v.seite}: ${esc(v.thema)} <span class="small">(${n})</span></label>`;
+  }
+  $("selList").innerHTML = html;
+  document.querySelectorAll("#dirSeg button").forEach(b=>b.classList.toggle("on", b.dataset.dir===state.settings.dir));
+  $("selHard").classList.toggle("primary", !!state.settings.nurSchwer);
+}
+$("selList").addEventListener("change", ()=>{
+  state.settings.seiten = [...document.querySelectorAll("#selList input:checked")].map(i=>+i.dataset.seite);
+  save(); updateTop();
+});
+$("selAll").onclick=()=>{ state.settings.seiten=null; state.settings.nurSchwer=false; save(); renderSel(); updateTop(); };
+$("selNone").onclick=()=>{ state.settings.seiten=[]; save(); renderSel(); updateTop(); };
+$("selHard").onclick=()=>{ state.settings.nurSchwer=!state.settings.nurSchwer; save(); renderSel(); updateTop(); };
+$("dirSeg").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; state.settings.dir=b.dataset.dir; save(); renderSel(); updateTop(); });
+
+// Statistik
+let statF="alle";
+function renderStats(){
+  const c=counts(); $("cntGelernt").textContent=c.gelernt; $("cntSchwer").textContent=c.schwer; $("cntNeu").textContent=c.neu;
+  const rows=[];
+  for(const v of VOKABELN) for(const d of ["en","de"]){
+    const k=key(v,d), lv=level(k), s=state.stats[k]||{r:0,f:0,s:0};
+    if(statF!=="alle" && statF!==lv) continue;
+    rows.push({v,d,lv,s,w:weight(k)});
+  }
+  rows.sort((a,b)=> (b.s.f-b.s.r)-(a.s.f-a.s.r) || a.v.seite-b.v.seite);
+  const lab={neu:"neu",schwer:"schwer",lernt:"am Lernen",gelernt:"gelernt"};
+  $("statTable").innerHTML = `<tr><th>Englisch</th><th>Deutsch</th><th>Richtung</th><th>✔</th><th>✘</th><th>Serie</th><th></th></tr>` +
+    rows.map(r=>`<tr><td>${esc(r.v.en)}</td><td>${esc(r.v.de)}</td><td>${r.d==="en"?"EN→DE":"DE→EN"}</td><td>${r.s.r}</td><td>${r.s.f}</td><td>${r.s.s}</td><td><span class="tag t-${r.lv}">${lab[r.lv]}</span></td></tr>`).join("");
+}
+$("statFilter").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; statF=b.dataset.f; document.querySelectorAll("#statFilter button").forEach(x=>x.classList.toggle("on",x===b)); renderStats(); });
+$("exportBtn").onclick=()=>{
+  const blob = new Blob([JSON.stringify({app:"anton-vokabeln", exportiert:new Date().toISOString(), state},null,1)],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="anton-vokabeln-fortschritt-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},500);
+  $("ioMsg").textContent="Fortschritt exportiert ✅";
+};
+$("importBtn").onclick=()=>$("importFile").click();
+$("importFile").onchange=e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const rd=new FileReader(); rd.onload=()=>{ try{ importJSON(rd.result); $("ioMsg").textContent="Fortschritt importiert ✅"; }catch(err){ $("ioMsg").textContent="Import fehlgeschlagen: "+err.message; } e.target.value=""; };
+  rd.readAsText(f);
+};
+function importJSON(text){
+  const d=JSON.parse(text); const s=d.state||d;
+  if(!s || s.version!==1 || typeof s.stats!=="object") throw new Error("keine gültige Fortschrittsdatei");
+  state=Object.assign(defaultState(), s); save(); renderStats(); renderSel(); newCard();
+}
+$("resetBtn").onclick=()=>{ if(confirm("Wirklich den ganzen Fortschritt löschen?")){ state=defaultState(); save(); sess.ok=sess.total=0; renderStats(); renderSel(); newCard(); $("ioMsg").textContent="Fortschritt zurückgesetzt."; } };
+
+// Tabs
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===t));
+  for(const v of ["lernen","auswahl","statistik"]) $("v-"+v).classList.toggle("hidden", t.dataset.view!==v);
+  if(t.dataset.view==="statistik") renderStats();
+  if(t.dataset.view==="auswahl") renderSel();
+  if(t.dataset.view==="lernen"){ updateTop(); if(!current || answered) newCard(); }
+});
+if(canSpeak()) try{ speechSynthesis.getVoices(); }catch(e){}
+renderSel(); newCard();
+window.VT = {check, norm, pickNext, record, weight, level, pool, get state(){return state;}, set state(s){state=s;}, importJSON, defaultState, newCard, get current(){return current;}};
+})();
+</script>
+</body>
+</html>
