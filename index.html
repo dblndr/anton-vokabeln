@@ -62,6 +62,34 @@ td,th{padding:7px 6px;border-bottom:1px solid #edf1f7;text-align:left;vertical-a
 .pop{animation:pop .5s}
 @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
 .celebrate{font-size:2.4rem;text-align:center}
+.hero{display:flex;align-items:center;gap:14px}
+.flame{font-size:3.2rem;line-height:1}
+.flame.off{filter:grayscale(1);opacity:.4}
+.big{font-size:2rem;font-weight:800;line-height:1.1}
+h3.t{margin:0 0 8px;font-size:1.1rem}
+.chart svg{width:100%;max-width:560px;height:auto;display:block;margin:0 auto}
+.chart text{font-family:inherit}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}
+.cmp>div{background:#f6f9fd;border-radius:12px;padding:10px}
+.cmp>div.now{background:#e8f1ff;border:2px solid var(--blue)}
+.cmp b{display:block;font-size:1.5rem}
+.msg{font-weight:700;margin:10px 0 0}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.badge{background:#f6f9fd;border-radius:14px;padding:10px 4px;text-align:center;font-size:.8rem;line-height:1.25}
+.badge .i{font-size:1.9rem;display:block;margin-bottom:2px}
+.badge.got{background:#fff8d6;border:2px solid var(--yellow)}
+.badge.off .i{filter:grayscale(1);opacity:.35}
+.badge.off{color:var(--muted)}
+.hard{list-style:none;padding:0;margin:0 0 12px}
+.hard li{display:flex;justify-content:space-between;gap:8px;padding:8px 10px;background:#fdf3f3;border-radius:10px;margin:6px 0}
+.hard li .n{white-space:nowrap;color:#b3262d;font-weight:700;font-size:.85rem}
+.empty{text-align:center;font-size:1.05rem}
+.empty .i{font-size:3rem}
+.toast{display:none;background:#fff8d6;border:2px solid var(--yellow);border-radius:14px;padding:12px;margin:12px 0;font-weight:700;text-align:center}
+.toast.show{display:block}
+@media (min-width:700px){.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}.duo>.card{margin:12px 0}}
 @media (max-width:480px){.prompt{font-size:1.6rem}header h1{font-size:1.1rem}}
 </style>
 </head>
@@ -79,7 +107,8 @@ td,th{padding:7px 6px;border-bottom:1px solid #edf1f7;text-align:left;vertical-a
 <section id="v-lernen">
   <div class="card">
     <div class="top">
-      <span class="pill" id="streakPill">🔥 Serie: 0</span>
+      <span class="pill" id="dayPill">🔥 0 Tage</span>
+      <span class="pill" id="streakPill">⚡ In Folge: 0</span>
       <span class="pill" id="sessionPill">Heute: 0 ✔ / 0</span>
       <span class="pill" id="bestPill">🏆 Beste Serie: 0</span>
     </div>
@@ -104,6 +133,7 @@ td,th{padding:7px 6px;border-bottom:1px solid #edf1f7;text-align:left;vertical-a
       </div>
     </form>
     <div class="fb" id="feedback"></div>
+    <div class="toast" id="badgeToast"></div>
     <div class="row hidden" id="selfButtons">
       <button class="ok" id="knewBtn">Ich wusste es ✅</button>
       <button class="bad" id="didntBtn">Wusste ich nicht ❌</button>
@@ -137,6 +167,55 @@ td,th{padding:7px 6px;border-bottom:1px solid #edf1f7;text-align:left;vertical-a
 </section>
 
 <section id="v-statistik" class="hidden">
+  <div class="card" id="heroCard">
+    <div class="hero">
+      <div class="flame" id="flame">🔥</div>
+      <div><div class="big" id="dayStreak">0 Tage</div><div id="dayStreakMsg"></div><div class="small" id="dayBest"></div></div>
+    </div>
+    <div style="margin-top:14px;font-weight:700">🎯 Tagesziel: <span id="goalText">0 von 20 Karten</span></div>
+    <div class="bar"><div id="goalBar"></div></div>
+    <div class="stats" style="margin-top:12px">
+      <div><b id="kGelernt">0</b>Karten gelernt</div>
+      <div><b id="kAntworten">0</b>Antworten</div>
+      <div><b id="kQuote">–</b>richtig</div>
+    </div>
+  </div>
+  <div class="card empty hidden" id="emptyHist">
+    <div class="i">🌱</div>
+    <p><b>Hier wächst bald dein Lern-Verlauf!</b></p>
+    <p id="emptyMsg">Übe heute ein paar Karten. Dann siehst du hier jeden Tag, wie du besser wirst.</p>
+  </div>
+  <div id="histCards">
+    <div class="card">
+      <h3 class="t">📅 Letzte 7 Tage – und die Woche davor</h3>
+      <div class="cmp" id="cmp"></div>
+      <p class="msg" id="cmpMsg"></p>
+    </div>
+    <div class="card">
+      <h3 class="t">📊 Geübte Karten – letzte 14 Tage</h3>
+      <div class="chart" id="chartDays"></div>
+      <div class="small legend"><span><i style="background:var(--green)"></i>richtig</span><span><i style="background:var(--red)"></i>falsch</span><span>- - - Tagesziel</span></div>
+    </div>
+    <div class="duo">
+      <div class="card">
+        <h3 class="t">📈 Gelernte Karten</h3>
+        <div class="chart" id="chartLine"></div>
+      </div>
+      <div class="card">
+        <h3 class="t">🎯 Trefferquote pro Woche</h3>
+        <div class="chart" id="chartWeeks"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="t">🏅 Abzeichen <span class="small" id="badgeCount"></span></h3>
+    <div class="badges" id="badges"></div>
+  </div>
+  <div class="card" id="hardCard">
+    <h3 class="t">💪 Deine 5 schwierigsten Wörter</h3>
+    <ol class="hard" id="hardList"></ol>
+    <button class="primary" id="practiceHard" style="width:100%;font-weight:700">Diese Wörter jetzt üben 💪</button>
+  </div>
   <div class="card">
     <div class="stats">
       <div><b id="cntGelernt">0</b>gelernt ✅</div>
@@ -244,15 +323,59 @@ function check(v, dir, answer){
 }
 
 // ---------- Zustand ----------
-const defaultState = () => ({version:1, stats:{}, settings:{dir:"mix", seiten:null}, turn:0, queue:[], best:0, streak:0, history:[]});
-let state = load();
+// ---------- Datum (lokal) ----------
+let nowFn = ()=>Date.now();
+const pad2 = n=>String(n).padStart(2,"0");
+function dayKey(ts){ const d=new Date(ts===undefined?nowFn():ts); return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate()); }
+function parseDay(k){ const [y,m,d]=k.split("-").map(Number); return new Date(y,m-1,d); }
+function addDays(k,n){ const d=parseDay(k); d.setDate(d.getDate()+n); return dayKey(d.getTime()); }
+function mondayOf(k){ const d=parseDay(k); return addDays(k, -((d.getDay()+6)%7)); }
+function isoWeek(k){ const d=parseDay(k); d.setDate(d.getDate()+3-((d.getDay()+6)%7)); const w1=new Date(d.getFullYear(),0,4); return 1+Math.round(((d-w1)/864e5-3+((w1.getDay()+6)%7))/7); }
+const num = x=>{ const n=Number(x); return isFinite(n)&&n>0 ? n : 0; };
+
+// ---------- Zustand ----------
+// Datenformat bleibt version:1 (alte App-Versionen können neue Exporte weiter lesen).
+// Neu (nur zusätzlich, alte Felder bleiben unverändert):
+//   tage:      {"JJJJ-MM-TT": {r:richtig, f:falsch, g:neu gelernt, k:gelernte Karten insgesamt, t:Sekunden}}
+//   start:     {d:Tag, k:gelernte Karten, n:Antworten} – Stand, ab dem der Verlauf aufgezeichnet wird
+//   abzeichen: {id:"JJJJ-MM-TT"}
+const DAILY_GOAL = 20;
+const defaultState = () => ({version:1, stats:{}, settings:{dir:"mix", seiten:null}, turn:0, queue:[], best:0, streak:0, history:[], tage:{}, start:{d:dayKey(),k:0,n:0}, abzeichen:{}});
+const isObj = x=> !!x && typeof x==="object" && !Array.isArray(x);
+// Altstand → neuer Stand. Verändert/entfernt keine vorhandenen Felder, ergänzt nur fehlende.
+function migrate(raw){
+  const s = Object.assign(defaultState(), raw);
+  if(!isObj(s.stats)) s.stats = {};
+  if(!isObj(raw.tage)) s.tage = {};
+  if(!isObj(raw.start)) s.start = {d:dayKey(), k:countGelernt(s.stats), n:sumN(s.stats)};
+  if(!isObj(raw.abzeichen)) s.abzeichen = {}; // bereits erreichte werden beim Start still nachgetragen
+  return s;
+}
+const LEGACY_BACKUP_KEY = STORE_KEY + "-sicherung-vor-statistik";
+let state; // wird nach den Hilfsfunktionen geladen (s.u.)
 function load(){
-  try{ const s = JSON.parse(localStorage.getItem(STORE_KEY)); if(s && s.version===1) return Object.assign(defaultState(), s); }catch(e){}
+  let rawText = null;
+  try{ rawText = localStorage.getItem(STORE_KEY); }catch(e){}
+  if(rawText){
+    let s = null;
+    try{ s = JSON.parse(rawText); }catch(e){}
+    if(s && s.version===1){
+      // einmalige Sicherung des Originalstands, bevor das neue Format ergänzt wird
+      if(!isObj(s.tage)){ try{ if(!localStorage.getItem(LEGACY_BACKUP_KEY)) localStorage.setItem(LEGACY_BACKUP_KEY, rawText); }catch(e){} }
+      try{ return migrate(s); }catch(e){ return Object.assign(defaultState(), s); }
+    }
+    // unlesbarer Stand: nicht stillschweigend überschreiben, sondern vorher sichern
+    try{ localStorage.setItem(STORE_KEY+"-unlesbar-"+Date.now(), rawText); }catch(e){}
+  }
   return defaultState();
 }
 function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){} }
 const key = (v,dir)=> v.id+"|"+dir;
 function st(k){ return state.stats[k] || (state.stats[k]={r:0,f:0,s:0,n:0,last:-99}); }
+function allKeys(){ const out=[]; for(const v of VOKABELN) for(const d of ["en","de"]) out.push(key(v,d)); return out; }
+function countGelernt(stats){ stats=stats||state.stats; let c=0; for(const k of allKeys()){ const s=stats[k]; if(s && s.n>0 && s.s>=GELERNT_SERIE) c++; } return c; }
+function sumN(stats){ let n=0; for(const k in stats){ if(isObj(stats[k])) n+=num(stats[k].n); } return n; }
+state = load();
 function level(k){
   const s = state.stats[k];
   if(!s || s.n===0) return "neu";
@@ -283,7 +406,10 @@ function pool(){
   if(state.settings.nurSchwer){ const h = out.filter(c=>level(c.k)==="schwer"); if(h.length) return h; }
   return out;
 }
+let fokus = []; // „schwierigste Wörter jetzt üben“ (nur im Speicher, nicht gespeichert)
+function cardByKey(k){ const [id,dir]=k.split("|"); const v=VOKABELN.find(x=>x.id===id); return v ? {v,dir,k} : null; }
 function pickNext(rand=Math.random){
+  while(fokus.length){ const c=cardByKey(fokus.shift()); if(c) return c; }
   const P = pool(); if(!P.length) return null;
   const byKey = new Map(P.map(c=>[c.k,c]));
   // 1) fällige Wiederholung falscher Karten
@@ -299,7 +425,10 @@ function pickNext(rand=Math.random){
   for(let i=0;i<cand.length;i++){ r-=ws[i]; if(r<=0) return cand[i]; }
   return cand[cand.length-1];
 }
+let lastAnswerAt = 0, lastRec = null, newBadges = [];
+function dayEntry(d){ const e = state.tage[d]; if(isObj(e)){ for(const f of ["r","f","g","k","t"]) e[f]=num(e[f]); return e; } return (state.tage[d]={r:0,f:0,g:0,k:0,t:0}); }
 function record(card, result){ // result: "richtig" | "fast" | "falsch"
+  const wasGelernt = level(card.k)==="gelernt";
   const s = st(card.k);
   s.n++; s.last = state.turn;
   if(result==="richtig"){ s.r++; s.s++; state.streak++; }
@@ -312,6 +441,15 @@ function record(card, result){ // result: "richtig" | "fast" | "falsch"
   state.history.push(card.k); if(state.history.length>20) state.history.shift();
   state.turn++;
   sess.total++; if(result!=="falsch") sess.ok++;
+  // Tagesprotokoll
+  const now = nowFn(), d = dayKey(now), e = dayEntry(d);
+  if(result==="falsch") e.f++; else e.r++;
+  if(!wasGelernt && level(card.k)==="gelernt") e.g++;
+  e.k = countGelernt();
+  e.t += lastAnswerAt && now>lastAnswerAt ? Math.min(60, Math.round((now-lastAnswerAt)/1000)) : 10;
+  lastAnswerAt = now;
+  lastRec = {d, k:card.k, wasGelernt};
+  newBadges = markBadges(state, false);
   save();
 }
 function undoLastAsCorrect(card){ // „Ich hatte doch recht“
@@ -319,6 +457,12 @@ function undoLastAsCorrect(card){ // „Ich hatte doch recht“
   if(s.f>0) s.f--; s.r++; s.s = (s.prevS||0)+1;
   state.queue = state.queue.filter(q=>q.k!==card.k);
   state.streak = (state.prevStreak||0)+1; state.best=Math.max(state.best,state.streak);
+  if(lastRec && lastRec.k===card.k && isObj(state.tage[lastRec.d])){
+    const e = dayEntry(lastRec.d); if(e.f>0) e.f--; e.r++;
+    if(!lastRec.wasGelernt && level(card.k)==="gelernt") e.g++;
+    e.k = countGelernt(); lastRec = null;
+  }
+  newBadges = markBadges(state, false);
   sess.ok++; save();
 }
 
@@ -332,7 +476,7 @@ function display(v, lang){
 }
 function newCard(){
   current = pickNext(); answered=false;
-  $("feedback").className="fb"; $("feedback").innerHTML="";
+  $("feedback").className="fb"; $("feedback").innerHTML=""; $("badgeToast").className="toast";
   $("selfButtons").classList.add("hidden"); $("nextButtons").classList.add("hidden"); $("overrideBtn").classList.add("hidden");
   $("askButtons").classList.remove("hidden"); $("answer").disabled=false; $("answer").value="";
   if(!current){ $("quizCard").classList.add("hidden"); $("emptyCard").classList.remove("hidden"); return; }
@@ -369,7 +513,7 @@ function finishAnswer(result, extraHTML){
   $("askButtons").classList.add("hidden"); $("answer").disabled=true;
   $("nextButtons").classList.remove("hidden");
   $("overrideBtn").classList.toggle("hidden", result!=="falsch" || !$("answer").value.trim());
-  updateTop();
+  updateTop(); showBadgeToast();
   const s=state.streak;
   if(result!=="falsch" && s>0 && s%10===0) showFeedback("good", extraHTML + `<div class="celebrate">🎉 ${s} richtig in Folge! 🎉</div>`);
   setTimeout(()=>{ try{ $("nextBtn").focus({preventScroll:true}); }catch(e){} },30);
@@ -403,7 +547,7 @@ $("revealBtn").onclick = reveal;
 $("knewBtn").onclick = ()=>{ $("selfButtons").classList.add("hidden"); finishAnswer("richtig",""); showFeedback("good", solutionHTML(current.v,current.dir)+"<div><b>Super! ✅</b></div>"); };
 $("didntBtn").onclick = ()=>{ $("selfButtons").classList.add("hidden"); finishAnswer("falsch",""); showFeedback("wrong", solutionHTML(current.v,current.dir)+"<div>Kein Problem – die kommt bald wieder. 💪</div>"); };
 $("nextBtn").onclick = newCard;
-$("overrideBtn").onclick = ()=>{ undoLastAsCorrect(current); $("overrideBtn").classList.add("hidden"); showFeedback("good", "<div><b>Okay, als richtig gezählt ✅</b></div>"+solutionHTML(current.v,current.dir)); updateTop(); };
+$("overrideBtn").onclick = ()=>{ undoLastAsCorrect(current); $("overrideBtn").classList.add("hidden"); showFeedback("good", "<div><b>Okay, als richtig gezählt ✅</b></div>"+solutionHTML(current.v,current.dir)); updateTop(); showBadgeToast(); };
 document.addEventListener("keydown", e=>{ if(e.key==="Enter" && answered && document.activeElement!==$("answer")){ e.preventDefault(); newCard(); }});
 document.addEventListener("click", e=>{ const b=e.target.closest("[data-say]"); if(b){ e.preventDefault(); say(b.getAttribute("data-say"), b.getAttribute("data-slow")==="1"); } });
 $("speakPrompt").onclick = ()=>{ if(current) say(current.v.en, false); };
@@ -482,9 +626,12 @@ function counts(){
   return c;
 }
 function updateTop(){
-  $("streakPill").textContent = "🔥 Serie: "+state.streak;
-  $("bestPill").textContent = "🏆 Beste Serie: "+state.best;
-  $("sessionPill").textContent = `Heute: ${sess.ok} ✔ / ${sess.total}`;
+  const ds = dayStreak();
+  $("dayPill").textContent = "🔥 " + ds.n + (ds.n===1?" Tag":" Tage");
+  $("streakPill").textContent = "⚡ In Folge: "+state.streak;
+  $("bestPill").textContent = "🏆 Rekord: "+state.best;
+  const te = state.tage[dayKey()]; const tr = te?num(te.r):0, tf = te?num(te.f):0;
+  $("sessionPill").textContent = `Heute: ${tr} ✔ / ${tr+tf}`;
   const P = pool(); const g = P.filter(c=>level(c.k)==="gelernt").length;
   const pct = P.length ? Math.round(100*g/P.length) : 0;
   $("masteryBar").style.width = pct+"%";
@@ -514,9 +661,187 @@ $("selNone").onclick=()=>{ state.settings.seiten=[]; save(); renderSel(); update
 $("selHard").onclick=()=>{ state.settings.nurSchwer=!state.settings.nurSchwer; save(); renderSel(); updateTop(); };
 $("dirSeg").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; state.settings.dir=b.dataset.dir; save(); renderSel(); updateTop(); });
 
+
+// ---------- Verlauf, Serie, Abzeichen ----------
+function dayVals(d, tage){ const e=(tage||state.tage)[d]; return isObj(e) ? {r:num(e.r),f:num(e.f),g:num(e.g),k:num(e.k),t:num(e.t)} : null; }
+function active(d, tage){ const e=dayVals(d, tage); return !!e && e.r+e.f>0; }
+function activeDays(tage){ tage=tage||state.tage; return Object.keys(tage).filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d) && active(d,tage)).sort(); }
+function dayStreak(){
+  const T=dayKey(), today=active(T); let d = today ? T : addDays(T,-1), n=0;
+  while(active(d) && n<10000){ n++; d=addDays(d,-1); }
+  return {n, today};
+}
+function bestDayStreak(tage){
+  let best=0, cur=0, prev=null;
+  for(const d of activeDays(tage)){ cur = (prev && addDays(prev,1)===d) ? cur+1 : 1; best=Math.max(best,cur); prev=d; }
+  return best;
+}
+const BADGES = [
+  {id:"k10",  i:"🌱", t:"10 Karten gelernt",  need:10,  v:s=>countGelernt(s.stats)},
+  {id:"k50",  i:"🌿", t:"50 Karten gelernt",  need:50,  v:s=>countGelernt(s.stats)},
+  {id:"k100", i:"🌳", t:"100 Karten gelernt", need:100, v:s=>countGelernt(s.stats)},
+  {id:"k212", i:"⭐", t:"Halbzeit: 212 Karten", need:212, v:s=>countGelernt(s.stats)},
+  {id:"k424", i:"👑", t:"Alle 424 Karten!",   need:424, v:s=>countGelernt(s.stats)},
+  {id:"d3",   i:"🔥", t:"3 Tage in Folge",    need:3,   v:s=>bestDayStreak(s.tage)},
+  {id:"d7",   i:"🚀", t:"7 Tage in Folge",    need:7,   v:s=>bestDayStreak(s.tage)},
+  {id:"d14",  i:"🏅", t:"14 Tage in Folge",   need:14,  v:s=>bestDayStreak(s.tage)},
+  {id:"d30",  i:"🏆", t:"30 Tage in Folge",   need:30,  v:s=>bestDayStreak(s.tage)},
+  {id:"n100", i:"✏️", t:"100 Antworten",      need:100, v:s=>sumN(s.stats)},
+  {id:"n500", i:"📚", t:"500 Antworten",      need:500, v:s=>sumN(s.stats)},
+  {id:"n1000",i:"🎓", t:"1000 Antworten",     need:1000,v:s=>sumN(s.stats)},
+  {id:"f10",  i:"⚡", t:"10 richtig in Folge", need:10,  v:s=>num(s.best)},
+  {id:"f25",  i:"💥", t:"25 richtig in Folge", need:25,  v:s=>num(s.best)},
+  {id:"f50",  i:"🌟", t:"50 richtig in Folge", need:50,  v:s=>num(s.best)},
+];
+function markBadges(s, silent){
+  if(!isObj(s.abzeichen)) s.abzeichen = {};
+  const got=[];
+  for(const b of BADGES){ if(!s.abzeichen[b.id] && b.v(s)>=b.need){ s.abzeichen[b.id]=dayKey(); got.push(b); } }
+  return silent ? [] : got;
+}
+function showBadgeToast(){
+  if(!newBadges.length) return;
+  const t=$("badgeToast"); t.innerHTML = newBadges.map(b=>`🎉 Neues Abzeichen: ${b.i} ${esc(b.t)}!`).join("<br>"); t.className="toast show pop";
+  newBadges = [];
+}
+const fmtDay = d=>{ const x=parseDay(d); return x.getDate()+"."+(x.getMonth()+1)+"."; };
+const WD = ["So","Mo","Di","Mi","Do","Fr","Sa"];
+function svgBars(T){
+  const n=14, W=360, H=170, top=20, bot=34, L=4;
+  const days=[]; for(let i=n-1;i>=0;i--){ const d=addDays(T,-i); const e=dayVals(d)||{r:0,f:0}; days.push({d,r:e.r,f:e.f}); }
+  const max = Math.max(DAILY_GOAL, ...days.map(x=>x.r+x.f));
+  const ch=H-top-bot, bw=(W-2*L)/n, y=v=>top+ch-ch*v/max;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Geübte Karten pro Tag">`;
+  days.forEach((x,i)=>{
+    const cx=L+i*bw, w=bw*0.7, x0=cx+(bw-w)/2, isT=x.d===T;
+    if(isT) s+=`<rect x="${cx+1}" y="${top-16}" width="${bw-2}" height="${ch+16}" rx="6" fill="#e8f1ff"/>`;
+    const hr=ch*x.r/max, hf=ch*x.f/max;
+    if(x.r) s+=`<rect x="${x0}" y="${top+ch-hr}" width="${w}" height="${hr}" rx="3" fill="#22b573"/>`;
+    if(x.f) s+=`<rect x="${x0}" y="${top+ch-hr-hf}" width="${w}" height="${hf}" rx="3" fill="#f2545b"/>`;
+    if(x.r+x.f) s+=`<text x="${cx+bw/2}" y="${top+ch-hr-hf-4}" font-size="10" text-anchor="middle" fill="#1d2b3a" font-weight="700">${x.r+x.f}</text>`;
+    const dd=parseDay(x.d);
+    s+=`<text x="${cx+bw/2}" y="${H-19}" font-size="10" text-anchor="middle" fill="${isT?"#2f7cf6":"#6b7a8c"}" font-weight="${isT?800:400}">${isT?"Heute":WD[dd.getDay()]}</text>`;
+    s+=`<text x="${cx+bw/2}" y="${H-6}" font-size="9" text-anchor="middle" fill="#9aa7b6">${dd.getDate()}.</text>`;
+  });
+  s+=`<line x1="${L}" x2="${W-L}" y1="${y(DAILY_GOAL)}" y2="${y(DAILY_GOAL)}" stroke="#ff9f1c" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+  s+=`<line x1="${L}" x2="${W-L}" y1="${top+ch}" y2="${top+ch}" stroke="#d5deea"/>`;
+  return s+`</svg>`;
+}
+function svgLine(T){
+  const st0 = isObj(state.start) && /^\d{4}-\d{2}-\d{2}$/.test(state.start.d||"") ? state.start : {d:T,k:0};
+  let from = addDays(T,-29); const first = [st0.d, ...activeDays()].sort()[0];
+  if(first > from) from = first;
+  if(addDays(from,6) > T) from = addDays(T,-6);
+  const pts=[]; let cur=null;
+  // Wert vor dem Zeitraum: letzter bekannter Stand
+  for(const d of Object.keys(state.tage).sort()){ if(d<from && dayVals(d)) cur=dayVals(d).k; }
+  if(cur===null && st0.d<from) cur=num(st0.k);
+  for(let d=from; d<=T; d=addDays(d,1)){
+    if(d===st0.d && cur===null) cur=num(st0.k);
+    const e=dayVals(d); if(e && e.r+e.f>0) cur=e.k;
+    pts.push({d, v: (d<st0.d && !active(d)) ? null : cur});
+  }
+  const vals=pts.filter(p=>p.v!==null);
+  if(vals.length<2) return `<p class="small">Morgen siehst du hier deine erste Linie. 📈</p>`;
+  const W=360,H=170,top=22,bot=24,L=30,R=12, ch=H-top-bot;
+  const vmax=Math.max(10,...vals.map(p=>p.v)); const max=Math.ceil(vmax*1.15/10)*10;
+  const xs=i=>L+(W-L-R)*i/(pts.length-1), ys=v=>top+ch-ch*v/max;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Gelernte Karten im Verlauf">`;
+  for(const g of [0, max/2, max]){ s+=`<line x1="${L}" x2="${W-R}" y1="${ys(g)}" y2="${ys(g)}" stroke="#edf1f7"/><text x="${L-5}" y="${ys(g)+3}" font-size="9" text-anchor="end" fill="#9aa7b6">${Math.round(g)}</text>`; }
+  const idx=pts.map((p,i)=>[p,i]).filter(([p])=>p.v!==null);
+  const line=idx.map(([p,i],j)=>(j?"L":"M")+xs(i).toFixed(1)+" "+ys(p.v).toFixed(1)).join(" ");
+  const [p0,i0]=idx[0], [pl,il]=idx[idx.length-1];
+  s+=`<path d="${line} L${xs(il).toFixed(1)} ${ys(0)} L${xs(i0).toFixed(1)} ${ys(0)} Z" fill="#22b573" opacity=".15"/>`;
+  s+=`<path d="${line}" fill="none" stroke="#22b573" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
+  s+=`<circle cx="${xs(il)}" cy="${ys(pl.v)}" r="5" fill="#22b573" stroke="#fff" stroke-width="2"/>`;
+  s+=`<text x="${Math.min(xs(il),W-R-4)}" y="${ys(pl.v)-10}" font-size="12" text-anchor="end" font-weight="800" fill="#137a4a">${pl.v}</text>`;
+  s+=`<text x="${xs(i0)}" y="${H-6}" font-size="9" fill="#9aa7b6">${fmtDay(p0.d)}</text><text x="${W-R}" y="${H-6}" font-size="9" text-anchor="end" fill="#9aa7b6">Heute</text>`;
+  return s+`</svg>`;
+}
+function svgWeeks(T){
+  const W=360,H=170,top=22,bot=30,L=4, n=6, ch=H-top-bot, bw=(W-2*L)/n;
+  const m=mondayOf(T); let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Trefferquote pro Woche">`;
+  for(let i=0;i<n;i++){
+    const ws=addDays(m,-7*(n-1-i)); let r=0,f=0;
+    for(let j=0;j<7;j++){ const e=dayVals(addDays(ws,j)); if(e){ r+=e.r; f+=e.f; } }
+    const cx=L+i*bw, w=bw*0.62, x0=cx+(bw-w)/2, cur=i===n-1;
+    if(r+f){
+      const q=Math.round(100*r/(r+f)), h=ch*q/100, col=q>=80?"#22b573":q>=60?"#ff9f1c":"#f2545b";
+      s+=`<rect x="${x0}" y="${top+ch-h}" width="${w}" height="${h}" rx="4" fill="${col}"/><text x="${cx+bw/2}" y="${top+ch-h-5}" font-size="11" text-anchor="middle" font-weight="800" fill="#1d2b3a">${q}%</text>`;
+    } else s+=`<text x="${cx+bw/2}" y="${top+ch-5}" font-size="11" text-anchor="middle" fill="#c2ccd8">–</text>`;
+    s+=`<text x="${cx+bw/2}" y="${H-14}" font-size="10" text-anchor="middle" fill="${cur?"#2f7cf6":"#6b7a8c"}" font-weight="${cur?800:400}">${cur?"diese":"KW "+isoWeek(ws)}</text>`;
+    s+=`<text x="${cx+bw/2}" y="${H-3}" font-size="9" text-anchor="middle" fill="#9aa7b6">${cur?"Woche":fmtDay(ws)}</text>`;
+  }
+  s+=`<line x1="${L}" x2="${W-L}" y1="${top+ch}" y2="${top+ch}" stroke="#d5deea"/>`;
+  return s+`</svg>`;
+}
+function sumRange(T,from,to){ const o={r:0,f:0,g:0,t:0,tage:0}; for(let i=from;i<=to;i++){ const e=dayVals(addDays(T,-i)); if(e){ o.r+=e.r; o.f+=e.f; o.g+=e.g; o.t+=e.t; if(e.r+e.f) o.tage++; } } return o; }
+function hardest(){
+  const out=[];
+  for(const v of VOKABELN) for(const d of ["en","de"]){
+    const k=key(v,d), s=state.stats[k]; if(!s || !(s.f>0) || level(k)==="gelernt") continue;
+    out.push({v,d,k,s,score:s.f*2 - s.r + (s.s===0?1:0)});
+  }
+  return out.sort((a,b)=>b.score-a.score || b.s.f-a.s.f).slice(0,5);
+}
+function renderHistory(){
+  const T=dayKey(), ds=dayStreak(), best=bestDayStreak();
+  $("flame").classList.toggle("off", ds.n===0);
+  $("dayStreak").textContent = ds.n + (ds.n===1?" Tag":" Tage") + " in Folge";
+  $("dayStreakMsg").textContent = ds.n===0 ? "Übe heute und starte eine neue Serie! 🔥"
+    : ds.today ? `Super, heute schon geübt! Komm morgen wieder, dann sind es ${ds.n+1} Tage.`
+    : "Heute noch nicht geübt – ein paar Karten, und deine Flamme brennt weiter!";
+  $("dayBest").textContent = best>1 ? `Deine längste Serie: ${best} Tage` : "";
+  const te=dayVals(T)||{r:0,f:0}, done=te.r+te.f;
+  $("goalText").textContent = done>=DAILY_GOAL ? `${done} Karten – geschafft! 🎉` : `${done} von ${DAILY_GOAL} Karten`;
+  $("goalBar").style.width = Math.min(100, Math.round(100*done/DAILY_GOAL))+"%";
+  let R=0,F=0; for(const k in state.stats){ const s=state.stats[k]; if(isObj(s)){ R+=num(s.r); F+=num(s.f); } }
+  $("kGelernt").textContent = countGelernt();
+  $("kAntworten").textContent = sumN(state.stats);
+  $("kQuote").textContent = R+F ? Math.round(100*R/(R+F))+" %" : "–";
+  const has = activeDays().length>0;
+  $("emptyHist").classList.toggle("hidden", has); $("histCards").classList.toggle("hidden", !has);
+  if(!has){
+    const k=countGelernt();
+    $("emptyMsg").textContent = k ? `Du hast schon ${k} Karten gelernt – stark! Ab heute zeichnen wir jeden Tag auf, wie du besser wirst. Übe ein paar Karten, dann erscheint hier dein erster Balken.`
+                                 : "Übe heute ein paar Karten. Dann siehst du hier jeden Tag, wie du besser wirst.";
+  } else {
+    const a=sumRange(T,0,6), b=sumRange(T,7,13), qa=a.r+a.f?Math.round(100*a.r/(a.r+a.f)):null, qb=b.r+b.f?Math.round(100*b.r/(b.r+b.f)):null;
+    const box=(cls,title,o,q)=>`<div class="${cls}"><div class="small">${title}</div><b>${o.r+o.f}</b>Karten<div class="small">${q===null?"–":q+" % richtig"} · ${o.tage} Lerntag${o.tage===1?"":"e"}<br>+${o.g} neu gelernt · ${Math.round(o.t/60)} Min.</div></div>`;
+    $("cmp").innerHTML = box("now","Letzte 7 Tage",a,qa) + box("","7 Tage davor",b,qb);
+    const ca=a.r+a.f, cb=b.r+b.f;
+    $("cmpMsg").textContent = cb===0 ? (ca ? "Super Start! 🚀 Jede Karte zählt." : "")
+      : ca>cb ? `Stark! ${ca-cb} Karten mehr als in der Woche davor. 🚀`
+      : (qa!==null && qb!==null && qa>qb) ? `Weniger geübt, aber genauer: ${qa-qb} % mehr richtig! 🎯`
+      : ca===cb ? "Genauso fleißig wie in der Woche davor. 👍"
+      : `In der Woche davor waren es ${cb} Karten. Schaffst du heute ein paar mehr? 💪`;
+    $("chartDays").innerHTML = svgBars(T);
+    $("chartLine").innerHTML = svgLine(T);
+    $("chartWeeks").innerHTML = svgWeeks(T);
+  }
+  markBadges(state, true);
+  const gotN = BADGES.filter(b=>state.abzeichen[b.id]).length;
+  $("badgeCount").textContent = `(${gotN} von ${BADGES.length})`;
+  $("badges").innerHTML = BADGES.map(b=>{
+    const got=!!state.abzeichen[b.id], v=b.v(state);
+    return `<div class="badge ${got?"got":"off"}"><span class="i">${b.i}</span>${esc(b.t)}<div class="small">${got?"geschafft "+fmtDay(state.abzeichen[b.id]):"noch "+Math.max(0,b.need-v)}</div></div>`;
+  }).join("");
+  const H=hardest();
+  $("hardList").innerHTML = H.length ? H.map(h=>`<li><span>${esc(h.d==="en"?h.v.en:h.v.de)} <span class="small">${h.d==="en"?"EN→DE":"DE→EN"}</span></span><span class="n">✘ ${h.s.f} · ✔ ${h.s.r}</span></li>`).join("")
+    : sumN(state.stats) ? `<li style="background:#e3f8ee"><span>Gerade keine schweren Wörter – super! 🎉</span></li>`
+    : `<li style="background:#f6f9fd"><span>Hier erscheinen Wörter, die noch schwer sind. Leg einfach los! 🚀</span></li>`;
+  $("practiceHard").classList.toggle("hidden", !H.length);
+}
+$("practiceHard").onclick = ()=>{
+  fokus = hardest().map(h=>h.k); if(!fokus.length) return;
+  document.querySelector('.tab[data-view=lernen]').click();
+  newCard();
+};
+
 // Statistik
 let statF="alle";
 function renderStats(){
+  renderHistory();
   const c=counts(); $("cntGelernt").textContent=c.gelernt; $("cntSchwer").textContent=c.schwer; $("cntNeu").textContent=c.neu;
   const rows=[];
   for(const v of VOKABELN) for(const d of ["en","de"]){
@@ -545,9 +870,9 @@ $("importFile").onchange=e=>{
 function importJSON(text){
   const d=JSON.parse(text); const s=d.state||d;
   if(!s || s.version!==1 || typeof s.stats!=="object") throw new Error("keine gültige Fortschrittsdatei");
-  state=Object.assign(defaultState(), s); save(); renderStats(); renderSel(); newCard();
+  state=migrate(s); markBadges(state, true); save(); renderStats(); renderSel(); newCard();
 }
-$("resetBtn").onclick=()=>{ if(confirm("Wirklich den ganzen Fortschritt löschen?")){ state=defaultState(); save(); sess.ok=sess.total=0; renderStats(); renderSel(); newCard(); $("ioMsg").textContent="Fortschritt zurückgesetzt."; } };
+$("resetBtn").onclick=()=>{ if(confirm("Wirklich den ganzen Fortschritt löschen?")){ state=defaultState(); save(); sess.ok=sess.total=0; lastRec=null; fokus=[]; renderStats(); renderSel(); newCard(); $("ioMsg").textContent="Fortschritt zurückgesetzt."; } };
 
 // Tabs
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
@@ -558,8 +883,9 @@ document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
   if(t.dataset.view==="lernen"){ updateTop(); if(!current || answered) newCard(); }
 });
 if(!canSpeak()) setSoundHint("ℹ️ Vorlesen wird von diesem Browser nicht unterstützt.", false);
+markBadges(state, true); save(); // migrierten Stand (nur Ergänzungen) sichern
 renderSel(); newCard();
-window.VT = {say, pickEnVoice, speechText, get enVoice(){return enVoice;}, check, norm, pickNext, record, weight, level, pool, get state(){return state;}, set state(s){state=s;}, importJSON, defaultState, newCard, get current(){return current;}};
+window.VT = {say, pickEnVoice, speechText, get enVoice(){return enVoice;}, check, norm, pickNext, record, weight, level, pool, get state(){return state;}, set state(s){state=s;}, importJSON, defaultState, newCard, get current(){return current;}, migrate, dayKey, addDays, countGelernt, dayStreak, bestDayStreak, hardest, renderStats, setNow(fn){ nowFn = fn || (()=>Date.now()); }, get fokus(){return fokus;}};
 })();
 </script>
 </body>
