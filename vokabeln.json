@@ -2071,5 +2071,131 @@
    "ihr",
    "ihre"
   ]
+ },
+ {
+  "id": "v213",
+  "en": "cellar",
+  "de": "Keller",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v214",
+  "en": "terrace",
+  "de": "Terrasse",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v215",
+  "en": "balcony",
+  "de": "Balkon",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v216",
+  "en": "garage",
+  "de": "Garage",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v217",
+  "en": "shed",
+  "de": "Schuppen",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v218",
+  "en": "to remember",
+  "de": "sich erinnern (an); sich merken; denken an",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v219",
+  "en": "or",
+  "de": "oder",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v220",
+  "en": "more",
+  "de": "mehr; weitere",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v221",
+  "en": "fantasy",
+  "de": "Fantasie; Traum",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v222",
+  "en": "to draw",
+  "de": "zeichnen",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v223",
+  "en": "step",
+  "de": "Stufe; Schritt",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v224",
+  "en": "roof",
+  "de": "Dach",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v225",
+  "en": "window",
+  "de": "Fenster",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
+ },
+ {
+  "id": "v226",
+  "en": "hall",
+  "de": "Flur",
+  "abschnitt": "Zuhause & Familie (ohne Überschrift)",
+  "seite": 17,
+  "thema": "Rund ums Haus & mehr",
+  "status": "ok"
  }
 ]
