@@ -1,0 +1,10 @@
+{
+  "name": "Lerntrainer",
+  "short_name": "Lerntrainer",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "lang": "de",
+  "background_color": "#eef6ff",
+  "theme_color": "#2f7cf6"
+}

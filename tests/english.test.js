@@ -9,8 +9,8 @@ const doc = window.document;
 
 test("Version, Titel und fünf Englisch-Tabs", ()=>{
   assert.equal(VT.APP_VERSION, "0.5");
-  assert.equal(doc.title, "Antons Lerntrainer – v0.5");
-  assert.equal(doc.getElementById("appTitle").textContent, "Antons Lerntrainer – v0.5");
+  assert.equal(doc.title, "Lerntrainer – v0.5");
+  assert.equal(doc.getElementById("appTitle").textContent, "Lerntrainer – v0.5");
   assert.equal(doc.getElementById("appSub").textContent, "Englisch · Mathe");
   const tabs = [...doc.querySelectorAll("#mainNav .tab")].map(b=>b.dataset.view);
   assert.deepEqual(tabs, ["lernen","auswahl","grammatik","alles","statistik"]);
@@ -62,7 +62,7 @@ test("Statistik rendert und Abzeichen bleiben die englischen", ()=>{
 test("Englisch-Audio bleibt en-GB und langsam, Mathe liest Deutsch", ()=>{
   const voices = window.speechSynthesis.getVoices();
   const en = VT.pickEnVoice(voices);
-  assert.equal(en.name, "Daniel");
+  assert.equal(en.name, "en-GB Voice");
   assert.ok(/^en-GB/i.test(en.lang));
   const de = VT.mathe.pickDeVoice(voices);
   assert.equal(de.lang, "de-DE");

@@ -67,7 +67,7 @@ async function flow(browser, width, height){
     localStorage.setItem("anton-vokabeln-v1", JSON.stringify(state));
   });
   await page.goto("http://127.0.0.1:8765/index.html", {waitUntil:"load"});
-  await page.getByRole("heading", {name:"Antons Lerntrainer – v0.5"}).waitFor();
+  await page.getByRole("heading", {name:"Lerntrainer – v0.5"}).waitFor();
   await page.getByRole("button", {name:/Englisch/}).waitFor();
   await page.getByRole("button", {name:/Mathe/}).waitFor();
   await shot(page, "01-start-"+tag+".png");

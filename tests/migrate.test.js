@@ -107,14 +107,19 @@ test("Export → Import Rundreise mit und ohne Mathe", ()=>{
   assert.equal(VT.state.version, 1);
 });
 
-test("Tage-Serie zählt Mathe mit, Englisch-Abzeichen-Serie nicht", ()=>{
+test("Mathe zählt nur in der gemeinsamen Serie, nicht in der Englisch-Serie", ()=>{
   VT.setNow(()=> new Date(2026, 10, 8, 15, 0, 0).getTime());
   VT.state.tage = {};
   VT.state.grammatik.tage = {};
   VT.state.mathe.tage = {"2026-11-08":{r:2,f:0}, "2026-11-07":{r:1,f:1}};
-  const ds = VT.dayStreak();
-  assert.equal(ds.n, 2);
-  assert.equal(ds.today, true);
+  const en = VT.dayStreak();
+  assert.equal(en.n, 0);
+  assert.equal(en.today, false);
+  const sh = VT.sharedDayStreak();
+  assert.equal(sh.n, 2);
+  assert.equal(sh.today, true);
   assert.equal(VT.bestDayStreak(VT.state.tage, VT.state.grammatik.tage), 0);
-  assert.equal(VT.bestDayStreak(), 2);
+  assert.equal(VT.bestDayStreak(), 0);
+  assert.equal(VT.sharedBestDayStreak(), 2);
+  assert.deepEqual(VT.state.tage, {});
 });

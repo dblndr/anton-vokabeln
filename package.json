@@ -1,5 +1,5 @@
 {
-  "name": "anton-vokabeln",
+  "name": "lerntrainer",
   "private": true,
   "scripts": {
     "test": "node --test --test-concurrency=1 tests/*.test.js",
