@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Lerntrainer – v0.5</title>
+<title>Lerntrainer – v0.6</title>
 <link rel="manifest" href="manifest.webmanifest">
 <style>
 :root{--bg:#eef6ff;--card:#fff;--ink:#1d2b3a;--muted:#6b7a8c;--blue:#2f7cf6;--green:#22b573;--red:#f2545b;--orange:#ff9f1c;--yellow:#ffd23f;--radius:18px}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Comic Neue",sans-serif;-webkit-text-size-adjust:100%}
-body{padding:env(safe-area-inset-top) 12px calc(env(safe-area-inset-bottom) + 12px)}
+body{padding:env(safe-area-inset-top) 12px calc(env(safe-area-inset-bottom) + 78px)}
 .wrap{max-width:720px;margin:0 auto}
 header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0;flex-wrap:wrap}
 header h1{font-size:1.3rem;margin:0}
@@ -151,17 +151,77 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
 @media (min-width:700px){.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}.duo>.card{margin:12px 0}}
 @media (min-width:700px){.fachgrid,.mtiles{grid-template-columns:1fr 1fr}.pad{gap:10px}.pad button{font-size:1.85rem;min-height:76px}.display{font-size:2.5rem;min-height:84px}}
 @media (max-width:480px){.prompt{font-size:1.6rem}header h1{font-size:1.08rem}}
+#mainNav,#switchFach{display:none !important}
+#dock{position:fixed;z-index:30;background:#fff;display:flex;margin:0}
+#dock a{color:#6b7a8c;text-decoration:none;font-weight:800;font-size:.72rem;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0}
+#dock .ic{width:40px;height:34px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;line-height:1}
+#dock a.on{color:var(--blue)}
+#dock a.on .ic{background:#e8f1ff}
+@media (max-width:899px){
+  #dock{left:0;right:0;bottom:0;height:calc(62px + env(safe-area-inset-bottom));padding:4px 2px env(safe-area-inset-bottom);border-top:1px solid #e3ebf6;box-shadow:0 -4px 16px rgba(30,60,110,.06)}
+  #dock a{flex:1}
+}
+@media (min-width:900px){
+  body{padding:16px 16px 16px 112px}
+  #dock{top:0;left:0;bottom:0;width:96px;flex-direction:column;padding:14px 8px;border-right:1px solid #e3ebf6;gap:4px}
+  #dock a{flex:0;padding:8px 0}
+  .wrap{max-width:1080px}
+  .fachcols{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(240px,.8fr);gap:16px;align-items:start}
+}
+.h2{font-size:1.12rem;margin:14px 0 8px}
+.fcard{background:#fff;border-radius:18px;box-shadow:0 6px 20px rgba(30,60,110,.10);padding:14px 14px 12px;margin:12px 0;border-left:6px solid var(--accent,#2f7cf6);min-width:0}
+.fcard-top{display:flex;gap:10px;align-items:flex-start}
+.fcard-top .grow{flex:1;min-width:0}
+.fcard h2{margin:0;font-size:1.22rem}
+.openbtn{padding:8px 12px;font-weight:800;white-space:nowrap}
+.weiter{width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;background:#f4f7fb;border-radius:14px;font-weight:800;margin-top:8px;text-align:left}
+.soon{border:2px dashed #c5d4e8;border-radius:18px;padding:18px 14px;text-align:center;color:var(--muted);margin:12px 0 8px;font-weight:700}
+.numicon{display:grid;grid-template-columns:1fr 1fr;width:42px;height:42px;background:#efeaff;border-radius:12px;color:#5b43c6;font-size:.78rem;line-height:1;place-items:center;flex:0 0 auto;font-weight:800}
+.iconbox{font-size:1.7rem;width:42px;text-align:center;flex:0 0 auto;line-height:1.1}
+.chip{margin-left:auto;background:#eef3fb;color:#24384d;border-radius:999px;padding:4px 10px;font-size:.8rem;font-weight:800;white-space:nowrap}
+.bblock{margin:8px 0;min-width:0}
+.brow{display:flex;width:100%;align-items:center;gap:10px;text-align:left;background:#fff;border:2px solid #e5eef8;border-radius:16px;padding:10px 12px}
+.brow .nm{font-weight:800;min-width:0}
+.brow .small{display:block;font-weight:600}
+.bblock.open{border:3px solid var(--accent,#7a5af8);border-radius:18px;padding:0;background:#fff}
+.bblock.open .brow{border:0;background:transparent}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 8px 8px}
+.modebtn{text-align:left;background:#f6f9fd;border-radius:14px;min-height:68px;font-weight:800;padding:10px 12px}
+.modebtn .small{display:block;font-weight:600}
+.modebtn.fresh{background:#fff4e0}
+.neuflag{display:inline-block;background:#ff9f1c;color:#fff;border-radius:999px;font-size:.68rem;padding:1px 6px;margin-left:4px;vertical-align:1px}
+.pair,.wide{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pair>button,.wide>button{text-align:left;background:#f6f9fd;border-radius:16px;min-height:74px;font-weight:800;padding:12px;width:100%}
+.wide .seg{display:flex;gap:6px;margin-top:8px}
+.wide .seg button{flex:1;width:auto;min-height:42px;padding:8px 4px;text-align:center;font-weight:800}
+.pair .small,.wide .small{display:block;font-weight:600}
+.clickrow{cursor:pointer}
+.crumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:2px 0 8px;font-weight:700}
+.crumb .spacer{flex:1}
+.linkish{background:transparent;color:var(--blue);font-weight:800;padding:4px 0}
+.crumbline{margin:0 0 8px;font-weight:700}
+.crumbline a{color:var(--blue);text-decoration:none}
+.drawbox{margin:8px 0;background:#f8fbff;border:2px solid #e5eef8;border-radius:14px;padding:8px}
+.drawsvg{display:block;width:100%;height:auto;max-height:320px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 </style>
 </head>
 <body>
+<nav id="dock" aria-label="Hauptnavigation">
+  <a href="#/start" data-nav="start"><span class="ic" aria-hidden="true">🏠</span>Start</a>
+  <a href="#/statistik" data-nav="statistik"><span class="ic" aria-hidden="true">📊</span>Statistik</a>
+  <a href="#/abzeichen" data-nav="abzeichen"><span class="ic" aria-hidden="true">🏅</span>Abzeichen</a>
+  <a href="#/mehr" data-nav="mehr"><span class="ic" aria-hidden="true">☰</span>Mehr</a>
+</nav>
 <div class="wrap">
 <header>
   <div class="brand">
-    <h1 id="appTitle">Lerntrainer – v0.5</h1>
+    <h1 id="appTitle">Lerntrainer – v0.6</h1>
     <p class="subtitle" id="appSub">Englisch · Mathe</p>
   </div>
   <button type="button" class="ghost hidden" id="switchFach">Fach wechseln</button>
 </header>
+<div id="crumb" class="crumb hidden"></div>
 <nav id="mainNav" class="hidden">
   <button class="tab on" data-view="lernen">Lernen</button>
   <button class="tab" data-view="auswahl">Auswahl</button>
@@ -170,23 +230,18 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
   <button class="tab" data-view="statistik">Statistik</button>
 </nav>
 
-<section id="v-start">
-  <div class="card">
-    <h3 style="margin-top:0">Was möchtest du üben?</h3>
-    <p class="small">Englisch oder Mathe. Oben kannst du das Fach später jederzeit wechseln.</p>
+<section id="v-start"></section>
+<section id="page-fach" class="hidden"></section>
+<section id="page-statistik" class="hidden">
+  <div class="card" style="margin-bottom:0">
+    <h2 class="h2" style="margin-top:0">Statistik</h2>
+    <div class="seg" id="fachFilter">
+      <button type="button" data-filter="gesamt">Gesamt</button>
+      <button type="button" data-filter="englisch">🇬🇧 Englisch</button>
+      <button type="button" data-filter="mathe">🔢 Mathe</button>
+    </div>
   </div>
-  <div class="fachgrid" id="fachGrid">
-    <button type="button" class="tile en" id="pickEn" data-fach="englisch">
-      <span class="emoji">🇬🇧</span>
-      <span class="tbig">Englisch</span>
-      <span class="small">Vokabeln, Grammatik und alles quer</span>
-    </button>
-    <button type="button" class="tile ma" id="pickMa" data-fach="mathe">
-      <span class="emoji">🔢</span>
-      <span class="tbig">Mathe</span>
-      <span class="small">Zahlen, Rechnen, Größen und Flächen</span>
-    </button>
-  </div>
+  <div id="statsGesamt"></div>
 </section>
 
 <section id="v-mathe" class="hidden">
@@ -220,6 +275,7 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
       </div>
       <div class="small" id="mKind"></div>
       <div class="prompt" id="mPrompt"></div>
+      <div id="mDraw" class="drawbox hidden"></div>
       <div class="speakrow">
         <button type="button" class="speak" id="mSpeak">🔊 Vorlesen</button>
         <button type="button" class="ghost" id="mRuleBtn">💡 Regel</button>
@@ -228,7 +284,7 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
       <div id="mMathArea">
         <div class="display empty" id="mDisplay">…</div>
         <div class="pad" id="mPad"></div>
-        <p class="small">Ohne Tausenderpunkte. − für Minus, Komma für Nachkommastellen (3,5 und 3,50 sind gleich).</p>
+        <p class="small" id="mPadHint">Ohne Tausenderpunkte. − für Minus, Komma für Nachkommastellen (3,5 und 3,50 sind gleich).</p>
       </div>
       <div class="gopts hidden" id="mOpts"></div>
       <div class="fb" id="mFb"></div>
@@ -276,13 +332,9 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
       <h3 class="t">🏅 Mathe-Abzeichen <span class="small" id="mBadgeCount"></span></h3>
       <div class="badges" id="mBadges"></div>
     </div>
-    <div class="card">
-      <h3 class="t">Fortschritt sichern</h3>
-      <p class="small">Mathe steckt in derselben Datei wie Englisch. Export und Import gibt es auch unter Englisch → Statistik.</p>
-      <div class="row">
-        <button type="button" class="primary" id="mExport">Exportieren 💾</button>
-        <button type="button" class="ghost" id="mImport">Importieren 📂</button>
-      </div>
+    <div class="card" id="mHardCard">
+      <h3 class="t">💪 Offene Aufgaben</h3>
+      <ol class="hard" id="mHardList"></ol>
     </div>
     <div class="row"><button type="button" class="ghost" id="mStatsHome">Zurück zur Übersicht</button></div>
   </div>
@@ -502,8 +554,13 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
     </div>
     <div style="overflow-x:auto;margin-top:10px"><table id="statTable"></table></div>
   </div>
-  <div class="card">
-    <h3 style="margin-top:0">Fortschritt sichern</h3>
+</section>
+
+<section id="page-abzeichen" class="hidden"></section>
+<section id="page-mehr" class="hidden">
+  <h2 class="h2">Mehr</h2>
+  <div class="card" id="datenCard">
+    <h3 style="margin-top:0">Daten</h3>
     <div class="row">
       <button class="primary" id="exportBtn">Exportieren 💾</button>
       <button class="ghost" id="importBtn">Importieren 📂</button>
@@ -512,11 +569,30 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
     <input type="file" id="importFile" accept="application/json,.json" class="hidden">
     <p class="small" id="ioMsg">Der Fortschritt wird automatisch in diesem Browser gespeichert. Mit Export/Import kannst du ihn auf ein anderes Gerät mitnehmen.</p>
   </div>
+  <div class="card">
+    <h3 class="t">Ton und Vorlesen</h3>
+    <div class="row">
+      <button type="button" class="speak" id="mehrSayEn">🔊 Englisch</button>
+      <button type="button" class="speak" id="mehrSayDe">🔊 Mathe</button>
+    </div>
+    <p class="soundhint" id="mehrSound">🔈 Kein Ton? Am iPhone/iPad den Stummschalter ausschalten und lauter drehen.</p>
+  </div>
+  <div class="card">
+    <h3 class="t">Info</h3>
+    <p id="mehrVersion" style="font-weight:800;margin:0 0 6px"></p>
+    <p class="small">Englisch übt Vokabeln und Grammatik. Mathe übt sieben Bereiche, dazu Geometrie zum Zeichnen auf dem Gitter. Der Fortschritt bleibt in diesem Browser. Export, Import und Zurücksetzen liegen hier unter Daten.</p>
+  </div>
+</section>
+<section id="v-lesen" class="hidden">
+  <div class="card">
+    <h3 class="t" id="vLesenTitle">Regeln</h3>
+    <div id="vLesenBody"></div>
+  </div>
 </section>
 </div>
 
 <script>
-const APP_VERSION="0.5"; // einzige Versionsstelle; Titel und Überschrift werden daraus gesetzt
+const APP_VERSION="0.6"; // einzige Versionsstelle; Titel und Überschrift werden daraus gesetzt
 document.title = "Lerntrainer – v"+APP_VERSION;
 document.getElementById("appTitle").textContent = "Lerntrainer – v"+APP_VERSION;
 const appSubEl = document.getElementById("appSub");
@@ -621,7 +697,8 @@ const DAILY_GOAL = 20;
 function defaultMathe(){
   return {stats:{}, tage:{}, wdh:{}, wdhQ:{}, settings:{blitzSek:8, fach:null}, abzeichen:{}, richtig:{}, punkte:0, streak:0, best:0, bestStars:0, runden:0};
 }
-const defaultState = () => ({version:1, stats:{}, settings:{dir:"mix", seiten:null}, turn:0, queue:[], best:0, streak:0, history:[], tage:{}, start:{d:dayKey(),k:0,n:0}, abzeichen:{}, grammatik:defaultG(), mathe:defaultMathe()});
+function defaultUi(){ return {fach:null, bereich:null, modus:null}; }
+const defaultState = () => ({version:1, stats:{}, settings:{dir:"mix", seiten:null}, turn:0, queue:[], best:0, streak:0, history:[], tage:{}, start:{d:dayKey(),k:0,n:0}, abzeichen:{}, grammatik:defaultG(), mathe:defaultMathe(), ui:defaultUi()});
 function defaultG(){ return {stats:{}, tage:{}, thema:"mix"}; }
 const isObj = x=> !!x && typeof x==="object" && !Array.isArray(x);
 // Altstand → neuer Stand. Verändert/entfernt keine vorhandenen Felder, ergänzt nur fehlende.
@@ -653,6 +730,12 @@ function migrate(raw){
     if(!(isFinite(m.best) && m.best>=0)) m.best = 0;
     if(!(isFinite(m.bestStars) && m.bestStars>=0)) m.bestStars = 0;
     if(!(isFinite(m.runden) && m.runden>=0)) m.runden = 0;
+  }
+  if(!isObj(s.ui)) s.ui = defaultUi();
+  else {
+    if(!("fach" in s.ui)) s.ui.fach = null;
+    if(!("bereich" in s.ui)) s.ui.bereich = null;
+    if(!("modus" in s.ui)) s.ui.modus = null;
   }
   return s;
 }
@@ -907,8 +990,10 @@ if(canSpeak()){
 // Safari 16.4+: Audio als "Wiedergabe" markieren (hilft, wenn der Stummschalter sonst alles stummschaltet)
 try{ if(navigator.audioSession) navigator.audioSession.type = "playback"; }catch(e){}
 function setSoundHint(msg, warn){
-  const h=$("soundHint"); if(!h) return;
-  h.textContent = msg; h.classList.toggle("warn", !!warn);
+  for(const id of ["soundHint","mehrSound"]){
+    const h=$(id); if(!h) continue;
+    h.textContent = msg; h.classList.toggle("warn", !!warn);
+  }
 }
 function speechText(text){
   return String(text).replace(/\([^)]*\)/g," ").replace(/\b(sg|pl)\b\.?/g," ").replace(/\//g,", ").replace(/\.\.\./g," ").replace(/\s+/g," ").trim();
@@ -994,7 +1079,22 @@ function mActive(d, mt){ mt = mt || (isObj(state.mathe) ? state.mathe.tage : nul
 // Mathe schreibt diese Felder nicht an. Abzeichen d3–d30 rufen bestDayStreak(tage, grammatik) auf.
 function activeAny(d){ return active(d) || gActive(d); }
 // Gemeinsame Serie, nur abgeleitet. Liest state.mathe.tage zusätzlich, speichert nichts nach state.tage.
-function activeShared(d){ return activeAny(d) || mActive(d); }
+var fachRegistry=null;
+function extraFachTage(){
+  const out=[];
+  const list=fachRegistry||[];
+  for(const f of list){
+    if(f.id==="englisch" || f.id==="mathe") continue;
+    const node=state[f.id];
+    if(isObj(node) && isObj(node.tage)) out.push(node.tage);
+  }
+  return out;
+}
+function activeShared(d){
+  if(activeAny(d) || mActive(d)) return true;
+  for(const tage of extraFachTage()) if(mActive(d, tage)) return true;
+  return false;
+}
 function dayStreak(){
   const T=dayKey(), today=activeAny(T); let d = today ? T : addDays(T,-1), n=0;
   while(activeAny(d) && n<10000){ n++; d=addDays(d,-1); }
@@ -1019,6 +1119,7 @@ function sharedBestDayStreak(){
   const mt = isObj(state.mathe) ? state.mathe.tage : null;
   if(isObj(gt)) for(const d of Object.keys(gt)) if(/^\d{4}-\d{2}-\d{2}$/.test(d) && gActive(d, gt)) ds.add(d);
   if(isObj(mt)) for(const d of Object.keys(mt)) if(/^\d{4}-\d{2}-\d{2}$/.test(d) && mActive(d, mt)) ds.add(d);
+  for(const tage of extraFachTage()) for(const d of Object.keys(tage)) if(/^\d{4}-\d{2}-\d{2}$/.test(d) && mActive(d, tage)) ds.add(d);
   let best=0, cur=0, prev=null;
   for(const d of [...ds].sort()){ cur = (prev && addDays(prev,1)===d) ? cur+1 : 1; best=Math.max(best,cur); prev=d; }
   return best;
@@ -1185,8 +1286,8 @@ function renderHistory(){
 }
 $("practiceHard").onclick = ()=>{
   fokus = hardest().map(h=>h.k); if(!fokus.length) return;
+  current=null; answered=true;
   document.querySelector('.tab[data-view=lernen]').click();
-  newCard();
 };
 
 // Statistik
@@ -1223,9 +1324,11 @@ function importJSON(text){
   if(!s || s.version!==1 || typeof s.stats!=="object") throw new Error("keine gültige Fortschrittsdatei");
   state=migrate(s); markBadges(state, true); save(); renderStats(); renderSel(); newCard();
   if(typeof renderMathHome==="function") renderMathHome();
+  if(typeof routeKey!=="undefined") routeKey="";
+  if(typeof applyRoute==="function") applyRoute(parseRoute(location.hash||"#/start"));
 }
 // Reset löscht den ganzen Stand, Englisch und Mathe zusammen. Nicht nur ein Fach.
-$("resetBtn").onclick=()=>{ if(confirm("Wirklich den ganzen Fortschritt löschen? Englisch und Mathe werden beide gelöscht.")){ state=defaultState(); save(); sess.ok=sess.total=0; lastRec=null; fokus=[]; renderStats(); renderSel(); newCard(); $("ioMsg").textContent="Fortschritt zurückgesetzt. Englisch und Mathe sind leer."; } };
+$("resetBtn").onclick=()=>{ if(confirm("Wirklich den ganzen Fortschritt löschen? Englisch und Mathe werden beide gelöscht.")){ state=defaultState(); save(); sess.ok=sess.total=0; lastRec=null; fokus=[]; gRound=null; mRound=null; try{ stopBlitz(); }catch(e){} renderStats(); renderSel(); newCard(); if(typeof routeKey!=="undefined") routeKey=""; if(typeof go==="function") go("#/start"); $("ioMsg").textContent="Fortschritt zurückgesetzt. Englisch und Mathe sind leer."; } };
 
 // ---------- Grammatik ----------
 const G_RUNDE = 10, G_GELERNT = 2;
@@ -1408,7 +1511,6 @@ function gShowStart(){
     h += `<button type="button" class="gthema" data-thema="${t}"><span>${t} · ${esc(G_THEMEN[t].name)}<span class="small">${info(ids)}</span></span><span class="go">➜</span></button>`;
   }
   h += `<button type="button" class="gthema mix" data-thema="mix"><span>🔀 Gemischt (alle Themen)<span class="small">${info(GRAMMATIK.map(x=>x.id))}</span></span><span class="go">➜</span></button>`;
-  h += `<button type="button" class="gthema quer" data-thema="quer"><span>🔀 Gemischt quer über alles<span class="small">Vokabeln aller Seiten und Grammatik G2–G7, in einer Reihe</span></span><span class="go">➜</span></button>`;
   $("gThemen").innerHTML = h;
 }
 function renderGStats(){
@@ -1635,15 +1737,16 @@ document.addEventListener("keydown", e=>{
   if(e.key==="Enter" && querAnswered && !$("v-alles").classList.contains("hidden") && document.activeElement!==$("xAnswer")){ e.preventDefault(); querAdvance(); }
 });
 
-// Tabs
+// Tabs bleiben im DOM (unsichtbar), damit bestehende Klickpfade weiter treffen.
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
   document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===t));
-  for(const v of ["lernen","auswahl","grammatik","alles","statistik"]) $("v-"+v).classList.toggle("hidden", t.dataset.view!==v);
-  if(t.dataset.view==="statistik") renderStats();
-  if(t.dataset.view==="auswahl") renderSel();
-  if(t.dataset.view==="grammatik" && !gRound) gShowStart();
-  if(t.dataset.view==="lernen"){ updateTop(); if(!current || answered) newCard(); }
-  if(t.dataset.view==="alles" && !querItem) querGo();
+  const v=t.dataset.view;
+  if(typeof startMode!=="function") return;
+  if(v==="statistik"){ go("#/statistik/englisch"); return; }
+  if(v==="auswahl"){ startMode("englisch","vokabeln","auswahl"); return; }
+  if(v==="grammatik"){ startMode("englisch","grammatik","runde"); return; }
+  if(v==="alles"){ startMode("englisch","gemischt","gemischt"); return; }
+  startMode("englisch","vokabeln","lernen");
 });
 if(!canSpeak()) setSoundHint("ℹ️ Vorlesen wird von diesem Browser nicht unterstützt.", false);
 // ---------- Mathe (v0.5) ----------
@@ -2310,7 +2413,124 @@ function makeMixQ(level, rnd){
   if(q) q.via="mix";
   return q;
 }
-const MAKERS = {zahlen:makeZahlenQ, addsub:makeAddSubQ, muldiv:makeMulDivQ, terme:makeTermeQ, groessen:makeGroessenQ, flaechen:makeFlaechenQ, geometrie:makeGeometrieQ, blitz:makeBlitzQ};
+const DRAW_CELL=32, DRAW_PAD=26;
+const DRAW_DIR={0:[2,0], 45:[2,2], 90:[0,2], 135:[-2,2], 180:[-2,0]};
+function smallAngle(a,b){ let d=Math.abs(a-b)%360; if(d>180) d=360-d; return d; }
+function figurName(pts){
+  if(!pts || pts.length===3){
+    const dot=(p,q,r)=>{ const ax=q[0]-p[0], ay=q[1]-p[1], bx=r[0]-p[0], by=r[1]-p[1]; return ax*bx+ay*by; };
+    if(pts && (dot(pts[0],pts[1],pts[2])===0 || dot(pts[1],pts[0],pts[2])===0 || dot(pts[2],pts[0],pts[1])===0)) return "rechtwinkliges Dreieck";
+    return null;
+  }
+  if(pts.length===4){
+    const xs=[...new Set(pts.map(p=>p[0]))].sort((a,b)=>a-b);
+    const ys=[...new Set(pts.map(p=>p[1]))].sort((a,b)=>a-b);
+    if(xs.length!==2 || ys.length!==2) return null;
+    const has=(x,y)=>pts.some(p=>p[0]===x && p[1]===y);
+    if(!has(xs[0],ys[0]) || !has(xs[1],ys[0]) || !has(xs[1],ys[1]) || !has(xs[0],ys[1])) return null;
+    return (xs[1]-xs[0]===ys[1]-ys[0]) ? "Quadrat" : "Rechteck";
+  }
+  return null;
+}
+function koordLabel(x,y){
+  const f=n=>(n<0?"−":"")+Math.abs(n);
+  return "("+f(x)+"|"+f(y)+")";
+}
+function drawSvg(spec, paint){
+  const min=spec.min, max=spec.max, cell=spec.cell, pad=spec.pad;
+  const span=max-min, W=pad*2+span*cell, H=W;
+  const X=x=>Math.round(pad+(x-min)*cell);
+  const Y=y=>Math.round(pad+(max-y)*cell);
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="drawsvg" role="img" aria-label="Gitter">`;
+  for(let i=min;i<=max;i++){
+    s+=`<line x1="${X(min)}" y1="${Y(i)}" x2="${X(max)}" y2="${Y(i)}" stroke="#d5deea"/>`;
+    s+=`<line x1="${X(i)}" y1="${Y(min)}" x2="${X(i)}" y2="${Y(max)}" stroke="#d5deea"/>`;
+  }
+  if(spec.axes && min<=0 && max>=0){
+    s+=`<line x1="${X(min)}" y1="${Y(0)}" x2="${X(max)}" y2="${Y(0)}" stroke="#1d2b3a" stroke-width="2"/>`;
+    s+=`<line x1="${X(0)}" y1="${Y(min)}" x2="${X(0)}" y2="${Y(max)}" stroke="#1d2b3a" stroke-width="2"/>`;
+    for(let i=min;i<=max;i++){
+      const lab=i<0?"−"+Math.abs(i):String(i);
+      s+=`<text x="${X(i)}" y="${H-4}" font-size="11" text-anchor="middle" fill="#5c6b7c">${lab}</text>`;
+      s+=`<text x="3" y="${Y(i)+4}" font-size="11" fill="#5c6b7c">${lab}</text>`;
+    }
+  }
+  s+=paint(X,Y);
+  return s+"</svg>";
+}
+function makeFigur(rnd){
+  const kind=mPick(["quadrat","rechteck","dreieck"], rnd);
+  let pts;
+  if(kind==="quadrat"){
+    const side=mPick([2,3], rnd);
+    const x=mInt(0, 6-side, rnd), y=mInt(0, 6-side, rnd);
+    pts=[[x,y],[x+side,y],[x+side,y+side],[x,y+side]];
+  } else if(kind==="rechteck"){
+    const w=3, h=2;
+    const x=mInt(0, 6-w, rnd), y=mInt(0, 6-h, rnd);
+    pts=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]];
+  } else {
+    const x=mInt(0, 3, rnd), y=mInt(0, 4, rnd);
+    pts=[[x,y],[x+3,y],[x,y+2]];
+  }
+  const spec={op:"figur", pts:pts, min:0, max:6, cell:DRAW_CELL, pad:DRAW_PAD, axes:false};
+  const answer=figurName(pts);
+  const options=mShuffle(["Quadrat","Rechteck","rechtwinkliges Dreieck","Parallelogramm"], rnd);
+  const svg=drawSvg(spec, (X,Y)=>{
+    const poly=pts.map(p=>X(p[0])+","+Y(p[1])).join(" ");
+    return `<polygon points="${poly}" fill="#7a5af8" fill-opacity=".25" stroke="#7a5af8" stroke-width="3"/>`+
+      pts.map(p=>`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="4" fill="#7a5af8"/>`).join("");
+  });
+  return {area:"geo-zeichnen", rule:"geometrie", kind:"figur", input:"mc", level:1, text:"Welche Figur ist das?", say:"Welche Figur ist das?", svg:svg, spec:spec, answer:answer, options:options, steps:["Ecken auf dem Gitter", answer], key:"fig:"+pts.map(p=>p.join(",")).join(";")};
+}
+function makeWinkel(rnd){
+  const pairs=[[0,45],[0,90],[0,135],[45,90],[45,135],[45,180],[90,135],[90,180],[135,180]];
+  const pair=mPick(pairs, rnd);
+  const from=pair[0], to=pair[1], deg=smallAngle(from, to);
+  const v=[3,2], da=DRAW_DIR[from], db=DRAW_DIR[to];
+  const endA=[v[0]+da[0], v[1]+da[1]], endB=[v[0]+db[0], v[1]+db[1]];
+  const spec={op:"winkel", from:from, to:to, v:v, endA:endA, endB:endB, min:0, max:6, cell:DRAW_CELL, pad:DRAW_PAD, axes:false};
+  const svg=drawSvg(spec, (X,Y)=>`<line x1="${X(v[0])}" y1="${Y(v[1])}" x2="${X(endA[0])}" y2="${Y(endA[1])}" stroke="#7a5af8" stroke-width="3" data-end="a"/>`+
+    `<line x1="${X(v[0])}" y1="${Y(v[1])}" x2="${X(endB[0])}" y2="${Y(endB[1])}" stroke="#7a5af8" stroke-width="3" data-end="b"/>`+
+    `<circle cx="${X(v[0])}" cy="${Y(v[1])}" r="4" fill="#1d2b3a"/>`);
+  return {area:"geo-zeichnen", rule:"geometrie", kind:"winkel", input:"num", level:2, text:"Wie groß ist der Winkel? (Grad)", say:"Wie groß ist der Winkel in Grad?", svg:svg, spec:spec, num:deg, scale:0, answerText:String(deg), steps:[from+"° und "+to+"°", deg+"°"], key:"w:"+from+":"+to};
+}
+function makePunkt(level, rnd, axis){
+  const neg=level>=3;
+  const min=neg?-3:0, max=neg?3:5;
+  const x=mInt(min, max, rnd), y=mInt(min, max, rnd);
+  const spec={op:axis?"koord":"punkt", x:x, y:y, axis:axis||null, min:min, max:max, cell:DRAW_CELL, pad:DRAW_PAD, axes:true};
+  const svg=drawSvg(spec, (X,Y)=>`<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="#f2545b" stroke="#fff" stroke-width="2"/>`);
+  if(axis){
+    const num=axis==="x"?x:y;
+    return {area:"geo-zeichnen", rule:"geometrie", kind:"koord", input:"num", level:level, text:"Welche "+axis+"-Koordinate hat der rote Punkt?", say:"Welche "+axis+" Koordinate hat der Punkt?", svg:svg, spec:spec, num:num, scale:0, answerText:mFmt(num,0), steps:["Am Gitter ablesen", axis+" = "+mFmt(num,0)], key:"k:"+x+":"+y+":"+axis};
+  }
+  const answer=koordLabel(x,y);
+  const bag=[answer];
+  const deltas=mShuffle([[1,0],[-1,0],[0,1],[0,-1],[1,-1],[-1,1],[1,1],[-1,-1]], rnd);
+  for(const d of deltas){
+    const xx=x+d[0], yy=y+d[1];
+    const lab=koordLabel(xx,yy);
+    if(lab!==answer && bag.indexOf(lab)<0) bag.push(lab);
+    if(bag.length>=4) break;
+  }
+  if(bag.length<4 && koordLabel(y,x)!==answer && bag.indexOf(koordLabel(y,x))<0) bag.push(koordLabel(y,x));
+  let n=1;
+  while(bag.length<4){ const lab=koordLabel(x+n, y-n); if(bag.indexOf(lab)<0) bag.push(lab); n++; }
+  return {area:"geo-zeichnen", rule:"geometrie", kind:"punkt", input:"mc", level:level, text:"Welche Koordinaten hat der rote Punkt?", say:"Welche Koordinaten hat der rote Punkt?", svg:svg, spec:spec, answer:answer, options:mShuffle(bag.slice(0,4), rnd), steps:["x waagerecht, y senkrecht", answer], key:"p:"+x+":"+y};
+}
+function makeZeichnenQ(level, rnd){
+  rnd=rnd||Math.random;
+  const lv=mClampLevel(level==null?1:level);
+  const roll=rnd();
+  let q;
+  if(lv===1) q=roll<0.55?makeFigur(rnd):makePunkt(1, rnd, null);
+  else if(lv===2) q=roll<0.34?makeFigur(rnd):roll<0.67?makeWinkel(rnd):makePunkt(2, rnd, null);
+  else q=roll<0.25?makeFigur(rnd):roll<0.5?makeWinkel(rnd):roll<0.75?makePunkt(3, rnd, null):makePunkt(3, rnd, rnd()<0.5?"x":"y");
+  if(q) q.level=lv;
+  return q;
+}
+const MAKERS = {zahlen:makeZahlenQ, addsub:makeAddSubQ, muldiv:makeMulDivQ, terme:makeTermeQ, groessen:makeGroessenQ, flaechen:makeFlaechenQ, geometrie:makeGeometrieQ, blitz:makeBlitzQ, "geo-zeichnen":makeZeichnenQ};
 
 function mState(){
   if(!isObj(state.mathe)) state.mathe=defaultMathe();
@@ -2385,7 +2605,7 @@ function takeRepeat(mode, rnd){
     const q=m.wdhQ[k];
     if(!q || !m.wdh[k]) return false;
     if(mode==="blitz") return q.area==="blitz";
-    if(mode==="mix") return q.area!=="blitz";
+    if(mode==="mix") return q.area!=="blitz" && q.area!=="geo-zeichnen";
     return q.area===mode;
   });
   if(!keys.length || rnd()>=M_REPEAT) return null;
@@ -2394,6 +2614,10 @@ function takeRepeat(mode, rnd){
 let mLastKey=null;
 function nextMathQ(mode, rnd){
   rnd=rnd||Math.random;
+  if(mode==="fehler"){
+    const area=mRound && mRound.fehlerArea;
+    return area ? takeRepeat(area, ()=>0) : null;
+  }
   for(let i=0;i<12;i++){
     let q=takeRepeat(mode, rnd);
     if(!q){
@@ -2488,13 +2712,19 @@ function mPaintInput(){
 }
 function mShowQ(){
   const q=mRound.q; if(!q) return;
-  const names={zahlen:"Zahlen", addsub:"Plus & Minus", muldiv:"Mal & Geteilt", terme:"Punkt vor Strich", groessen:"Größen", flaechen:"Flächen", geometrie:"Geometrie", blitz:"Blitz"};
+  const names={zahlen:"Zahlen", addsub:"Plus & Minus", muldiv:"Mal & Geteilt", terme:"Punkt vor Strich", groessen:"Größen", flaechen:"Flächen", geometrie:"Geometrie", blitz:"Blitz", "geo-zeichnen":"Zeichnen"};
   const areaName=mRound.mode==="mix"?"Gemischt · "+(names[q.area]||""):mRound.mode==="blitz"?"Blitz":(names[q.area]||names[mRound.mode]||"");
   setText("mTopic", areaName);
   setText("mProg", "Aufgabe "+(mRound.i+1)+" von "+M_ROUND);
   setText("mScore", "✔ "+mRound.ok);
   setText("mKind", "Stufe "+(q.level||1)+(q.input==="mc"?" · tippe die richtige Antwort an":""));
   if($("mPrompt")) $("mPrompt").textContent=q.text;
+  const draw=$("mDraw");
+  if(draw){
+    if(q.svg){ draw.innerHTML=q.svg; draw.classList.remove("hidden"); }
+    else { draw.innerHTML=""; draw.classList.add("hidden"); }
+  }
+  if($("mPadHint")) $("mPadHint").classList.toggle("hidden", q.area==="geo-zeichnen");
   if($("mRule")){ $("mRule").innerHTML=M_HILFE[q.rule]||M_HILFE[q.area]||""; $("mRule").classList.add("hidden"); }
   if($("mRuleBtn")) $("mRuleBtn").textContent="💡 Regel";
   if($("mFb")){ $("mFb").className="fb"; $("mFb").innerHTML=""; }
@@ -2580,9 +2810,9 @@ function mFinish(){
   setText("mResText", mRound.ok+" richtig · "+wrong+" falsch · "+timeouts+" nicht gelöst");
   setText("mResMsg", stars===3?"Drei Sterne! Dafür gibt es 20 Extra-Punkte.": stars>=1?"Gut gemacht. Die falschen Aufgaben übst du gleich nochmal.":"Schau dir die 💡 Regel an und versuch es noch einmal.");
 }
-function startMath(mode){
+function startMath(mode, opt){
   mClearAdv(); stopBlitz();
-  mRound={mode:mode, i:0, results:[], ok:0, q:null, input:"", answered:false};
+  mRound={mode:mode, i:0, results:[], ok:0, q:null, input:"", answered:false, fehlerArea:opt&&opt.area?opt.area:null};
   showMathPane("quiz");
   mGoNext(true);
 }
@@ -2626,25 +2856,15 @@ function renderStartFach(){
   });
 }
 function showFach(fach){
-  const start=fach==="start", en=fach==="englisch", ma=fach==="mathe";
-  if($("v-start")) $("v-start").classList.toggle("hidden", !start);
-  if($("v-mathe")) $("v-mathe").classList.toggle("hidden", !ma);
-  if($("mainNav")) $("mainNav").classList.toggle("hidden", !en);
-  if($("switchFach")) $("switchFach").classList.toggle("hidden", start);
-  const tab=document.querySelector(".tab.on");
-  const view=tab?tab.dataset.view:"lernen";
-  ["lernen","auswahl","grammatik","alles","statistik"].forEach(function(v){
-    const el=$("v-"+v); if(el) el.classList.toggle("hidden", !en || view!==v);
-  });
-  if(start){ mClearAdv(); stopBlitz(); renderStartFach(); }
-  if(en){ updateTop(); if(typeof current==="undefined" || !current || answered) newCard(); }
-  if(ma){ mClearAdv(); stopBlitz(); showMathPane("home"); renderMathHome(); }
-    try{ if(typeof window.scrollTo==="function") window.scrollTo(0,0); }catch(e){}
+  if(fach==="englisch" || fach==="mathe") go("#/f/"+fach);
+  else go("#/start");
 }
 function chooseFach(fach){
-  mState().settings.fach=fach;
-  save();
-  showFach(fach);
+  if(fach==="englisch" || fach==="mathe"){
+    mState().settings.fach=fach;
+    save();
+    showFach(fach);
+  } else showFach("start");
 }
 function bootFach(){
   const f=mState().settings && mState().settings.fach;
@@ -2677,7 +2897,7 @@ function renderMathStats(){
   setText("mStatRichtig", String(mSumR(m)));
   setText("mStatRunden", String(num(m.runden)));
   if($("mChart")) $("mChart").innerHTML=mSvgBars();
-  const names={zahlen:"Zahlen 1.1", addsub:"Plus & Minus 1.2", muldiv:"Mal & Geteilt 3.1", terme:"Punkt vor Strich 3.2", groessen:"Größen 4.1", flaechen:"Flächen 4.2", geometrie:"Geometrie 2", blitz:"Blitz", mix:"Gemischt"};
+  const names={zahlen:"Zahlen 1.1", addsub:"Plus & Minus 1.2", muldiv:"Mal & Geteilt 3.1", terme:"Punkt vor Strich 3.2", groessen:"Größen 4.1", flaechen:"Flächen 4.2", geometrie:"Geometrie 2", "geo-zeichnen":"Geometrie · Zeichnen", blitz:"Blitz", mix:"Gemischt"};
   let rows="";
   Object.keys(names).forEach(function(id){
     const st=isObj(m.stats[id])?m.stats[id]:{r:0,f:0,n:0};
@@ -2692,6 +2912,20 @@ function renderMathStats(){
   if($("mBadges")) $("mBadges").innerHTML=M_BADGES.map(function(b){
     const has=!!m.abzeichen[b.id];
     return `<div class="badge ${has?"got":"off"}"><span class="i">${b.i}</span>${esc(b.t)}<div class="small">${has?"geschafft":"noch offen"}</div></div>`;
+  }).join("");
+  renderMathHard();
+}
+function renderMathHard(){
+  const host=$("mHardList"); if(!host) return;
+  const m=mState();
+  const keys=Object.keys(m.wdh).filter(k=>m.wdh[k] && m.wdhQ[k]);
+  if(!keys.length){
+    host.innerHTML=`<li style="background:#e3f8ee"><span>Keine offenen Aufgaben. 🎉</span></li>`;
+    return;
+  }
+  host.innerHTML=keys.slice(0,8).map(k=>{
+    const q=m.wdhQ[k];
+    return `<li><span>${esc(q && q.text ? q.text : k)}</span><span class="n">${num(m.wdh[k])}×</span></li>`;
   }).join("");
 }
 function bindMath(){
@@ -2745,12 +2979,459 @@ function bindMath(){
 }
 bindMath();
 
+// ---------- v0.6: Registry, Adapter, Shell ----------
+function mDayStreak(){
+  const T=dayKey(), today=mActive(T);
+  let d=today?T:addDays(T,-1), n=0;
+  while(mActive(d) && n<10000){ n++; d=addDays(d,-1); }
+  return {n:n, today:today, best:mDayBest(mState())};
+}
+function schwerCount(){
+  const seiten=new Set(seitenAktiv());
+  const dirs=state.settings.dir==="mix"?["en","de"]:[state.settings.dir];
+  let n=0;
+  for(const v of VOKABELN){
+    if(!seiten.has(v.seite)) continue;
+    for(const d of dirs) if(level(key(v,d))==="schwer") n++;
+  }
+  return n;
+}
+function offenGram(){ return GRAMMATIK.filter(x=>gLevel(x.id)==="schwer").length; }
+function offenMath(area){
+  const m=mState();
+  return Object.keys(m.wdh).filter(k=>m.wdh[k] && m.wdhQ[k] && m.wdhQ[k].area===area).length;
+}
+function vokStand(){
+  const prev=!!state.settings.nurSchwer;
+  state.settings.nurSchwer=false;
+  const P=pool();
+  state.settings.nurSchwer=prev;
+  const g=P.filter(c=>level(c.k)==="gelernt").length;
+  const pct=P.length?Math.round(100*g/P.length):0;
+  return {pct:pct, g:g, n:P.length, text:pct+" % der ausgewählten Karten gelernt ("+g+" von "+P.length+")"};
+}
+function gramStand(){
+  const ids=GRAMMATIK.map(x=>x.id);
+  const g=ids.filter(id=>gLevel(id)==="gelernt").length;
+  const pct=ids.length?Math.round(100*g/ids.length):0;
+  return {pct:pct, g:g, n:ids.length};
+}
+function seitenKurz(){
+  if(!state.settings.seiten) return "alle Seiten";
+  const s=seitenAktiv().slice().sort((a,b)=>a-b);
+  if(!s.length) return "keine Seite";
+  const parts=[]; let a=s[0], b=s[0];
+  for(let i=1;i<=s.length;i++){
+    if(s[i]===b+1) b=s[i];
+    else { parts.push(a===b?String(a):a+"–"+b); a=b=s[i]; }
+  }
+  return "S. "+parts.join(", ");
+}
+function dirKurz(){
+  return state.settings.dir==="en"?"Englisch → Deutsch":state.settings.dir==="de"?"Deutsch → Englisch":"beide Richtungen";
+}
+function modusName(mid){
+  return {lernen:"Lernen", schwer:"Nur schwere", auswahl:"Auswahl", runde:"Üben", antippen:"Antippen", zeichnen:"Zeichnen", fehler:"Fehler üben", regeln:"Regeln", gemischt:"Gemischt", blitz:"Blitz"}[mid]||mid;
+}
+function bereichName(fid, bid){
+  const f=fachById(fid);
+  if(!f) return bid;
+  if(bid==="gemischt") return "Gemischt";
+  if(bid==="blitz") return "Blitz";
+  const b=(f.bereiche||[]).find(x=>x.id===bid);
+  return b?b.name:bid;
+}
+function weiterInfo(fid){
+  const ui=isObj(state.ui)?state.ui:{};
+  if(ui.fach===fid && ui.bereich && ui.modus){
+    const meta=fid==="englisch" && ui.bereich==="vokabeln" ? seitenKurz() : (fid==="mathe" ? "Stufe "+areaLevel(ui.bereich==="zeichnen"||ui.modus==="zeichnen"?"geometrie":ui.bereich==="blitz"?"blitz":ui.bereich==="gemischt"?"zahlen":ui.bereich) : "");
+    return {bereich:ui.bereich, modus:ui.modus, label:bereichName(fid, ui.bereich)+" › "+modusName(ui.modus), meta:meta};
+  }
+  if(fid==="englisch") return {bereich:"vokabeln", modus:"lernen", label:"Vokabeln › Lernen", meta:seitenKurz()};
+  return {bereich:"zahlen", modus:"runde", label:"Zahlen › Üben", meta:"Stufe "+areaLevel("zahlen")};
+}
+function rememberUi(fach, bereich, modus){
+  if(!isObj(state.ui)) state.ui=defaultUi();
+  state.ui.fach=fach; state.ui.bereich=bereich; state.ui.modus=modus;
+  if(fach==="englisch" || fach==="mathe") mState().settings.fach=fach;
+  save();
+}
+function showLesen(title, html){
+  showOnly(["v-lesen"]);
+  if($("vLesenTitle")) $("vLesenTitle").textContent=title;
+  if($("vLesenBody")) $("vLesenBody").innerHTML=html;
+}
+const EN_ADAPTER={
+  heute(){ const e=state.tage[dayKey()]; return {r:e?num(e.r):0, f:e?num(e.f):0}; },
+  aktivAm(tag){ return activeAny(tag); },
+  fachSerie(){ const d=dayStreak(); return {n:d.n, today:d.today, best:bestDayStreak()}; },
+  bereiche(){
+    const v=vokStand(), g=gramStand();
+    return [
+      {id:"vokabeln", name:"Vokabeln", icon:"📖", sub:seitenAktiv().length+" Seiten · "+dirKurz(), stand:{label:v.pct+" %", anteil:v.pct/100}},
+      {id:"grammatik", name:"Grammatik", icon:"✏️", sub:"G2–G7 · Runden zu 10", stand:{label:g.pct+" %", anteil:g.pct/100}}
+    ];
+  },
+  abzeichen(){
+    return BADGES.map(b=>{
+      const got=!!state.abzeichen[b.id];
+      return {id:b.id, i:b.i, t:b.t, got:got, detail:got?"geschafft "+fmtDay(state.abzeichen[b.id]):"noch "+Math.max(0, b.need-b.v(state))};
+    });
+  },
+  starte(b,m){ startMode("englisch", b, m); },
+  open(bereich, modus){
+    if(bereich==="gemischt"){ showOnly(["v-alles"]); if(!querItem) querGo(); return; }
+    if(bereich==="vokabeln" && modus==="lernen"){ state.settings.nurSchwer=false; save(); showOnly(["v-lernen"]); updateTop(); if(!current || answered) newCard(); return; }
+    if(bereich==="vokabeln" && modus==="schwer"){ state.settings.nurSchwer=true; save(); showOnly(["v-lernen"]); updateTop(); newCard(); return; }
+    if(bereich==="vokabeln" && modus==="auswahl"){ showOnly(["v-auswahl"]); renderSel(); return; }
+    if(bereich==="grammatik" && modus==="runde"){ showOnly(["v-grammatik"]); if(!gRound) gShowStart(); return; }
+    if(bereich==="grammatik" && modus==="fehler"){
+      const ids=GRAMMATIK.filter(x=>gLevel(x.id)==="schwer").map(x=>x.id);
+      if(!ids.length){ showLesen("Fehler üben", "<p>Gerade keine offenen Grammatik-Fehler. 🎉</p>"); return; }
+      showOnly(["v-grammatik"]); gStart("mix", ids); return;
+    }
+    if(bereich==="grammatik" && modus==="regeln"){
+      let html="";
+      for(const t of Object.keys(G_THEMEN)) html+=`<div class="ghelp" style="margin:10px 0">${G_HILFE[t]}</div>`;
+      showLesen("Regeln · Grammatik", html);
+    }
+  }
+};
+const MA_ADAPTER={
+  heute(){ const e=mState().tage[dayKey()]; return {r:e?num(e.r):0, f:e?num(e.f):0}; },
+  aktivAm(tag){ return mActive(tag); },
+  fachSerie(){ const d=mDayStreak(); return {n:d.n, today:d.today, best:d.best}; },
+  bereiche(){
+    return MATH_BEREICHE.map(b=>({id:b.id, name:b.name, icon:b.icon, sub:(b.lp?b.lp+" · ":"")+b.sub, stand:{label:"Stufe "+areaLevel(b.id), anteil:(areaLevel(b.id)-1)/2}}));
+  },
+  abzeichen(){
+    const m=mState();
+    return M_BADGES.map(b=>({id:b.id, i:b.i, t:b.t, got:!!m.abzeichen[b.id], detail:m.abzeichen[b.id]?"geschafft":"noch offen"}));
+  },
+  starte(b,m){ startMode("mathe", b, m); },
+  open(bereich, modus){
+    if(modus==="regeln"){ showLesen("Regeln · "+bereichName("mathe", bereich), M_HILFE[bereich]||""); return; }
+    if(modus==="fehler"){
+      if(!offenMath(bereich)){ showLesen("Fehler üben", "<p>Gerade keine offenen Fehler in diesem Bereich. 🎉</p>"); return; }
+      showOnly(["v-mathe"]); startMath("fehler", {area:bereich}); return;
+    }
+    if(modus==="zeichnen"){ showOnly(["v-mathe"]); startMath("geo-zeichnen"); return; }
+    if(modus==="blitz" || bereich==="blitz"){ showOnly(["v-mathe"]); startMath("blitz"); return; }
+    if(modus==="gemischt" || bereich==="gemischt"){ showOnly(["v-mathe"]); startMath("mix"); return; }
+    showOnly(["v-mathe"]); startMath(bereich);
+  }
+};
+const MATH_BEREICHE=[
+  {id:"zahlen", name:"Zahlen", icon:"🔢", sub:"Stellenwert, Runden", lp:"1.1", modi:["runde","fehler","regeln"]},
+  {id:"addsub", name:"Plus & Minus", icon:"➕", sub:"Kopf, Gleichungen", lp:"1.2", modi:["runde","fehler","regeln"]},
+  {id:"muldiv", name:"Mal & Geteilt", icon:"✖️", sub:"Vorzeichen, Teilbarkeit", lp:"3.1", modi:["runde","fehler","regeln"]},
+  {id:"terme", name:"Punkt vor Strich", icon:"🧮", sub:"Klammern", lp:"3.2", modi:["runde","fehler","regeln"]},
+  {id:"groessen", name:"Größen", icon:"📏", sub:"Geld, Länge, Zeit", lp:"4.1", modi:["runde","fehler","regeln"]},
+  {id:"flaechen", name:"Flächen", icon:"▭", sub:"Rechteck, Quader", lp:"4.2", modi:["runde","fehler","regeln"]},
+  {id:"geometrie", name:"Geometrie", icon:"📐", sub:"Vierecke, Winkel, Lage", lp:"2", modi:["antippen","zeichnen","fehler","regeln"]}
+];
+const FAECHER=[
+  {id:"englisch", name:"Englisch", icon:"🇬🇧", farbe:"#2f7cf6", kurz:"Vokabeln · Grammatik",
+    bereiche:[
+      {id:"vokabeln", name:"Vokabeln", icon:"📖", sub:"Seiten und Richtung", modi:["lernen","schwer","auswahl"]},
+      {id:"grammatik", name:"Grammatik", icon:"✏️", sub:"G2–G7 · Runden zu 10", modi:["runde","fehler","regeln"]}
+    ],
+    fachweit:["gemischt"], adapter:EN_ADAPTER},
+  {id:"mathe", name:"Mathe", icon:"🔢", farbe:"#7a5af8", kurz:"7 Bereiche · Blitz",
+    bereiche:MATH_BEREICHE, fachweit:["gemischt","blitz"], adapter:MA_ADAPTER}
+];
+fachRegistry=FAECHER;
+function fachById(id){ return FAECHER.find(f=>f.id===id)||null; }
+function knownMode(fach, bereich, modus){
+  const f=fachById(fach); if(!f || !modus) return false;
+  if((bereich==="gemischt" && modus==="gemischt") || (bereich==="blitz" && modus==="blitz")) return (f.fachweit||[]).indexOf(modus)>=0;
+  const b=(f.bereiche||[]).find(x=>x.id===bereich);
+  return !!(b && b.modi.indexOf(modus)>=0);
+}
+const SHELL_PAGES=["v-start","page-fach","page-statistik","v-lernen","v-auswahl","v-grammatik","v-alles","v-statistik","v-mathe","page-abzeichen","page-mehr","v-lesen"];
+function showOnly(ids){
+  for(const id of SHELL_PAGES){ const n=$(id); if(n) n.classList.toggle("hidden", ids.indexOf(id)<0); }
+}
+function setDock(name){
+  document.querySelectorAll("#dock a").forEach(a=>{
+    const on=a.getAttribute("data-nav")===name;
+    a.classList.toggle("on", on);
+    if(on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+  });
+}
+function modusButton(fid, bid, mid){
+  const sub=mid==="schwer"?schwerCount()+" Karten":mid==="fehler"?(fid==="englisch"?offenGram():offenMath(bid))+" offen":mid==="blitz"?"Kopfrechnen · "+blitzSeconds()+" Sek.":mid==="lernen"?"Tippen, Karte für Karte":mid==="auswahl"?"Seiten, Richtung":mid==="antippen"?"Begriffe, 10 Aufgaben":mid==="zeichnen"?"Figur mit Gitter":mid==="runde"?"10 Aufgaben":mid==="regeln"?"zum Nachlesen":mid==="gemischt"?(fid==="englisch"?"quer über alles":"alle Bereiche"):"";
+  const icon=mid==="lernen"?"⌨️":mid==="schwer"||mid==="fehler"?"💪":mid==="auswahl"?"⚙️":mid==="zeichnen"?"✏️":mid==="regeln"?"💡":mid==="antippen"?"👆":mid==="blitz"?"⚡":mid==="gemischt"?"🔀":"▶️";
+  const neu=mid==="zeichnen"?' <span class="neuflag">NEU</span>':"";
+  return `<button type="button" class="modebtn${mid==="zeichnen"?" fresh":""}" data-fach="${fid}" data-bereich="${bid}" data-modus="${mid}"><span>${icon} ${modusName(mid)}${neu}</span><span class="small">${esc(sub)}</span></button>`;
+}
+function fachIcon(f){
+  if(f.id==="mathe") return `<span class="numicon" aria-hidden="true"><b>1</b><b>2</b><b>3</b><b>4</b></span>`;
+  return `<span class="iconbox" aria-hidden="true">${f.icon}</span>`;
+}
+function renderStart(){
+  const host=$("v-start"); if(!host) return;
+  let r=0, fsum=0;
+  for(const fac of FAECHER){ const h=fac.adapter.heute(); r+=h.r; fsum+=h.f; }
+  const sh=sharedDayStreak();
+  let cards="";
+  for(const fac of FAECHER){
+    const h=fac.adapter.heute();
+    const serie=fac.adapter.fachSerie();
+    const w=weiterInfo(fac.id);
+    let mid="";
+    if(fac.id==="englisch"){
+      const done=h.r+h.f;
+      const pct=Math.min(100, Math.round(100*done/DAILY_GOAL));
+      mid=`<div class="top" style="margin-top:8px"><span class="pill">🔥 ${serie.n} ${serie.n===1?"Tag":"Tage"}</span><span class="pill">Heute: ${h.r} ✔ / ${done}</span></div>`+
+        `<div class="bar"><div style="width:${pct}%"></div></div><div class="small">Tagesziel: ${done} von ${DAILY_GOAL} Karten</div>`;
+    } else {
+      const up=M_LEARN.filter(id=>areaLevel(id)>=2).length;
+      const pct=Math.round(100*up/M_LEARN.length);
+      const md=mDayStreak();
+      mid=`<div class="top" style="margin-top:8px"><span class="pill">📅 ${md.n} Mathe-${md.n===1?"Tag":"Tage"}</span><span class="pill">Heute: ${h.r} ✔ / ${h.r+h.f}</span></div>`+
+        `<div class="bar"><div style="width:${pct}%"></div></div><div class="small">Bereiche auf Stufe 2+: ${up} von ${M_LEARN.length}</div>`;
+    }
+    cards+=`<article class="fcard" style="--accent:${fac.farbe}"><div class="fcard-top">${fachIcon(fac)}<div class="grow"><h2>${esc(fac.name)}</h2><div class="small">${esc(fac.kurz)}</div></div><button type="button" class="primary openbtn" data-open="${fac.id}">Öffnen →</button></div>${mid}<button type="button" class="weiter" data-weiter="${fac.id}"><span>▶ Weiter: ${esc(w.label)}</span><span class="small">${esc(w.meta||"")}</span></button></article>`;
+  }
+  host.innerHTML=`<div class="card"><h2 class="h2" style="margin-top:0">Heute</h2><div class="top"><span class="pill">🔗 Gemeinsam: ${sh.n} ${sh.n===1?"Tag":"Tage"}</span><span class="pill">Heute: ${r} ✔ / ${r+fsum}</span></div><p class="small" style="margin:8px 0 0">Gemeinsame Serie = Englisch oder Mathe geübt. Neue Fächer zählen mit.</p></div><h2 class="h2">Deine Fächer</h2>${cards}<div class="soon"><div>＋ Weitere Fächer folgen</div><p class="small" style="font-weight:600;margin:6px 0 0">Neue Fächer erscheinen hier automatisch als gleiche Karte.</p></div>`;
+}
+let fachOpen={};
+let fachShown=null;
+function areaOpen(fid){
+  if(Object.prototype.hasOwnProperty.call(fachOpen, fid)) return fachOpen[fid];
+  if(isObj(state.ui) && state.ui.fach===fid) return state.ui.bereich;
+  return null;
+}
+function renderFach(fid){
+  const f=fachById(fid); const host=$("page-fach"); if(!f || !host) return;
+  const h=f.adapter.heute();
+  const serie=f.adapter.fachSerie();
+  const sh=sharedDayStreak();
+  const open=areaOpen(fid);
+  let pills="";
+  if(fid==="englisch"){
+    const v=vokStand();
+    pills=`<div class="top"><span class="pill">🔥 ${serie.n} ${serie.n===1?"Tag":"Tage"}</span><span class="pill">🔗 Gemeinsam: ${sh.n}</span><span class="pill">Heute: ${h.r} ✔ / ${h.r+h.f}</span><span class="pill">🏆 Rekord: ${state.best}</span></div><div class="bar"><div style="width:${v.pct}%"></div></div><div class="small">${esc(v.text)}</div>`;
+  } else {
+    const md=mDayStreak();
+    pills=`<div class="top"><span class="pill">📅 ${md.n} Mathe-${md.n===1?"Tag":"Tage"}</span><span class="pill">🔗 Gemeinsam: ${sh.n}</span><span class="pill">Heute: ${h.r} ✔ / ${h.r+h.f}</span><span class="pill">⭐ ${num(mState().punkte)}</span></div>`;
+  }
+  let blocks="";
+  for(const b of f.bereiche){
+    const info=f.adapter.bereiche().find(x=>x.id===b.id);
+    const chip=info&&info.stand?info.stand.label:"";
+    const sub=info&&info.sub?info.sub:b.sub;
+    const isOpen=open===b.id;
+    const modes=isOpen?`<div class="modes">${b.modi.map(m=>modusButton(fid, b.id, m)).join("")}</div>`:"";
+    blocks+=`<div class="bblock${isOpen?" open":""}" style="--accent:${f.farbe}"><button type="button" class="brow" data-fach="${fid}" data-bereich-toggle="${b.id}"><span class="iconbox">${b.icon}</span><span class="nm">${esc(b.name)}<span class="small">${esc(sub)}</span></span><span class="chip">${esc(chip)}</span></button>${modes}</div>`;
+  }
+  let wide="";
+  if(f.fachweit.indexOf("gemischt")>=0) wide+=`<button type="button" data-fach="${fid}" data-bereich="gemischt" data-modus="gemischt">🔀 Gemischt<span class="small">${fid==="englisch"?"quer über alles":"alle Bereiche"}</span></button>`;
+  if(f.fachweit.indexOf("blitz")>=0){
+    const cur=blitzSeconds();
+    const seg=BLITZ_CHOICES.map(s=>`<button type="button" data-sek="${s}" class="${s===cur?"on":""}">${s} Sek.</button>`).join("");
+    wide+=`<div><button type="button" data-fach="${fid}" data-bereich="blitz" data-modus="blitz">⚡ Blitz<span class="small">Kopfrechnen · ${cur} Sek.</span></button><div class="seg" style="margin-top:8px">${seg}</div></div>`;
+  }
+  const badges=f.adapter.abzeichen();
+  const got=badges.filter(b=>b.got).length;
+  host.innerHTML=`<p class="crumbline"><a href="#/start">🏠 Start</a> › ${f.icon} <b>${esc(f.name)}</b></p><article class="fcard" style="--accent:${f.farbe}"><div class="fcard-top">${fachIcon(f)}<div class="grow"><h2>${esc(f.name)}</h2><div class="small">${esc(f.kurz)}</div></div></div>${pills}</article><div class="fachcols"><div><h2 class="h2">Bereiche</h2>${blocks}</div><div><h2 class="h2">Für das ganze Fach</h2><div class="wide">${wide}</div><h2 class="h2">Fortschritt</h2><div class="pair"><button type="button" data-go="#/statistik/${fid}">📊 ${esc(f.name)}-Statistik<span class="small">Verlauf, Bereiche</span></button><button type="button" data-go="#/abzeichen/${fid}">🏅 ${esc(f.name)}-Abzeichen<span class="small">${got} von ${badges.length}</span></button></div></div></div>`;
+}
+function lastDays(n){ const T=dayKey(), out=[]; for(let i=n-1;i>=0;i--) out.push(addDays(T,-i)); return out; }
+function sumMap(tage, days){ let r=0,f=0; for(const d of days){ const e=tage&&tage[d]; if(isObj(e)){ r+=num(e.r); f+=num(e.f); } } return {r:r, f:f}; }
+function svgStacked(){
+  const T=dayKey(), n=14, W=360, H=168, top=16, bot=34, L=4;
+  const days=[];
+  for(let i=n-1;i>=0;i--){
+    const d=addDays(T,-i);
+    const e=dayVals(d)||{r:0,f:0};
+    const mt=isObj(state.mathe)&&isObj(state.mathe.tage)?state.mathe.tage[d]:null;
+    days.push({d:d, en:num(e.r)+num(e.f), ma:mt?num(mt.r)+num(mt.f):0});
+  }
+  const max=Math.max(4, ...days.map(x=>x.en+x.ma));
+  const ch=H-top-bot, bw=(W-2*L)/n;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Letzte 14 Tage, nach Fach">`;
+  days.forEach((x,i)=>{
+    const cx=L+i*bw, w=bw*0.62, x0=cx+(bw-w)/2, isT=x.d===T;
+    const he=ch*x.en/max, hm=ch*x.ma/max;
+    if(isT) s+=`<rect x="${cx+1}" y="${top-2}" width="${bw-2}" height="${ch+6}" rx="6" fill="#e8f1ff"/>`;
+    if(x.en) s+=`<rect x="${x0}" y="${top+ch-he}" width="${w}" height="${Math.max(he,0)}" rx="2" fill="#2f7cf6"/>`;
+    if(x.ma) s+=`<rect x="${x0}" y="${top+ch-he-hm}" width="${w}" height="${Math.max(hm,0)}" rx="2" fill="#7a5af8"/>`;
+    const tot=x.en+x.ma;
+    if(tot) s+=`<text x="${cx+bw/2}" y="${Math.max(12, top+ch-he-hm-3)}" font-size="10" text-anchor="middle" fill="#1d2b3a" font-weight="700">${tot}</text>`;
+    const dd=parseDay(x.d);
+    s+=`<text x="${cx+bw/2}" y="${H-16}" font-size="9" text-anchor="middle" fill="${isT?"#2f7cf6":"#6b7a8c"}" font-weight="${isT?800:400}">${isT?"Heute":WD[dd.getDay()]}</text>`;
+    s+=`<text x="${cx+bw/2}" y="${H-4}" font-size="9" text-anchor="middle" fill="#9aa7b6">${dd.getDate()}.</text>`;
+  });
+  s+=`<line x1="${L}" x2="${W-L}" y1="${top+ch}" y2="${top+ch}" stroke="#d5deea"/>`;
+  return s+"</svg>";
+}
+function renderGesamt(){
+  const host=$("statsGesamt"); if(!host) return;
+  const sh=sharedDayStreak(), shBest=sharedBestDayStreak(), en=dayStreak(), enBest=bestDayStreak();
+  let rows="", sumR=0, sumF=0;
+  for(const fac of FAECHER){
+    const h=fac.adapter.heute();
+    sumR+=h.r; sumF+=h.f;
+    const ziel=fac.id==="englisch"?(h.r+h.f)+"/"+DAILY_GOAL:"–";
+    rows+=`<tr><td><span class="dot" style="background:${fac.farbe}"></span>${fac.icon} ${esc(fac.name)}</td><td>${h.r}</td><td>${h.f}</td><td>${ziel}</td></tr>`;
+  }
+  const days7=lastDays(7);
+  let overview="";
+  for(const fac of FAECHER){
+    const tage=fac.id==="englisch"?state.tage:(fac.id==="mathe"&&isObj(state.mathe)?state.mathe.tage:{});
+    const s=sumMap(tage, days7);
+    const pct=s.r+s.f?Math.round(100*s.r/(s.r+s.f))+" %":"–";
+    const badges=fac.adapter.abzeichen();
+    const got=badges.filter(b=>b.got).length;
+    overview+=`<tr class="clickrow" data-go="#/statistik/${fac.id}"><td>${fac.icon} ${esc(fac.name)}</td><td>${s.r+s.f}</td><td>${pct}</td><td>🏅 ${got}/${badges.length}</td></tr>`;
+  }
+  host.innerHTML=`<div class="card"><div class="hero"><div class="flame">🔗</div><div><div class="big">${sh.n} ${sh.n===1?"Tag":"Tage"}</div><div>Gemeinsame Serie: Englisch oder Mathe geübt.</div><div class="small">Längste gemeinsame Serie: ${shBest} ${shBest===1?"Tag":"Tage"}</div></div></div><div class="top" style="margin-top:10px"><span class="pill">🔥 Englisch-Serie: ${en.n} ${en.n===1?"Tag":"Tage"}</span><span class="pill">🏆 längste: ${enBest}</span></div><p class="small">Die Flamme 🔥 zählt nur Englisch (Vokabeln und Grammatik), wie bisher.</p></div><div class="card"><h3 class="t">Heute</h3><div style="overflow-x:auto"><table><tr><th>Fach</th><th>✔</th><th>✘</th><th>Ziel</th></tr>${rows}<tr><th>Zusammen</th><th>${sumR}</th><th>${sumF}</th><th></th></tr></table></div><p class="small">Das Tagesziel gilt nur für Englisch: ${DAILY_GOAL} Karten. Mathe hat keins.</p></div><div class="card"><h3 class="t">Letzte 14 Tage</h3><div class="chart">${svgStacked()}</div><div class="small legend"><span><i style="background:#2f7cf6"></i>Englisch</span><span><i style="background:#7a5af8"></i>Mathe</span></div></div><div class="card"><h3 class="t">Fächer im Überblick</h3><div style="overflow-x:auto"><table><tr><th>Fach</th><th>7 Tage</th><th>richtig</th><th>🏅</th></tr>${overview}</table></div><p class="small">Tippe auf ein Fach für die Details. Bei Englisch zählt die Übersicht die Vokabelkarten; Grammatik steht im Filter Englisch.</p></div>`;
+}
+function renderStatistik(filter){
+  if(filter!=="englisch" && filter!=="mathe") filter="gesamt";
+  setDock("statistik");
+  const ids=["page-statistik"];
+  if(filter==="englisch") ids.push("v-statistik");
+  if(filter==="mathe") ids.push("v-mathe");
+  showOnly(ids);
+  document.querySelectorAll("#fachFilter button").forEach(b=>b.classList.toggle("on", b.getAttribute("data-filter")===filter));
+  if($("statsGesamt")) $("statsGesamt").classList.toggle("hidden", filter!=="gesamt");
+  renderStats();
+  if(filter==="mathe"){ showMathPane("stats"); renderMathStats(); }
+  if(filter==="gesamt") renderGesamt();
+}
+function renderAbzeichen(fach){
+  setDock("abzeichen");
+  showOnly(["page-abzeichen"]);
+  const host=$("page-abzeichen"); if(!host) return;
+  host.innerHTML=FAECHER.map(f=>{
+    const list=f.adapter.abzeichen();
+    const got=list.filter(b=>b.got).length;
+    return `<div class="card" id="abz-${f.id}"><h3 class="t">${f.icon} ${esc(f.name)}-Abzeichen <span class="small">${got} von ${list.length}</span></h3><div class="badges">${list.map(b=>`<div class="badge ${b.got?"got":"off"}"><span class="i">${b.i}</span>${esc(b.t)}<div class="small">${esc(b.detail||"")}</div></div>`).join("")}</div></div>`;
+  }).join("");
+  const el=fach && $("abz-"+fach);
+  if(el && typeof el.scrollIntoView==="function"){ try{ el.scrollIntoView(); }catch(e){} }
+}
+function fillCrumb(f, bereich, modus){
+  const c=$("crumb"); if(!c) return;
+  c.classList.remove("hidden");
+  c.innerHTML=`<button type="button" class="linkish" id="crumbHome">🏠 Start</button><span aria-hidden="true">›</span><span>${f.icon} ${esc(f.name)}</span><span aria-hidden="true">›</span><span>${esc(bereichName(f.id, bereich))}</span><span aria-hidden="true">›</span><span>${esc(modusName(modus))}</span><span class="spacer"></span><button type="button" class="ghost" id="crumbExit">✖ Beenden</button>`;
+  $("crumbHome").onclick=()=>go("#/start");
+  $("crumbExit").onclick=()=>{ mClearAdv(); stopBlitz(); go("#/f/"+f.id); };
+}
+function showFachPage(fid){
+  const f=fachById(fid);
+  if(!f){ go("#/start"); return; }
+  if(fid==="englisch" || fid==="mathe"){
+    const m=mState();
+    if(m.settings.fach!==fid){ m.settings.fach=fid; save(); }
+  }
+  fachShown=fid;
+  setDock("start");
+  showOnly(["page-fach"]);
+  renderFach(fid);
+}
+function openExercise(fach, bereich, modus){
+  const f=fachById(fach);
+  if(!f || !knownMode(fach, bereich, modus)){
+    if(f) showFachPage(fach); else go("#/start");
+    return;
+  }
+  setDock("start");
+  rememberUi(fach, bereich, modus);
+  f.adapter.open(bereich, modus);
+  fillCrumb(f, bereich, modus);
+}
+function parseRoute(hash){
+  const raw=String(hash||"#/start").replace(/^#/,"");
+  const p=raw.split("/").filter(Boolean);
+  if(!p.length || p[0]==="start") return {name:"start"};
+  if(p[0]==="f") return {name:"fach", fach:p[1]||"", bereich:p[2]||null, modus:p[3]||null};
+  if(p[0]==="statistik") return {name:"statistik", fach:p[1]||"gesamt"};
+  if(p[0]==="abzeichen") return {name:"abzeichen", fach:p[1]||null};
+  if(p[0]==="mehr") return {name:"mehr"};
+  return {name:"start"};
+}
+let applying=false;
+let routeKey="";
+function applyRoute(r){
+  const key=[r.name, r.fach||"", r.bereich||"", r.modus||""].join("|");
+  if(r.modus && key===routeKey) return;
+  routeKey=key;
+  if($("crumb")) $("crumb").classList.add("hidden");
+  if(r.name==="start"){ setDock("start"); showOnly(["v-start"]); renderStart(); }
+  else if(r.name==="fach" && r.modus) openExercise(r.fach, r.bereich, r.modus);
+  else if(r.name==="fach") showFachPage(r.fach);
+  else if(r.name==="statistik") renderStatistik(r.fach||"gesamt");
+  else if(r.name==="abzeichen") renderAbzeichen(r.fach);
+  else if(r.name==="mehr"){ setDock("mehr"); showOnly(["page-mehr"]); if($("mehrVersion")) $("mehrVersion").textContent="Lerntrainer – v"+APP_VERSION; }
+  else { setDock("start"); showOnly(["v-start"]); renderStart(); }
+  try{ if(typeof window.scrollTo==="function") window.scrollTo(0,0); }catch(e){}
+}
+function go(hash){
+  if(!hash) hash="#/start";
+  if(hash.charAt(0)!=="#") hash="#"+hash;
+  applying=true;
+  try{
+    if(location.hash!==hash) location.hash=hash;
+    applyRoute(parseRoute(hash));
+  } finally { applying=false; }
+}
+function startMode(fach, bereich, modus){
+  rememberUi(fach, bereich, modus);
+  go("#/f/"+fach+"/"+bereich+"/"+modus);
+}
+window.addEventListener("hashchange", ()=>{ if(applying) return; applyRoute(parseRoute(location.hash||"#/start")); });
+if($("v-start")) $("v-start").addEventListener("click", e=>{
+  const w=e.target.closest("[data-weiter]");
+  if(w){ const fid=w.getAttribute("data-weiter"); const info=weiterInfo(fid); startMode(fid, info.bereich, info.modus); return; }
+  const o=e.target.closest("[data-open]");
+  if(o) go("#/f/"+o.getAttribute("data-open"));
+});
+if($("page-fach")) $("page-fach").addEventListener("click", e=>{
+  const sek=e.target.closest("[data-sek]");
+  if(sek){
+    const n=+sek.getAttribute("data-sek");
+    if(BLITZ_CHOICES.indexOf(n)<0) return;
+    mState().settings.blitzSek=n; save();
+    renderFach(fachShown||"mathe");
+    return;
+  }
+  const jump=e.target.closest("[data-go]");
+  if(jump){ go(jump.getAttribute("data-go")); return; }
+  const mode=e.target.closest("[data-modus]");
+  if(mode){ startMode(mode.getAttribute("data-fach"), mode.getAttribute("data-bereich"), mode.getAttribute("data-modus")); return; }
+  const row=e.target.closest("[data-bereich-toggle]");
+  if(row){
+    const fid=row.getAttribute("data-fach"), bid=row.getAttribute("data-bereich-toggle");
+    fachOpen[fid]=areaOpen(fid)===bid?null:bid;
+    renderFach(fid);
+  }
+});
+if($("page-statistik")) $("page-statistik").addEventListener("click", e=>{
+  const jump=e.target.closest("[data-go]");
+  if(jump) go(jump.getAttribute("data-go"));
+});
+if($("fachFilter")) $("fachFilter").addEventListener("click", e=>{
+  const b=e.target.closest("[data-filter]"); if(!b) return;
+  const f=b.getAttribute("data-filter");
+  go(f && f!=="gesamt" ? "#/statistik/"+f : "#/statistik");
+});
+if($("mehrSayEn")) $("mehrSayEn").onclick=()=>say("Hello. How are you?", false);
+if($("mehrSayDe")) $("mehrSayDe").onclick=()=>sayDe("Drei plus vier ist sieben.");
+if($("mStop")) $("mStop").onclick=function(){ mClearAdv(); stopBlitz(); go("#/f/"+((state.ui&&state.ui.fach)||"mathe")); };
+if($("mResultHome")) $("mResultHome").onclick=function(){ go("#/f/"+((state.ui&&state.ui.fach)||"mathe")); };
+if($("mStatsHome")) $("mStatsHome").onclick=function(){ go("#/f/mathe"); };
+if($("mehrVersion")) $("mehrVersion").textContent="Lerntrainer – v"+APP_VERSION;
+
 const mathAPI = {
   AREAS: M_TILES, LEARN: M_LEARN, HILFE: M_HILFE, UNITS: M_UNITS,
   GENERATORS: {zahlen:makeZahlenQ, addsub:makeAddSubQ, muldiv:makeMulDivQ, terme:makeTermeQ, groessen:makeGroessenQ, flaechen:makeFlaechenQ, geometrie:makeGeometrieQ, blitz:makeBlitzQ, mix:makeMixQ},
-  makeZahlenQ, makeAddSubQ, makeMulDivQ, makeTermeQ, makeGroessenQ, makeFlaechenQ, makeGeometrieQ, makeBlitzQ, makeMixQ,
+  makeZahlenQ, makeAddSubQ, makeMulDivQ, makeTermeQ, makeGroessenQ, makeFlaechenQ, makeGeometrieQ, makeBlitzQ, makeMixQ, makeZeichnenQ,
   level: mLevelFromCorrect, sameNumber: mSame, parseDe: mParse, fmt: mFmt, padApply, starsFor,
   record: recordMath, grade: mGrade, ROUND_LEN: M_ROUND, BLITZ_CHOICES, BLITZ_DEFAULT_SEK,
+  mDayBest, mSumR, figurName, smallAngle, koordLabel,
   startBlitzClock, stopBlitz, paintBlitz, timeUp, blitzTick,
   get blitzGen(){ return blitzGen; },
   get round(){ return mRound; },
@@ -2762,8 +3443,9 @@ const mathAPI = {
 
 markBadges(state, true); save(); // migrierten Stand (nur Ergänzungen) sichern
 renderSel();
-window.VT = {say, pickEnVoice, speechText, get enVoice(){return enVoice;}, check, norm, pickNext, record, weight, level, pool, get state(){return state;}, set state(s){state=s;}, importJSON, defaultState, newCard, get current(){return current;}, migrate, dayKey, addDays, countGelernt, dayStreak, sharedDayStreak, bestDayStreak, sharedBestDayStreak, hardest, renderStats, updateTop, setNow(fn){ nowFn = fn || (()=>Date.now()); }, get fokus(){return fokus;}, APP_VERSION, STORE_KEY, G:{GRAMMATIK, THEMEN:G_THEMEN, TYPEN:G_TYPEN, start:gStart, answer:gAnswer, level:gLevel, record:gRecord, get round(){return gRound;}, get task(){return gTask();}, showStart:gShowStart}, quer:{areas:querAreas, spread:querSpread, go:querGo, advance:querAdvance, gradeText:querGradeText, gradeOpt:querGradeOpt, get item(){return querItem;}, get bag(){return querBag.slice();}, get count(){return querCount;}, get ok(){return querOk;}}, mathe: mathAPI};
-bootFach();
+window.VT = {say, pickEnVoice, speechText, get enVoice(){return enVoice;}, check, norm, pickNext, record, weight, level, pool, get state(){return state;}, set state(s){state=s;}, importJSON, defaultState, newCard, get current(){return current;}, migrate, dayKey, addDays, countGelernt, dayStreak, sharedDayStreak, bestDayStreak, sharedBestDayStreak, hardest, renderStats, updateTop, setNow(fn){ nowFn = fn || (()=>Date.now()); }, get fokus(){return fokus;}, APP_VERSION, STORE_KEY, FAECHER, go, parseRoute, mDayStreak, adapter(id){ const f=fachById(id); return f?f.adapter:null; }, G:{GRAMMATIK, THEMEN:G_THEMEN, TYPEN:G_TYPEN, start:gStart, answer:gAnswer, level:gLevel, record:gRecord, get round(){return gRound;}, get task(){return gTask();}, showStart:gShowStart}, quer:{areas:querAreas, spread:querSpread, go:querGo, advance:querAdvance, gradeText:querGradeText, gradeOpt:querGradeOpt, get item(){return querItem;}, get bag(){return querBag.slice();}, get count(){return querCount;}, get ok(){return querOk;}}, mathe: mathAPI};
+if(!location.hash || location.hash==="#" || location.hash==="#/") go("#/start");
+else applyRoute(parseRoute(location.hash));
 })();
 </script>
 </body>
