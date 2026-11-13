@@ -2197,5 +2197,849 @@
   "seite": 17,
   "thema": "Rund ums Haus & mehr",
   "status": "ok"
+ },
+ {
+  "id": "v227",
+  "en": "make models",
+  "de": "Modelle machen",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok"
+ },
+ {
+  "id": "v228",
+  "en": "rule",
+  "de": "Regel",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok"
+ },
+ {
+  "id": "v229",
+  "en": "planner",
+  "de": "Handbuch, Kalender",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok",
+  "de_alt": [
+   "Handbuch",
+   "Kalender"
+  ]
+ },
+ {
+  "id": "v230",
+  "en": "lunch",
+  "de": "Mittagessen",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok"
+ },
+ {
+  "id": "v231",
+  "en": "cafeteria",
+  "de": "Cafeteria",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok"
+ },
+ {
+  "id": "v232",
+  "en": "money",
+  "de": "Geld",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok"
+ },
+ {
+  "id": "v233",
+  "en": "machine",
+  "de": "Automat, Maschine, Apparat, Gerät",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok",
+  "de_alt": [
+   "Automat",
+   "Maschine",
+   "Apparat",
+   "Gerät"
+  ]
+ },
+ {
+  "id": "v234",
+  "en": "to pay (for)",
+  "de": "bezahlen",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok"
+ },
+ {
+  "id": "v235",
+  "en": "finger",
+  "de": "Finger",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok"
+ },
+ {
+  "id": "v236",
+  "en": "Art",
+  "de": "Kunstunterricht",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok"
+ },
+ {
+  "id": "v237",
+  "en": "to buy",
+  "de": "kaufen",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok"
+ },
+ {
+  "id": "v238",
+  "en": "sweets",
+  "de": "Süßigkeiten, Bonbons",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok",
+  "de_alt": [
+   "Süßigkeiten",
+   "Bonbons"
+  ]
+ },
+ {
+  "id": "v239",
+  "en": "shop",
+  "de": "Geschäft, Laden",
+  "abschnitt": "Heft",
+  "seite": 18,
+  "thema": "Heftseite 1",
+  "status": "ok",
+  "de_alt": [
+   "Geschäft",
+   "Laden"
+  ]
+ },
+ {
+  "id": "v240",
+  "en": "visit",
+  "de": "Besuch",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok"
+ },
+ {
+  "id": "v241",
+  "en": "outside",
+  "de": "nach draußen, draußen, außerhalb (von)",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok",
+  "de_alt": [
+   "nach draußen",
+   "draußen",
+   "außerhalb (von)"
+  ]
+ },
+ {
+  "id": "v242",
+  "en": "awful",
+  "de": "schrecklich, furchtbar",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok",
+  "de_alt": [
+   "schrecklich",
+   "furchtbar"
+  ]
+ },
+ {
+  "id": "v243",
+  "en": "Don't worry!",
+  "de": "Keine Sorge!",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok"
+ },
+ {
+  "id": "v244",
+  "en": "sentence",
+  "de": "Satz",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok"
+ },
+ {
+  "id": "v245",
+  "en": "right",
+  "de": "richtig, korrekt",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok",
+  "de_alt": [
+   "richtig",
+   "korrekt"
+  ]
+ },
+ {
+  "id": "v246",
+  "en": "ending",
+  "de": "Ende, Schluss (einer Geschichte)",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok",
+  "de_alt": [
+   "Ende",
+   "Schluss (einer Geschichte)"
+  ]
+ },
+ {
+  "id": "v247",
+  "en": "to talk about",
+  "de": "sprechen über, erzählen von",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok",
+  "de_alt": [
+   "sprechen über",
+   "erzählen von"
+  ]
+ },
+ {
+  "id": "v248",
+  "en": "day",
+  "de": "Tag",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok"
+ },
+ {
+  "id": "v249",
+  "en": "happy",
+  "de": "glücklich, froh, fröhlich",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok",
+  "de_alt": [
+   "glücklich",
+   "froh",
+   "fröhlich"
+  ]
+ },
+ {
+  "id": "v250",
+  "en": "can't",
+  "de": "kann nicht, können nicht",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok",
+  "de_alt": [
+   "kann nicht",
+   "können nicht"
+  ]
+ },
+ {
+  "id": "v251",
+  "en": "to meet",
+  "de": "treffen, sich treffen",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok",
+  "de_alt": [
+   "treffen",
+   "sich treffen"
+  ]
+ },
+ {
+  "id": "v252",
+  "en": "to show",
+  "de": "zeigen",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok"
+ },
+ {
+  "id": "v253",
+  "en": "game",
+  "de": "Spiel",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok"
+ },
+ {
+  "id": "v254",
+  "en": "to want (to)",
+  "de": "wollen, mögen",
+  "abschnitt": "Heft",
+  "seite": 19,
+  "thema": "Heftseite 2",
+  "status": "ok",
+  "de_alt": [
+   "wollen",
+   "mögen"
+  ]
+ },
+ {
+  "id": "v255",
+  "en": "to play",
+  "de": "spielen",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok"
+ },
+ {
+  "id": "v256",
+  "en": "boring",
+  "de": "langweilig",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok"
+ },
+ {
+  "id": "v257",
+  "en": "You're into sports.",
+  "de": "Du magst doch Sport. / Du stehst doch auf Sport.",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok"
+ },
+ {
+  "id": "v258",
+  "en": "Try skating!",
+  "de": "Versuch es mal mit Inlineskating! / Probier mal Inlineskating!",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok"
+ },
+ {
+  "id": "v259",
+  "en": "fast",
+  "de": "schnell",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok"
+ },
+ {
+  "id": "v260",
+  "en": "so",
+  "de": "so, also",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok",
+  "de_alt": [
+   "so",
+   "also"
+  ]
+ },
+ {
+  "id": "v261",
+  "en": "I'm sorry!",
+  "de": "Tut mir leid!",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok"
+ },
+ {
+  "id": "v262",
+  "en": "I'm fine.",
+  "de": "Mir geht's gut.",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok"
+ },
+ {
+  "id": "v263",
+  "en": "cute",
+  "de": "niedlich, süß",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok",
+  "de_alt": [
+   "niedlich",
+   "süß"
+  ]
+ },
+ {
+  "id": "v264",
+  "en": "lucky charm",
+  "de": "Glücksbringer, Talisman",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok",
+  "de_alt": [
+   "Glücksbringer",
+   "Talisman"
+  ]
+ },
+ {
+  "id": "v265",
+  "en": "text (message)",
+  "de": "SMS, Kurznachricht",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok",
+  "de_alt": [
+   "SMS",
+   "Kurznachricht"
+  ]
+ },
+ {
+  "id": "v266",
+  "en": "reading",
+  "de": "Lesen",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok"
+ },
+ {
+  "id": "v267",
+  "en": "music",
+  "de": "Musik",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok"
+ },
+ {
+  "id": "v268",
+  "en": "to paint",
+  "de": "anmalen, malen",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok",
+  "de_alt": [
+   "anmalen",
+   "malen"
+  ]
+ },
+ {
+  "id": "v269",
+  "en": "to go swimming",
+  "de": "schwimmen gehen",
+  "abschnitt": "Heft",
+  "seite": 20,
+  "thema": "Heftseite 3",
+  "status": "ok"
+ },
+ {
+  "id": "v270",
+  "en": "busy",
+  "de": "belebt, beschäftigt",
+  "abschnitt": "Heft",
+  "seite": 21,
+  "thema": "Heftseite 4",
+  "status": "ok",
+  "de_alt": [
+   "belebt",
+   "beschäftigt"
+  ]
+ },
+ {
+  "id": "v271",
+  "en": "Who ... for?",
+  "de": "Für wen ...?",
+  "abschnitt": "Heft",
+  "seite": 21,
+  "thema": "Heftseite 4",
+  "status": "ok"
+ },
+ {
+  "id": "v272",
+  "en": "who",
+  "de": "wer, wem, wen",
+  "abschnitt": "Heft",
+  "seite": 21,
+  "thema": "Heftseite 4",
+  "status": "ok",
+  "de_alt": [
+   "wer",
+   "wem",
+   "wen"
+  ]
+ },
+ {
+  "id": "v273",
+  "en": "to explore",
+  "de": "auf Entdeckungsreise gehen, sich umschauen, erkunden, erforschen",
+  "abschnitt": "Heft",
+  "seite": 21,
+  "thema": "Heftseite 4",
+  "status": "ok",
+  "de_alt": [
+   "auf Entdeckungsreise gehen",
+   "sich umschauen",
+   "erkunden",
+   "erforschen"
+  ]
+ },
+ {
+  "id": "v274",
+  "en": "best",
+  "de": "beste/-r/-s",
+  "abschnitt": "Heft",
+  "seite": 21,
+  "thema": "Heftseite 4",
+  "status": "ok",
+  "de_alt": [
+   "beste",
+   "bester",
+   "bestes"
+  ]
+ },
+ {
+  "id": "v275",
+  "en": "bag",
+  "de": "Tasche, Tüte",
+  "abschnitt": "Heft",
+  "seite": 21,
+  "thema": "Heftseite 4",
+  "status": "ok",
+  "de_alt": [
+   "Tasche",
+   "Tüte"
+  ]
+ },
+ {
+  "id": "v276",
+  "en": "maybe",
+  "de": "vielleicht",
+  "abschnitt": "Heft",
+  "seite": 21,
+  "thema": "Heftseite 4",
+  "status": "ok"
+ },
+ {
+  "id": "v277",
+  "en": "after",
+  "de": "nach (zeitlich)",
+  "abschnitt": "Heft",
+  "seite": 21,
+  "thema": "Heftseite 4",
+  "status": "ok"
+ },
+ {
+  "id": "v278",
+  "en": "to read",
+  "de": "lesen",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok"
+ },
+ {
+  "id": "v279",
+  "en": "book",
+  "de": "Buch",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok"
+ },
+ {
+  "id": "v280",
+  "en": "to take photos",
+  "de": "fotografieren, Fotos machen",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok",
+  "de_alt": [
+   "fotografieren",
+   "Fotos machen"
+  ]
+ },
+ {
+  "id": "v281",
+  "en": "to watch",
+  "de": "beobachten, (sich) ansehen, zuschauen",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok",
+  "de_alt": [
+   "beobachten",
+   "(sich) ansehen",
+   "zuschauen"
+  ]
+ },
+ {
+  "id": "v282",
+  "en": "card",
+  "de": "Karte, Spielkarte",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok",
+  "de_alt": [
+   "Karte",
+   "Spielkarte"
+  ]
+ },
+ {
+  "id": "v283",
+  "en": "magazine",
+  "de": "Zeitschrift",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok"
+ },
+ {
+  "id": "v284",
+  "en": "to watch TV",
+  "de": "fernsehen",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok"
+ },
+ {
+  "id": "v285",
+  "en": "DVD",
+  "de": "DVD",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok"
+ },
+ {
+  "id": "v286",
+  "en": "Me too.",
+  "de": "Ich auch.",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok"
+ },
+ {
+  "id": "v287",
+  "en": "bike",
+  "de": "Fahrrad",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok"
+ },
+ {
+  "id": "v288",
+  "en": "silly",
+  "de": "dumm, doof, albern",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok",
+  "de_alt": [
+   "dumm",
+   "doof",
+   "albern"
+  ]
+ },
+ {
+  "id": "v289",
+  "en": "play badminton",
+  "de": "Federball spielen",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok"
+ },
+ {
+  "id": "v290",
+  "en": "play basketball",
+  "de": "Basketball spielen",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok"
+ },
+ {
+  "id": "v291",
+  "en": "play football",
+  "de": "Fußball spielen",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok"
+ },
+ {
+  "id": "v292",
+  "en": "play volleyball",
+  "de": "Volleyball spielen",
+  "abschnitt": "Heft",
+  "seite": 22,
+  "thema": "Heftseite 5",
+  "status": "ok"
+ },
+ {
+  "id": "v293",
+  "en": "play tennis",
+  "de": "Tennis spielen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
+ },
+ {
+  "id": "v294",
+  "en": "play handball",
+  "de": "Handball spielen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
+ },
+ {
+  "id": "v295",
+  "en": "play (computer) games",
+  "de": "(Computer-)Spiele spielen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
+ },
+ {
+  "id": "v296",
+  "en": "play with animals/cars",
+  "de": "mit Tieren/Autos spielen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok",
+  "de_alt": [
+   "mit Tieren/Autos spielen"
+  ]
+ },
+ {
+  "id": "v297",
+  "en": "play in the garden/park",
+  "de": "im Garten/Park spielen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok",
+  "de_alt": [
+   "im Garten/Park spielen"
+  ]
+ },
+ {
+  "id": "v298",
+  "en": "play outside",
+  "de": "draußen spielen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
+ },
+ {
+  "id": "v299",
+  "en": "play at home",
+  "de": "zu Hause spielen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
+ },
+ {
+  "id": "v300",
+  "en": "go boating",
+  "de": "Boot fahren gehen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
+ },
+ {
+  "id": "v301",
+  "en": "go cycling",
+  "de": "Rad fahren gehen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
+ },
+ {
+  "id": "v302",
+  "en": "go (inline) skating",
+  "de": "Inliner fahren gehen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
+ },
+ {
+  "id": "v303",
+  "en": "go horse-riding",
+  "de": "reiten gehen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
+ },
+ {
+  "id": "v304",
+  "en": "go skiing",
+  "de": "Ski fahren gehen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
+ },
+ {
+  "id": "v305",
+  "en": "go snowboarding",
+  "de": "Snowboard fahren gehen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
+ },
+ {
+  "id": "v306",
+  "en": "make music",
+  "de": "Musik machen",
+  "abschnitt": "Heft",
+  "seite": 23,
+  "thema": "Heftseite 6",
+  "status": "ok"
  }
 ]

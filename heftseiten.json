@@ -1,0 +1,490 @@
+{
+  "hinweis": "Eine Heftseite ist ein Block in seiten. Neue Seite anhängen (nächste freie seite, Thema Heftseite N) und node scripts/heft-merge.js ausführen. Der Abschnitt Heft ist keine Buch-Unit. Duplikate erkennt das Skript und legt sie nicht noch einmal an.",
+  "abschnitt": "Heft",
+  "seiten": [
+    {
+      "block": "seite-1",
+      "nr": 1,
+      "seite": 18,
+      "thema": "Heftseite 1",
+      "eintraege": [
+        {
+          "en": "make models",
+          "de": "Modelle machen",
+          "korrektur": "Modele → Modelle",
+          "heft": "Modele machen",
+          "id": "v227"
+        },
+        {
+          "en": "rule",
+          "de": "Regel",
+          "id": "v228"
+        },
+        {
+          "en": "planner",
+          "de": "Handbuch, Kalender",
+          "anmerkung": "so im Heft, bewusst übernommen",
+          "id": "v229"
+        },
+        {
+          "en": "lunch",
+          "de": "Mittagessen",
+          "id": "v230"
+        },
+        {
+          "en": "cafeteria",
+          "de": "Cafeteria",
+          "id": "v231"
+        },
+        {
+          "en": "money",
+          "de": "Geld",
+          "id": "v232"
+        },
+        {
+          "en": "machine",
+          "de": "Automat, Maschine, Apparat, Gerät",
+          "id": "v233"
+        },
+        {
+          "en": "to pay (for)",
+          "de": "bezahlen",
+          "id": "v234"
+        },
+        {
+          "en": "finger",
+          "de": "Finger",
+          "id": "v235"
+        },
+        {
+          "en": "Art",
+          "de": "Kunstunterricht",
+          "id": "v236"
+        },
+        {
+          "en": "to buy",
+          "de": "kaufen",
+          "id": "v237"
+        },
+        {
+          "en": "sweets",
+          "de": "Süßigkeiten, Bonbons",
+          "id": "v238"
+        },
+        {
+          "en": "shop",
+          "de": "Geschäft, Laden",
+          "id": "v239"
+        }
+      ]
+    },
+    {
+      "block": "seite-2",
+      "nr": 2,
+      "seite": 19,
+      "thema": "Heftseite 2",
+      "eintraege": [
+        {
+          "en": "visit",
+          "de": "Besuch",
+          "id": "v240"
+        },
+        {
+          "en": "outside",
+          "de": "nach draußen, draußen, außerhalb (von)",
+          "id": "v241"
+        },
+        {
+          "en": "awful",
+          "de": "schrecklich, furchtbar",
+          "id": "v242"
+        },
+        {
+          "en": "Don't worry!",
+          "de": "Keine Sorge!",
+          "id": "v243"
+        },
+        {
+          "en": "sentence",
+          "de": "Satz",
+          "id": "v244"
+        },
+        {
+          "en": "right",
+          "de": "richtig, korrekt",
+          "id": "v245"
+        },
+        {
+          "en": "ending",
+          "de": "Ende, Schluss (einer Geschichte)",
+          "id": "v246"
+        },
+        {
+          "en": "to talk about",
+          "de": "sprechen über, erzählen von",
+          "id": "v247"
+        },
+        {
+          "en": "day",
+          "de": "Tag",
+          "id": "v248"
+        },
+        {
+          "en": "happy",
+          "de": "glücklich, froh, fröhlich",
+          "id": "v249"
+        },
+        {
+          "en": "can't",
+          "de": "kann nicht, können nicht",
+          "id": "v250"
+        },
+        {
+          "en": "to meet",
+          "de": "treffen, sich treffen",
+          "id": "v251"
+        },
+        {
+          "en": "to show",
+          "de": "zeigen",
+          "id": "v252"
+        },
+        {
+          "en": "game",
+          "de": "Spiel",
+          "id": "v253"
+        },
+        {
+          "en": "to want (to)",
+          "de": "wollen, mögen",
+          "id": "v254"
+        }
+      ]
+    },
+    {
+      "block": "seite-3",
+      "nr": 3,
+      "seite": 20,
+      "thema": "Heftseite 3",
+      "eintraege": [
+        {
+          "en": "to play",
+          "de": "spielen",
+          "id": "v255"
+        },
+        {
+          "en": "boring",
+          "de": "langweilig",
+          "id": "v256"
+        },
+        {
+          "en": "You're into sports.",
+          "de": "Du magst doch Sport. / Du stehst doch auf Sport.",
+          "id": "v257"
+        },
+        {
+          "en": "Try skating!",
+          "de": "Versuch es mal mit Inlineskating! / Probier mal Inlineskating!",
+          "id": "v258"
+        },
+        {
+          "en": "fast",
+          "de": "schnell",
+          "id": "v259"
+        },
+        {
+          "en": "so",
+          "de": "so, also",
+          "id": "v260"
+        },
+        {
+          "en": "I'm sorry!",
+          "de": "Tut mir leid!",
+          "id": "v261"
+        },
+        {
+          "en": "I'm fine.",
+          "de": "Mir geht's gut.",
+          "id": "v262"
+        },
+        {
+          "en": "cute",
+          "de": "niedlich, süß",
+          "id": "v263"
+        },
+        {
+          "en": "lucky charm",
+          "de": "Glücksbringer, Talisman",
+          "id": "v264"
+        },
+        {
+          "en": "text (message)",
+          "de": "SMS, Kurznachricht",
+          "id": "v265"
+        },
+        {
+          "en": "reading",
+          "de": "Lesen",
+          "id": "v266"
+        },
+        {
+          "en": "music",
+          "de": "Musik",
+          "korrektur": "Marik → Musik",
+          "heft": "Marik",
+          "id": "v267"
+        },
+        {
+          "en": "to paint",
+          "de": "anmalen, malen",
+          "id": "v268"
+        },
+        {
+          "en": "to go swimming",
+          "de": "schwimmen gehen",
+          "id": "v269"
+        }
+      ]
+    },
+    {
+      "block": "seite-4",
+      "nr": 4,
+      "seite": 21,
+      "thema": "Heftseite 4",
+      "eintraege": [
+        {
+          "en": "cellar",
+          "de": "Keller"
+        },
+        {
+          "en": "terrace",
+          "de": "Terrasse"
+        },
+        {
+          "en": "balcony",
+          "de": "Balkon"
+        },
+        {
+          "en": "garage",
+          "de": "Garage"
+        },
+        {
+          "en": "shed",
+          "de": "Schuppen"
+        },
+        {
+          "en": "garden",
+          "de": "Garten"
+        },
+        {
+          "en": "busy",
+          "de": "belebt, beschäftigt",
+          "id": "v270"
+        },
+        {
+          "en": "Who ... for?",
+          "de": "Für wen ...?",
+          "id": "v271"
+        },
+        {
+          "en": "who",
+          "de": "wer, wem, wen",
+          "id": "v272"
+        },
+        {
+          "en": "to explore",
+          "de": "auf Entdeckungsreise gehen, sich umschauen, erkunden, erforschen",
+          "id": "v273"
+        },
+        {
+          "en": "best",
+          "de": "beste/-r/-s",
+          "id": "v274"
+        },
+        {
+          "en": "bag",
+          "de": "Tasche, Tüte",
+          "id": "v275"
+        },
+        {
+          "en": "maybe",
+          "de": "vielleicht",
+          "id": "v276"
+        },
+        {
+          "en": "after",
+          "de": "nach (zeitlich)",
+          "id": "v277"
+        }
+      ]
+    },
+    {
+      "block": "seite-5",
+      "nr": 5,
+      "seite": 22,
+      "thema": "Heftseite 5",
+      "eintraege": [
+        {
+          "en": "to read",
+          "de": "lesen",
+          "id": "v278"
+        },
+        {
+          "en": "book",
+          "de": "Buch",
+          "id": "v279"
+        },
+        {
+          "en": "to take photos",
+          "de": "fotografieren, Fotos machen",
+          "id": "v280"
+        },
+        {
+          "en": "to watch",
+          "de": "beobachten, (sich) ansehen, zuschauen",
+          "id": "v281"
+        },
+        {
+          "en": "card",
+          "de": "Karte, Spielkarte",
+          "id": "v282"
+        },
+        {
+          "en": "magazine",
+          "de": "Zeitschrift",
+          "id": "v283"
+        },
+        {
+          "en": "to watch TV",
+          "de": "fernsehen",
+          "id": "v284"
+        },
+        {
+          "en": "DVD",
+          "de": "DVD",
+          "id": "v285"
+        },
+        {
+          "en": "Me too.",
+          "de": "Ich auch.",
+          "id": "v286"
+        },
+        {
+          "en": "bike",
+          "de": "Fahrrad",
+          "id": "v287"
+        },
+        {
+          "en": "silly",
+          "de": "dumm, doof, albern",
+          "id": "v288"
+        },
+        {
+          "en": "play badminton",
+          "de": "Federball spielen",
+          "id": "v289"
+        },
+        {
+          "en": "play basketball",
+          "de": "Basketball spielen",
+          "id": "v290"
+        },
+        {
+          "en": "play football",
+          "de": "Fußball spielen",
+          "id": "v291"
+        },
+        {
+          "en": "play volleyball",
+          "de": "Volleyball spielen",
+          "id": "v292"
+        }
+      ]
+    },
+    {
+      "block": "seite-6",
+      "nr": 6,
+      "seite": 23,
+      "thema": "Heftseite 6",
+      "eintraege": [
+        {
+          "en": "play tennis",
+          "de": "Tennis spielen",
+          "id": "v293"
+        },
+        {
+          "en": "play handball",
+          "de": "Handball spielen",
+          "id": "v294"
+        },
+        {
+          "en": "play (computer) games",
+          "de": "(Computer-)Spiele spielen",
+          "id": "v295"
+        },
+        {
+          "en": "play with animals/cars",
+          "de": "mit Tieren/Autos spielen",
+          "id": "v296"
+        },
+        {
+          "en": "play in the garden/park",
+          "de": "im Garten/Park spielen",
+          "id": "v297"
+        },
+        {
+          "en": "play outside",
+          "de": "draußen spielen",
+          "id": "v298"
+        },
+        {
+          "en": "play at home",
+          "de": "zu Hause spielen",
+          "id": "v299"
+        },
+        {
+          "en": "go boating",
+          "de": "Boot fahren gehen",
+          "id": "v300"
+        },
+        {
+          "en": "go cycling",
+          "de": "Rad fahren gehen",
+          "id": "v301"
+        },
+        {
+          "en": "go (inline) skating",
+          "de": "Inliner fahren gehen",
+          "korrektur": "Inlinefahren gehen → Inliner fahren gehen",
+          "heft": "Inlinefahren gehen",
+          "id": "v302"
+        },
+        {
+          "en": "go swimming",
+          "de": "schwimmen gehen",
+          "anmerkung": "fast Duplikat zu \"to go swimming\""
+        },
+        {
+          "en": "go horse-riding",
+          "de": "reiten gehen",
+          "id": "v303"
+        },
+        {
+          "en": "go skiing",
+          "de": "Ski fahren gehen",
+          "id": "v304"
+        },
+        {
+          "en": "go snowboarding",
+          "de": "Snowboard fahren gehen",
+          "id": "v305"
+        },
+        {
+          "en": "make music",
+          "de": "Musik machen",
+          "id": "v306"
+        }
+      ]
+    }
+  ]
+}
