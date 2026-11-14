@@ -2114,8 +2114,9 @@ function zahlengeradeSvg(min, max, marks){
   }
   marks.forEach(function(m){
     const x=X(m.x);
-    s+=`<circle cx="${x}" cy="${y}" r="7" fill="${m.color}" stroke="#fff" stroke-width="2"/>`;
-    if(m.name) s+=`<text x="${x}" y="${y-14}" font-size="15" text-anchor="middle" font-weight="800" fill="${m.color}">${m.name}</text>`;
+    const flag=m.loesung?' data-loesung="1"':"";
+    if(!m.nurText) s+=`<circle cx="${x}" cy="${y}" r="7" fill="${m.color}" stroke="#fff" stroke-width="2"${flag}/>`;
+    if(m.name) s+=`<text x="${x}" y="${y-14}" font-size="15" text-anchor="middle" font-weight="800" fill="${m.color}"${flag}>${m.name}</text>`;
   });
   return s+"</svg>";
 }
@@ -2126,16 +2127,17 @@ function makeZahlengerade(rnd, area, mode){
   let b=a+span;
   if(b>9){ b=a; a=a-span; }
   const mid=(a+b)/2, dist=b-a, lo=a-1, hi=b+1;
-  const marks=[{x:a, color:"#f2545b", name:"A"},{x:b, color:"#2f7cf6", name:"B"}];
-  if(mode==="mitte") marks.push({x:mid, color:"#ff9f1c", name:"?"});
-  const svg=zahlengeradeSvg(lo, hi, marks);
+  const basis=[{x:a, color:"#f2545b", name:"A"},{x:b, color:"#2f7cf6", name:"B"}];
+  const svg=zahlengeradeSvg(lo, hi, basis);
   const rule=area==="geo-zeichnen"?"geometrie":"zahlen";
   if(mode==="abstand"){
-    return {area:area, rule:rule, kind:"abstand", input:"num", text:"Wie groß ist der Abstand zwischen A und B?", say:"Wie groß ist der Abstand zwischen A und B?", svg:svg, spec:{op:"abstand", a:a, b:b}, num:dist, scale:0, answerText:String(dist), steps:["von "+mFmt(a,0)+" bis "+mFmt(b,0), "Abstand "+dist], key:"abst:"+a+":"+b};
+    const svgLoesung=zahlengeradeSvg(lo, hi, basis.concat([{x:mid, color:"#ff9f1c", name:String(dist), loesung:true, nurText:true}]));
+    return {area:area, rule:rule, kind:"abstand", input:"num", text:"Wie groß ist der Abstand zwischen A und B?", say:"Wie groß ist der Abstand zwischen A und B?", svg:svg, svgLoesung:svgLoesung, spec:{op:"abstand", a:a, b:b}, num:dist, scale:0, answerText:String(dist), steps:["von "+mFmt(a,0)+" bis "+mFmt(b,0), "Abstand "+dist], key:"abst:"+a+":"+b};
   }
+  const svgLoesung=zahlengeradeSvg(lo, hi, basis.concat([{x:mid, color:"#ff9f1c", name:"?", loesung:true}]));
   const ans=mFmt(mid,0);
   const wrongs=[mid-1, mid+1, mid-2, a, b].map(function(n){ return mFmt(n,0); });
-  return {area:area, rule:rule, kind:"mitte", input:"mc", text:"Welche Zahl liegt genau in der Mitte zwischen A und B?", say:"Welche Zahl liegt genau in der Mitte zwischen A und B?", svg:svg, spec:{op:"mitte", a:a, b:b}, answer:ans, options:mcOpts(ans, wrongs, rnd), steps:["Abstand "+dist+", die Hälfte ist "+(dist/2), mFmt(a,0)+" + "+(dist/2)+" = "+ans], key:"mitte:"+a+":"+b};
+  return {area:area, rule:rule, kind:"mitte", input:"mc", text:"Welche Zahl liegt genau in der Mitte zwischen A und B?", say:"Welche Zahl liegt genau in der Mitte zwischen A und B?", svg:svg, svgLoesung:svgLoesung, spec:{op:"mitte", a:a, b:b}, answer:ans, options:mcOpts(ans, wrongs, rnd), steps:["Abstand "+dist+", die Hälfte ist "+(dist/2), mFmt(a,0)+" + "+(dist/2)+" = "+ans], key:"mitte:"+a+":"+b};
 }
 function makeGegen(rnd){
   let n=mInt(-12, 12, rnd);
@@ -2248,10 +2250,11 @@ function makeQuadrant(rnd){
   if(y===0) y=-3;
   const name=quadrantName(x, y);
   const spec={op:"quadrant", x:x, y:y, min:-5, max:5, cell:28, pad:26, axes:true};
-  const svg=drawSvg(spec, function(X,Y){
-    return `<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="#f2545b" stroke="#fff" stroke-width="2"/>`;
+  const svg=drawSvg(spec, function(){ return ""; });
+  const svgLoesung=drawSvg(spec, function(X,Y){
+    return `<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="#f2545b" stroke="#fff" stroke-width="2" data-loesung="1"/>`;
   });
-  return {area:"geo-zeichnen", rule:"geometrie", kind:"quadrant", input:"mc", text:"In welchem Quadranten liegt "+koordLabel(x,y)+"?", say:"In welchem Quadranten liegt der Punkt?", svg:svg, spec:spec, answer:name, options:["I","II","III","IV"], steps:["I rechts oben, II links oben, III links unten, IV rechts unten", name], key:"quad:"+x+":"+y};
+  return {area:"geo-zeichnen", rule:"geometrie", kind:"quadrant", input:"mc", text:"In welchem Quadranten liegt "+koordLabel(x,y)+"?", say:"In welchem Quadranten liegt der Punkt?", svg:svg, svgLoesung:svgLoesung, spec:spec, answer:name, options:["I","II","III","IV"], steps:["I rechts oben, II links oben, III links unten, IV rechts unten", name], key:"quad:"+x+":"+y};
 }
 function makeSpiegel(rnd){
   const axis=rnd()<0.5?"x":"y";
@@ -2262,12 +2265,16 @@ function makeSpiegel(rnd){
   const iy=axis==="x"?-y:y;
   const ans=koordLabel(ix, iy);
   const wrongs=[koordLabel(x,y), koordLabel(-x,-y), koordLabel(-x,y), koordLabel(x,-y)];
-  const spec={op:"spiegel", x:x, y:y, axis:axis, min:-5, max:5, cell:28, pad:26, axes:true};
+  const spec={op:"spiegel", x:x, y:y, axis:axis, ix:ix, iy:iy, min:-5, max:5, cell:28, pad:26, axes:true};
   const svg=drawSvg(spec, function(X,Y){
     return `<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="#7a5af8" stroke="#fff" stroke-width="2"/>`;
   });
+  const svgLoesung=drawSvg(spec, function(X,Y){
+    return `<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="#7a5af8" stroke="#fff" stroke-width="2"/>`+
+      `<circle cx="${X(ix)}" cy="${Y(iy)}" r="6" fill="#ff9f1c" stroke="#fff" stroke-width="2" data-loesung="1"/>`;
+  });
   const achse=axis==="x"?"x-Achse":"y-Achse";
-  return {area:"geo-zeichnen", rule:"geometrie", kind:"spiegel", input:"mc", text:"Spiegle "+koordLabel(x,y)+" an der "+achse+". Welche Koordinaten hat der Bildpunkt?", say:"Spiegle den Punkt an der "+achse, svg:svg, spec:spec, answer:ans, options:mcOpts(ans, wrongs, rnd), steps:["an der "+achse+" wechselt das "+(axis==="x"?"y":"x")+"-Vorzeichen", ans], key:"spieg:"+axis+":"+x+":"+y};
+  return {area:"geo-zeichnen", rule:"geometrie", kind:"spiegel", input:"mc", text:"Spiegle "+koordLabel(x,y)+" an der "+achse+". Welche Koordinaten hat der Bildpunkt?", say:"Spiegle den Punkt an der "+achse, svg:svg, svgLoesung:svgLoesung, spec:spec, answer:ans, options:mcOpts(ans, wrongs, rnd), steps:["an der "+achse+" wechselt das "+(axis==="x"?"y":"x")+"-Vorzeichen", ans], key:"spieg:"+axis+":"+x+":"+y};
 }
 function makeEintragen(rnd){
   const letters=["A","B","C","D"];
@@ -2284,12 +2291,16 @@ function makeEintragen(rnd){
   if(pts.length<4) return null;
   const target=pts[Math.floor(rnd()*pts.length)];
   const spec={op:"eintragen", x:target.x, y:target.y, name:target.name, pts:pts.map(function(p){ return {name:p.name, x:p.x, y:p.y}; }), min:-4, max:4, cell:DRAW_CELL, pad:DRAW_PAD, axes:true};
-  const svg=drawSvg(spec, function(X,Y){
-    return pts.map(function(p){
-      return `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="5" fill="#7a5af8"/><text x="${X(p.x)+8}" y="${Y(p.y)-8}" font-size="14" font-weight="800" fill="#1d2b3a">${p.name}</text>`;
-    }).join("");
-  });
-  return {area:"geo-zeichnen", rule:"geometrie", kind:"eintragen", input:"mc", text:"Welcher Punkt hat die Koordinaten "+koordLabel(target.x, target.y)+"?", say:"Welcher Punkt hat diese Koordinaten?", svg:svg, spec:spec, answer:target.name, options:mShuffle(["A","B","C","D"], rnd), steps:["x waagerecht, y senkrecht", target.name+" = "+koordLabel(target.x, target.y)], key:"ein:"+pts.map(function(p){ return p.name+p.x+","+p.y; }).join(";")};
+  function punkteSvg(loesung){
+    return drawSvg(spec, function(X,Y){
+      return pts.map(function(p){
+        const ziel=loesung && p.name===target.name;
+        const flag=ziel?' data-loesung="1"':"";
+        return `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="5" fill="${ziel?"#ff9f1c":"#7a5af8"}"${flag}/><text x="${X(p.x)+8}" y="${Y(p.y)-8}" font-size="14" font-weight="800" fill="#1d2b3a">${p.name}</text>`;
+      }).join("");
+    });
+  }
+  return {area:"geo-zeichnen", rule:"geometrie", kind:"eintragen", input:"mc", text:"Welcher Punkt hat die Koordinaten "+koordLabel(target.x, target.y)+"?", say:"Welcher Punkt hat diese Koordinaten?", svg:punkteSvg(false), svgLoesung:punkteSvg(true), spec:spec, answer:target.name, options:mShuffle(["A","B","C","D"], rnd), steps:["x waagerecht, y senkrecht", target.name+" = "+koordLabel(target.x, target.y)], key:"ein:"+pts.map(function(p){ return p.name+p.x+","+p.y; }).join(";")};
 }
 function makeZahlenQ(level, rnd, want){
   return withGen("zahlen", level, rnd, function(lv, rnd){
@@ -3026,6 +3037,7 @@ function timeUp(){
   if(bar){ bar.classList.remove("hidden"); bar.classList.add("low"); bar.setAttribute("aria-label", "Zeit um"); }
   mRenderDots();
   document.querySelectorAll("#mPad button, #mOpts .gopt").forEach(b=>{ b.disabled=true; });
+  mShowLoesung(q);
   mShowFb("almost", `<div><b>Zeit um! ⏱️ Nicht gelöst.</b></div><div class="small">Das ist kein Fehler und gibt keine Punkte.</div><div>Lösung: <b>${esc(q.answerText||q.answer)}</b></div><div class="steps">${esc((q.steps||[]).join(" → "))}</div>`);
   if($("mNextRow")) $("mNextRow").classList.remove("hidden");
   if($("mNext")) $("mNext").textContent=mRound.i+1<(mRound.questions?mRound.questions.length:M_ROUND)?"Weiter ➜":"Ergebnis 🏁";
@@ -3059,6 +3071,10 @@ function mPaintInput(){
   const v=mRound.input;
   d.textContent=v||"…";
   d.classList.toggle("empty", !v);
+}
+function mShowLoesung(q){
+  const draw=$("mDraw");
+  if(draw && q && q.svgLoesung){ draw.innerHTML=q.svgLoesung; draw.classList.remove("hidden"); }
 }
 function mShowQ(){
   const q=mRound.q; if(!q) return;
@@ -3131,6 +3147,7 @@ function mGrade(raw){
       else b.classList.add("dim");
     });
   } else document.querySelectorAll("#mPad button").forEach(b=>{ b.disabled=true; });
+  mShowLoesung(q);
   const sol=esc(q.answerText||q.answer);
   if(ok) mShowFb("good", `<div><b>Richtig! 🎉</b> +10 ⭐</div>`);
   else mShowFb("wrong", `<div><b>Das war leider falsch.</b></div><div>Richtig ist: <b>${sol}</b></div><div class="steps">${esc(q.steps.join(" → "))}</div>`);

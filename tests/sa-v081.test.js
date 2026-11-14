@@ -202,3 +202,38 @@ test("Probe und Themen nutzen die neuen Arten", () => {
   }
   assert.ok(neu.size >= 4, [...neu].join(","));
 });
+
+test("Lösungsmarkierung erst nach der Antwort", () => {
+  const w = load();
+  const M = w.VT.mathe;
+  const rnd = mulberry32(21);
+  const kreise = s => (s.match(/<circle/g) || []).length;
+  for (let i = 0; i < 12; i++) {
+    const m = M.makeZahlenQ(2, rnd, "mitte");
+    assert.equal(m.svg.includes("data-loesung"), false);
+    assert.equal(m.svg.includes(">?</text>"), false);
+    assert.equal(m.svgLoesung.includes(">?</text>"), true);
+    const a = M.makeZeichnenQ(3, rnd, "abstand");
+    assert.equal(a.svg.includes("data-loesung"), false);
+    assert.equal(a.svgLoesung.includes("data-loesung"), true);
+    const q = M.makeZeichnenQ(3, rnd, "quadrant");
+    assert.equal(kreise(q.svg), 0);
+    assert.equal(kreise(q.svgLoesung), 1);
+    const e = M.makeZeichnenQ(3, rnd, "eintragen");
+    assert.equal(e.svg.includes("data-loesung"), false);
+    assert.equal(e.svgLoesung.includes("data-loesung"), true);
+    for (const buchstabe of ["A", "B", "C", "D"]) assert.ok(e.svg.includes(">" + buchstabe + "<"));
+    const s = M.makeZeichnenQ(3, rnd, "spiegel");
+    assert.equal(kreise(s.svg), 1);
+    assert.equal(kreise(s.svgLoesung), 2);
+    assert.equal(s.svg.includes(s.answer), false);
+  }
+  const frage = M.makeZahlenQ(2, mulberry32(2), "mitte");
+  frage.saThema = "1.5";
+  frage.saThemaName = "Negative Zahlen";
+  w.VT.saZeigeFragen([frage]);
+  const draw = w.document.getElementById("mDraw");
+  assert.equal(draw.innerHTML.includes(">?</text>"), false);
+  w.VT.mathe.grade(frage.answer);
+  assert.equal(draw.innerHTML.includes(">?</text>"), true);
+});
