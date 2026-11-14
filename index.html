@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Lerntrainer – v0.8</title>
+<title>Lerntrainer – v0.8.1</title>
 <link rel="manifest" href="manifest.webmanifest">
 <style>
 :root{--bg:#eef6ff;--card:#fff;--ink:#1d2b3a;--muted:#6b7a8c;--blue:#2f7cf6;--green:#22b573;--red:#f2545b;--orange:#ff9f1c;--yellow:#ffd23f;--radius:18px}
@@ -240,6 +240,7 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
 .saselbtn.on[data-wert="2"]{background:#e3f8ee}
 .satag{display:inline-block;border-radius:999px;padding:3px 8px;font-weight:800;font-size:.75rem;margin:2px 4px 0 0}
 .satag.ueb{background:#efeaff;color:#5b43c6}
+.satag.neu{background:#ff9f1c;color:#fff}
 .satag.mat{background:#e3f8ee;color:#137a4a}
 .satag.nach{background:#fff4e0;color:#a35d00}
 .saprobe{display:block;width:100%;text-align:left;background:#1d2b3a;color:#fff;border-radius:18px;padding:14px 16px;margin:12px 0}
@@ -272,7 +273,7 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
 <div class="wrap">
 <header>
   <div class="brand">
-    <h1 id="appTitle">Lerntrainer – v0.8</h1>
+    <h1 id="appTitle">Lerntrainer – v0.8.1</h1>
     <p class="subtitle" id="appSub">Englisch · Mathe</p>
   </div>
   <button type="button" class="ghost hidden" id="switchFach">Fach wechseln</button>
@@ -651,7 +652,7 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
 </div>
 
 <script>
-const APP_VERSION="0.8"; // einzige Versionsstelle; Titel und Überschrift werden daraus gesetzt
+const APP_VERSION="0.8.1"; // einzige Versionsstelle; Titel und Überschrift werden daraus gesetzt
 document.title = "Lerntrainer – v"+APP_VERSION;
 document.getElementById("appTitle").textContent = "Lerntrainer – v"+APP_VERSION;
 const appSubEl = document.getElementById("appSub");
@@ -1894,7 +1895,8 @@ const M_HILFE = {
   zahlen:`<h4>💡 Zahlen</h4>
 <div>Jede Stelle hat einen Namen: Einer, Zehner, Hunderter, Tausender, …</div>
 <div style="margin-top:6px"><b>Runden:</b> Schau auf die nächste Ziffer. 0–4 bleibt, ab 5 wird aufgerundet.</div>
-<div style="margin-top:6px"><b>Betrag</b> |n| ist der Abstand von der Null. |−7| = 7 und |7| = 7.</div>
+<div style="margin-top:6px"><b>Betrag</b> |n| ist der Abstand von der Null. |−7| = 7 und |7| = 7. Die Gegenzahl von −4 ist 4.</div>
+<div style="margin-top:6px"><b>Mitte auf der Zahlengeraden:</b> Abstand halbieren, von der linken Zahl aus dazuzählen.</div>
 <div class="merk">Von zwei Minus-Zahlen ist die mit der größeren Abstandszahl die kleinere: −12 &lt; −7.</div>`,
   addsub:`<h4>💡 Plus und Minus</h4>
 <div>Plus und Minus ganzer Zahlen: Minus und Minus wird noch kleiner, Plus hebt Minus auf.</div>
@@ -1905,7 +1907,7 @@ const M_HILFE = {
   muldiv:`<h4>💡 Mal und Geteilt</h4>
 <div><b>Vorzeichen:</b> gleiche Zeichen → Plus. Verschiedene Zeichen → Minus.</div>
 <div style="margin-top:6px"><b>Potenz:</b> 2³ = 2·2·2. Quadratzahlen bis 400: 1², 2², … 20².</div>
-<div style="margin-top:6px"><b>Teilbar</b> durch 2 (letzte Ziffer gerade), durch 5 (0 oder 5), durch 10 (0), durch 3 (Quersumme teilbar durch 3).</div>
+<div style="margin-top:6px"><b>Teilbar</b> durch 2 (letzte Ziffer gerade), durch 5 (0 oder 5), durch 10 (0), durch 4 (letzte zwei Ziffern), durch 3 oder 9 (Quersumme). T(n) sind die Teiler, V(n) die Vielfachen. 3·10<sup>6</sup> = 3 000 000.</div>
 <div class="merk">Primfaktoren aufsteigend und mit · : 84 = 2·2·3·7.</div>
 <div class="small">a · x = b → x = b : a · x : a = b → x = a · b · a : x = b → x = a : b</div>`,
   terme:`<h4>💡 Punkt vor Strich</h4>
@@ -1914,6 +1916,7 @@ const M_HILFE = {
 <div style="margin-top:6px"><b>Distributiv:</b> 7·98 = 7·(100−2) = 700 − 14 = 686.</div>`,
   groessen:`<h4>💡 Größen</h4>
 <div>1 € = 100 ct · 1 m = 100 cm = 1000 mm · 1 km = 1000 m</div>
+<div style="margin-top:6px"><b>Gemischt runden:</b> 3 km 480 m ≈ 3 km, ab 500 m wird der Kilometer aufgerundet.</div>
 <div>1 kg = 1000 g · 1 t = 1000 kg · 1 h = 60 min · 1 min = 60 s</div>
 <div style="margin-top:6px"><b>Dreisatz:</b> erst den Preis für 1 Stück, dann für die gefragte Anzahl.</div>
 <div class="small">Maßstab 1 : 25 000 heißt: 1 cm auf der Karte sind 25 000 cm in echt.</div>`,
@@ -2087,9 +2090,227 @@ function fallbackQ(area){
   return {area:area, kind:"add", rule:area==="blitz"?"blitz":area, input:"num", text:"2 + 3 = ?", say:"2 plus 3", spec:{op:"add", a:2, b:3}, num:5, scale:0, steps:["2 + 3","5"], key:"fallback:"+area};
 }
 
-function makeZahlenQ(level, rnd){
+function mcOpts(correct, wrongs, rnd){
+  const out=[], seen=new Set();
+  function add(x){ x=String(x); if(!x || seen.has(x)) return; seen.add(x); out.push(x); }
+  add(correct);
+  for(let i=0;i<wrongs.length;i++) add(wrongs[i]);
+  let k=1;
+  while(out.length<4 && k<40){ add(String(correct)+" ("+k+")"); k++; }
+  return mShuffle(out.slice(0,4), rnd);
+}
+function zahlengeradeSvg(min, max, marks){
+  const W=360, H=118, left=26, right=18, y=62;
+  const span=Math.max(1, max-min);
+  const X=function(v){ return Math.round(left+(v-min)/span*(W-left-right)); };
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="drawsvg" role="img" aria-label="Zahlengerade">`;
+  s+=`<line x1="${left-4}" y1="${y}" x2="${W-10}" y2="${y}" stroke="#1d2b3a" stroke-width="2"/>`;
+  s+=`<polygon points="${W-4},${y} ${W-14},${y-5} ${W-14},${y+5}" fill="#1d2b3a"/>`;
+  for(let v=Math.ceil(min); v<=Math.floor(max); v++){
+    const x=X(v);
+    const lab=v<0?"−"+(-v):String(v);
+    s+=`<line x1="${x}" y1="${y-7}" x2="${x}" y2="${y+7}" stroke="#1d2b3a"/>`;
+    s+=`<text x="${x}" y="${y+26}" font-size="13" text-anchor="middle" fill="#5c6b7c">${lab}</text>`;
+  }
+  marks.forEach(function(m){
+    const x=X(m.x);
+    const flag=m.loesung?' data-loesung="1"':"";
+    if(!m.nurText) s+=`<circle cx="${x}" cy="${y}" r="7" fill="${m.color}" stroke="#fff" stroke-width="2"${flag}/>`;
+    if(m.name) s+=`<text x="${x}" y="${y-14}" font-size="15" text-anchor="middle" font-weight="800" fill="${m.color}"${flag}>${m.name}</text>`;
+  });
+  return s+"</svg>";
+}
+function makeZahlengerade(rnd, area, mode){
+  mode=mode==="abstand"?"abstand":"mitte";
+  let a=mInt(-8, 2, rnd);
+  const span=mPick([2,4,6,8,10], rnd);
+  let b=a+span;
+  if(b>9){ b=a; a=a-span; }
+  const mid=(a+b)/2, dist=b-a, lo=a-1, hi=b+1;
+  const basis=[{x:a, color:"#f2545b", name:"A"},{x:b, color:"#2f7cf6", name:"B"}];
+  const svg=zahlengeradeSvg(lo, hi, basis);
+  const rule=area==="geo-zeichnen"?"geometrie":"zahlen";
+  if(mode==="abstand"){
+    const svgLoesung=zahlengeradeSvg(lo, hi, basis.concat([{x:mid, color:"#ff9f1c", name:String(dist), loesung:true, nurText:true}]));
+    return {area:area, rule:rule, kind:"abstand", input:"num", text:"Wie groß ist der Abstand zwischen A und B?", say:"Wie groß ist der Abstand zwischen A und B?", svg:svg, svgLoesung:svgLoesung, spec:{op:"abstand", a:a, b:b}, num:dist, scale:0, answerText:String(dist), steps:["von "+mFmt(a,0)+" bis "+mFmt(b,0), "Abstand "+dist], key:"abst:"+a+":"+b};
+  }
+  const svgLoesung=zahlengeradeSvg(lo, hi, basis.concat([{x:mid, color:"#ff9f1c", name:"?", loesung:true}]));
+  const ans=mFmt(mid,0);
+  const wrongs=[mid-1, mid+1, mid-2, a, b].map(function(n){ return mFmt(n,0); });
+  return {area:area, rule:rule, kind:"mitte", input:"mc", text:"Welche Zahl liegt genau in der Mitte zwischen A und B?", say:"Welche Zahl liegt genau in der Mitte zwischen A und B?", svg:svg, svgLoesung:svgLoesung, spec:{op:"mitte", a:a, b:b}, answer:ans, options:mcOpts(ans, wrongs, rnd), steps:["Abstand "+dist+", die Hälfte ist "+(dist/2), mFmt(a,0)+" + "+(dist/2)+" = "+ans], key:"mitte:"+a+":"+b};
+}
+function makeGegen(rnd){
+  let n=mInt(-12, 12, rnd);
+  if(n===0) n=rnd()<0.5?-4:5;
+  const ans=-n;
+  return {area:"zahlen", kind:"gegen", input:"num", text:"Wie heißt die Gegenzahl von "+mFmt(n,0)+"?", say:"Wie heißt die Gegenzahl von "+mFmt(n,0), spec:{op:"gegen", n:n}, num:ans, scale:0, steps:["gleich weit auf der anderen Seite der Null", mFmt(n,0)+" → "+mFmt(ans,0)], key:"gegen:"+n};
+}
+function makeBetragSchreib(rnd){
+  let n=mInt(-20, 20, rnd);
+  if(rnd()<0.8) n=-Math.abs(n||7);
+  if(n===0) n=-7;
+  return {area:"zahlen", kind:"betrag-schreib", input:"num", text:"Berechne |"+mFmt(n,0)+"|.", say:"Betrag von "+mFmt(n,0), spec:{op:"absbar", n:n}, num:Math.abs(n), scale:0, steps:["|a| ist der Abstand von der Null", "|"+mFmt(n,0)+"| = "+Math.abs(n)], key:"bsch:"+n};
+}
+function makeKette(rnd){
+  const nums=[];
+  let g=0;
+  while(nums.length<4 && g++<40){
+    const n=mInt(-9, 9, rnd);
+    if(nums.indexOf(n)<0) nums.push(n);
+  }
+  if(nums.length<4) return null;
+  const sorted=nums.slice().sort(function(a,b){ return a-b; });
+  const chain=function(list){ return list.map(function(n){ return mFmt(n,0); }).join(" < "); };
+  const correct=chain(sorted);
+  const rev=sorted.slice().reverse();
+  const swap1=sorted.slice(); const t1=swap1[0]; swap1[0]=swap1[1]; swap1[1]=t1;
+  const swap2=sorted.slice(); const t2=swap2[2]; swap2[2]=swap2[3]; swap2[3]=t2;
+  const gezeigt=nums.map(function(n){ return mFmt(n,0); }).join(", ");
+  return {area:"zahlen", kind:"kette", input:"mc", text:"Welche Kette stimmt? "+gezeigt, say:"Welche Ungleichungskette stimmt?", spec:{op:"kette", nums:nums}, answer:correct, options:mcOpts(correct, [chain(rev), chain(swap1), chain(swap2)], rnd), steps:["weiter rechts ist größer", correct], key:"kette:"+sorted.join(",")};
+}
+function makeDezimal(rnd){
+  const rows=[{t:"Eine Million", z:6},{t:"Eine Milliarde", z:9},{t:"Eine Billion", z:12}];
+  const row=mPick(rows, rnd);
+  if(rnd()<0.5){
+    const ans=String(row.z);
+    return {area:"zahlen", kind:"dezimal", input:"mc", text:"Wie viele Nullen hat "+row.t.toLowerCase()+"?", say:"Wie viele Nullen hat "+row.t, spec:{op:"nullen", z:row.z}, answer:ans, options:mcOpts(ans, ["3","6","9","12","4","8"], rnd), steps:[row.t+" = 10^"+row.z, ans+" Nullen"], key:"nullen:"+row.z};
+  }
+  const ans="10^"+row.z;
+  return {area:"zahlen", kind:"dezimal", input:"mc", text:row.t+" = ?", say:row.t+" als Zehnerpotenz", spec:{op:"nullenpot", z:row.z}, answer:ans, options:mcOpts(ans, ["10^3","10^6","10^9","10^12","10^4"], rnd), steps:[row.t, ans], key:"nullenpot:"+row.z};
+}
+function teilerVon(n){
+  const d=[];
+  for(let i=1;i<=n;i++) if(n%i===0) d.push(i);
+  return d;
+}
+function makeTeiler(rnd){
+  const n=mPick([6,8,12,18,20,24,30,36], rnd);
+  const divs=teilerVon(n);
+  if(rnd()<0.55){
+    const good=mPick(divs, rnd);
+    const bad=[];
+    let g=0;
+    while(bad.length<4 && g++<50){
+      const x=mInt(2, n+9, rnd);
+      if(n%x!==0 && bad.indexOf(x)<0 && x!==good) bad.push(x);
+    }
+    const ans=String(good);
+    return {area:"muldiv", kind:"teiler", input:"mc", text:"Welche Zahl liegt in der Teilermenge T("+n+")?", say:"Welcher Teiler von "+n, spec:{op:"teiler", n:n, x:good}, answer:ans, options:mcOpts(ans, bad.map(String), rnd), steps:["T("+n+") = "+divs.join(", "), ans+" teilt "+n], key:"teiler:"+n+":"+good};
+  }
+  const ans=divs.join(", ");
+  const inner=divs.filter(function(x){ return x!==1 && x!==n; });
+  const missing=inner.length?mPick(inner, rnd):1;
+  const wrong1=divs.filter(function(x){ return x!==missing; }).join(", ");
+  const wrong2=divs.concat([n+2]).join(", ");
+  const wrong3=divs.slice(0, -1).concat([n+1]).join(", ");
+  return {area:"muldiv", kind:"teiler", input:"mc", text:"Welche Menge ist T("+n+")?", say:"Teilermenge von "+n, spec:{op:"teilmenge", n:n}, answer:ans, options:mcOpts(ans, [wrong1, wrong2, wrong3], rnd), steps:["alle Teiler von "+n, ans], key:"tmenge:"+n};
+}
+function makeVielfach(rnd){
+  const base=mPick([3,4,5,6,7,8,9], rnd);
+  const k=mInt(2, 9, rnd);
+  const good=base*k;
+  const bad=[];
+  let g=0;
+  while(bad.length<4 && g++<50){
+    const x=mInt(base+1, base*10, rnd);
+    if(x%base!==0 && bad.indexOf(x)<0) bad.push(x);
+  }
+  const ans=String(good);
+  return {area:"muldiv", kind:"vielfach", input:"mc", text:"Welche Zahl liegt in der Vielfachenmenge V("+base+")?", say:"Welches Vielfache von "+base, spec:{op:"vielfach", base:base, x:good}, answer:ans, options:mcOpts(ans, bad.map(String), rnd), steps:[base+" · "+k+" = "+good, good+" gehört zu V("+base+")"], key:"vielf:"+base+":"+good};
+}
+function makeZehn(rnd){
+  const c=mInt(1, 9, rnd), e=mInt(2, 6, rnd);
+  let r=c;
+  for(let i=0;i<e;i++) r*=10;
+  if(rnd()<0.5){
+    return {area:"muldiv", kind:"zehn", input:"num", text:c+" · 10^"+e+" = ?", say:c+" mal 10 hoch "+e, spec:{op:"zehn", c:c, e:e}, num:r, scale:0, steps:[c+" · 10^"+e, mThou(r)], key:"zehn:"+c+":"+e};
+  }
+  const correct=c+"·10^"+e;
+  const wrongs=[(c===9?8:c+1)+"·10^"+e, c+"·10^"+(e+1), c+"·10^"+(e>2?e-1:e+2)];
+  return {area:"muldiv", kind:"zehn", input:"mc", text:"Welche Zehnerpotenz ergibt "+mThou(r)+"?", say:"Welche Zehnerpotenz ergibt "+r, spec:{op:"zehnmc", c:c, e:e, r:r}, answer:correct, options:mcOpts(correct, wrongs, rnd), steps:[mThou(r)+" = "+c+" · 10^"+e, correct], key:"zehnmc:"+c+":"+e};
+}
+function makeRundEinheit(rnd){
+  const km=mInt(1, 12, rnd);
+  const m=mInt(1, 999, rnd);
+  const ans=m>=500?km+1:km;
+  const why=m>=500?m+" m sind mindestens 500 m, also aufrunden":m+" m sind weniger als 500 m, also abrunden";
+  return {area:"groessen", kind:"rund-einheit", input:"num", text:"Runde "+km+" km "+m+" m auf ganze Kilometer.", say:"Runde "+km+" Kilometer und "+m+" Meter auf ganze Kilometer", spec:{op:"rundkm", km:km, m:m}, num:ans, scale:0, steps:[km+" km "+m+" m", why, ans+" km"], key:"rundkm:"+km+":"+m};
+}
+function quadrantName(x, y){
+  if(x>0 && y>0) return "I";
+  if(x<0 && y>0) return "II";
+  if(x<0 && y<0) return "III";
+  if(x>0 && y<0) return "IV";
+  return null;
+}
+function makeQuadrant(rnd){
+  let x=0, y=0, g=0;
+  while((x===0 || y===0) && g++<30){ x=mInt(-5, 5, rnd); y=mInt(-5, 5, rnd); }
+  if(x===0) x=2;
+  if(y===0) y=-3;
+  const name=quadrantName(x, y);
+  const spec={op:"quadrant", x:x, y:y, min:-5, max:5, cell:28, pad:26, axes:true};
+  const svg=drawSvg(spec, function(){ return ""; });
+  const svgLoesung=drawSvg(spec, function(X,Y){
+    return `<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="#f2545b" stroke="#fff" stroke-width="2" data-loesung="1"/>`;
+  });
+  return {area:"geo-zeichnen", rule:"geometrie", kind:"quadrant", input:"mc", text:"In welchem Quadranten liegt "+koordLabel(x,y)+"?", say:"In welchem Quadranten liegt der Punkt?", svg:svg, svgLoesung:svgLoesung, spec:spec, answer:name, options:["I","II","III","IV"], steps:["I rechts oben, II links oben, III links unten, IV rechts unten", name], key:"quad:"+x+":"+y};
+}
+function makeSpiegel(rnd){
+  const axis=rnd()<0.5?"x":"y";
+  let x=mInt(-4, 4, rnd), y=mInt(-4, 4, rnd);
+  if(x===0) x=3;
+  if(y===0) y=-2;
+  const ix=axis==="y"?-x:x;
+  const iy=axis==="x"?-y:y;
+  const ans=koordLabel(ix, iy);
+  const wrongs=[koordLabel(x,y), koordLabel(-x,-y), koordLabel(-x,y), koordLabel(x,-y)];
+  const spec={op:"spiegel", x:x, y:y, axis:axis, ix:ix, iy:iy, min:-5, max:5, cell:28, pad:26, axes:true};
+  const svg=drawSvg(spec, function(X,Y){
+    return `<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="#7a5af8" stroke="#fff" stroke-width="2"/>`;
+  });
+  const svgLoesung=drawSvg(spec, function(X,Y){
+    return `<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="#7a5af8" stroke="#fff" stroke-width="2"/>`+
+      `<circle cx="${X(ix)}" cy="${Y(iy)}" r="6" fill="#ff9f1c" stroke="#fff" stroke-width="2" data-loesung="1"/>`;
+  });
+  const achse=axis==="x"?"x-Achse":"y-Achse";
+  return {area:"geo-zeichnen", rule:"geometrie", kind:"spiegel", input:"mc", text:"Spiegle "+koordLabel(x,y)+" an der "+achse+". Welche Koordinaten hat der Bildpunkt?", say:"Spiegle den Punkt an der "+achse, svg:svg, svgLoesung:svgLoesung, spec:spec, answer:ans, options:mcOpts(ans, wrongs, rnd), steps:["an der "+achse+" wechselt das "+(axis==="x"?"y":"x")+"-Vorzeichen", ans], key:"spieg:"+axis+":"+x+":"+y};
+}
+function makeEintragen(rnd){
+  const letters=["A","B","C","D"];
+  const seen={};
+  const pts=[];
+  let guard=0;
+  while(pts.length<4 && guard++<80){
+    const x=mInt(-4, 4, rnd), y=mInt(-4, 4, rnd);
+    const k=x+":"+y;
+    if(seen[k]) continue;
+    seen[k]=1;
+    pts.push({name:letters[pts.length], x:x, y:y});
+  }
+  if(pts.length<4) return null;
+  const target=pts[Math.floor(rnd()*pts.length)];
+  const spec={op:"eintragen", x:target.x, y:target.y, name:target.name, pts:pts.map(function(p){ return {name:p.name, x:p.x, y:p.y}; }), min:-4, max:4, cell:DRAW_CELL, pad:DRAW_PAD, axes:true};
+  function punkteSvg(loesung){
+    return drawSvg(spec, function(X,Y){
+      return pts.map(function(p){
+        const ziel=loesung && p.name===target.name;
+        const flag=ziel?' data-loesung="1"':"";
+        return `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="5" fill="${ziel?"#ff9f1c":"#7a5af8"}"${flag}/><text x="${X(p.x)+8}" y="${Y(p.y)-8}" font-size="14" font-weight="800" fill="#1d2b3a">${p.name}</text>`;
+      }).join("");
+    });
+  }
+  return {area:"geo-zeichnen", rule:"geometrie", kind:"eintragen", input:"mc", text:"Welcher Punkt hat die Koordinaten "+koordLabel(target.x, target.y)+"?", say:"Welcher Punkt hat diese Koordinaten?", svg:punkteSvg(false), svgLoesung:punkteSvg(true), spec:spec, answer:target.name, options:mShuffle(["A","B","C","D"], rnd), steps:["x waagerecht, y senkrecht", target.name+" = "+koordLabel(target.x, target.y)], key:"ein:"+pts.map(function(p){ return p.name+p.x+","+p.y; }).join(";")};
+}
+function makeZahlenQ(level, rnd, want){
   return withGen("zahlen", level, rnd, function(lv, rnd){
-    const kind=mPick(["stellen","runden","betrag","ordnen","schreiben"], rnd);
+    const pool=["stellen","runden","betrag","ordnen","schreiben","gegen","kette","betrag-schreib","mitte","abstand","dezimal"];
+    const kind=(want && pool.indexOf(want)>=0)?want:mPick(pool, rnd);
+    if(kind==="mitte" || kind==="abstand") return makeZahlengerade(rnd, "zahlen", kind);
+    if(kind==="gegen") return makeGegen(rnd);
+    if(kind==="betrag-schreib") return makeBetragSchreib(rnd);
+    if(kind==="kette") return makeKette(rnd);
+    if(kind==="dezimal") return makeDezimal(rnd);
     if(kind==="stellen"){
       const maxPi=lv===1?3:lv===2?5:7;
       const pi=mInt(0, maxPi, rnd);
@@ -2206,10 +2427,14 @@ function packMC(correct, wrongs, rnd){
   while(opts.length<4 && n<30){ add(correct+"·"+n); n++; }
   return mShuffle(opts, rnd);
 }
-function makeMulDivQ(level, rnd){
+function makeMulDivQ(level, rnd, want){
   return withGen("muldiv", level, rnd, function(lv, rnd){
-    const kinds=lv===1?["mul","div","quadrat","teilbar","eq-mul","eq-div","eq-adiv"]:["mul","div","quadrat","teilbar","pow","prim","eq-mul","eq-div","eq-adiv"];
-    const kind=mPick(kinds, rnd);
+    const base=lv===1?["mul","div","quadrat","teilbar","eq-mul","eq-div","eq-adiv"]:["mul","div","quadrat","teilbar","pow","prim","eq-mul","eq-div","eq-adiv"];
+    const pool=base.concat(["teiler","vielfach","zehn"]);
+    const kind=(want && pool.indexOf(want)>=0)?want:mPick(pool, rnd);
+    if(kind==="teiler") return makeTeiler(rnd);
+    if(kind==="vielfach") return makeVielfach(rnd);
+    if(kind==="zehn") return makeZehn(rnd);
     const signed=lv>1;
     function nz(lo, hi){ let n=0; while(n===0) n=mInt(lo, hi, rnd); return n; }
     if(kind==="mul"){
@@ -2239,7 +2464,7 @@ function makeMulDivQ(level, rnd){
       return {area:"muldiv", kind:"pow", text:base+"^"+exp+" = ?", say:base+" hoch "+exp, spec:{op:"pow", base:base, exp:exp}, num:r, scale:0, steps:[base+"^"+exp+" = "+bits.join("·"), String(r)], key:"pow:"+base+":"+exp};
     }
     if(kind==="teilbar"){
-      const by=mPick([2,3,5,10], rnd);
+      const by=mPick([2,3,4,5,9,10], rnd);
       let n=mInt(lv===1?12:30, lv===1?240:lv===2?4000:80000, rnd);
       if(rnd()<0.5) n=n-(n%by);
       if(n<by) n=by;
@@ -2249,6 +2474,8 @@ function makeMulDivQ(level, rnd){
       if(by===2) why="letzte Ziffer "+last+" ist "+(last%2===0?"gerade":"ungerade");
       else if(by===5) why="letzte Ziffer "+last+(last===0||last===5?" passt zu 5":" passt nicht zu 5");
       else if(by===10) why="letzte Ziffer "+last+(last===0?" ist 0":" ist nicht 0");
+      else if(by===4){ const last2=n%100; why="die letzten beiden Ziffern "+last2+(last2%4===0?" sind durch 4 teilbar":" sind nicht durch 4 teilbar"); }
+      else if(by===9){ let s=0,x=n; while(x){ s+=x%10; x=Math.floor(x/10); } why="Quersumme "+s+(s%9===0?" teilbar durch 9":" nicht teilbar durch 9"); }
       else { let s=0,x=n; while(x){ s+=x%10; x=Math.floor(x/10); } why="Quersumme "+s+(s%3===0?" teilbar durch 3":" nicht teilbar durch 3"); }
       return {area:"muldiv", kind:"teilbar", input:"mc", text:"Ist "+mThou(n)+" durch "+by+" teilbar?", say:"Ist "+n+" durch "+by+" teilbar?", spec:{op:"divisible", n:n, by:by}, answer:yes?"ja":"nein", options:mShuffle(["ja","nein"], rnd), steps:[why, yes?"ja":"nein"], key:"teil:"+n+":"+by};
     }
@@ -2355,10 +2582,11 @@ function unitQ(family, from, to, value, scale, ans){
     key:"cv:"+family+":"+from+":"+to+":"+value+":"+scale
   };
 }
-function makeGroessenQ(level, rnd){
+function makeGroessenQ(level, rnd, want){
   return withGen("groessen", level, rnd, function(lv, rnd){
-    const kinds=lv===1?["umrechnen"]:lv===2?["umrechnen","zeit","dreisatz","geld"]:["umrechnen","zeit","dreisatz","geld","massstab"];
-    const kind=mPick(kinds, rnd);
+    const kinds=(lv===1?["umrechnen"]:lv===2?["umrechnen","zeit","dreisatz","geld"]:["umrechnen","zeit","dreisatz","geld","massstab"]).concat(["rund-einheit"]);
+    const kind=(want && kinds.indexOf(want)>=0)?want:mPick(kinds, rnd);
+    if(kind==="rund-einheit") return makeRundEinheit(rnd);
     if(kind==="umrechnen"){
       const pairs=lv===1
         ? [["len","m","cm"],["len","cm","mm"],["len","km","m"],["mass","kg","g"],["mass","t","kg"],["time","min","s"],["time","h","min"],["money","euro","ct"]]
@@ -2640,9 +2868,20 @@ function makePunkt(level, rnd, axis){
   while(bag.length<4){ const lab=koordLabel(x+n, y-n); if(bag.indexOf(lab)<0) bag.push(lab); n++; }
   return {area:"geo-zeichnen", rule:"geometrie", kind:"punkt", input:"mc", level:level, text:"Welche Koordinaten hat der rote Punkt?", say:"Welche Koordinaten hat der rote Punkt?", svg:svg, spec:spec, answer:answer, options:mShuffle(bag.slice(0,4), rnd), steps:["x waagerecht, y senkrecht", answer], key:"p:"+x+":"+y};
 }
-function makeZeichnenQ(level, rnd){
+function makeZeichnenQ(level, rnd, want){
   rnd=rnd||Math.random;
   const lv=mClampLevel(level==null?1:level);
+  function done(q){ if(q) q.level=lv; return q; }
+  if(!want && lv>=2 && rnd()<0.42){
+    const choices=lv>=3?["mitte","abstand","quadrant","spiegel","eintragen"]:["mitte","abstand"];
+    want=choices[Math.floor(rnd()*choices.length)];
+  }
+  if(want==="mitte" || want==="abstand") return done(makeZahlengerade(rnd, "geo-zeichnen", want));
+  if(want==="quadrant") return done(makeQuadrant(rnd));
+  if(want==="spiegel") return done(makeSpiegel(rnd));
+  if(want==="eintragen"){ const q=makeEintragen(rnd); if(q) return done(q); }
+  if(want==="koord") return done(makePunkt(Math.max(lv,3), rnd, rnd()<0.5?"x":"y"));
+  if(want==="punkt") return done(makePunkt(lv, rnd, null));
   const roll=rnd();
   let q;
   if(lv===1) q=roll<0.55?makeFigur(rnd):makePunkt(1, rnd, null);
@@ -2798,6 +3037,7 @@ function timeUp(){
   if(bar){ bar.classList.remove("hidden"); bar.classList.add("low"); bar.setAttribute("aria-label", "Zeit um"); }
   mRenderDots();
   document.querySelectorAll("#mPad button, #mOpts .gopt").forEach(b=>{ b.disabled=true; });
+  mShowLoesung(q);
   mShowFb("almost", `<div><b>Zeit um! ⏱️ Nicht gelöst.</b></div><div class="small">Das ist kein Fehler und gibt keine Punkte.</div><div>Lösung: <b>${esc(q.answerText||q.answer)}</b></div><div class="steps">${esc((q.steps||[]).join(" → "))}</div>`);
   if($("mNextRow")) $("mNextRow").classList.remove("hidden");
   if($("mNext")) $("mNext").textContent=mRound.i+1<(mRound.questions?mRound.questions.length:M_ROUND)?"Weiter ➜":"Ergebnis 🏁";
@@ -2831,6 +3071,10 @@ function mPaintInput(){
   const v=mRound.input;
   d.textContent=v||"…";
   d.classList.toggle("empty", !v);
+}
+function mShowLoesung(q){
+  const draw=$("mDraw");
+  if(draw && q && q.svgLoesung){ draw.innerHTML=q.svgLoesung; draw.classList.remove("hidden"); }
 }
 function mShowQ(){
   const q=mRound.q; if(!q) return;
@@ -2903,6 +3147,7 @@ function mGrade(raw){
       else b.classList.add("dim");
     });
   } else document.querySelectorAll("#mPad button").forEach(b=>{ b.disabled=true; });
+  mShowLoesung(q);
   const sol=esc(q.answerText||q.answer);
   if(ok) mShowFb("good", `<div><b>Richtig! 🎉</b> +10 ⭐</div>`);
   else mShowFb("wrong", `<div><b>Das war leider falsch.</b></div><div>Richtig ist: <b>${sol}</b></div><div class="steps">${esc(q.steps.join(" → "))}</div>`);
@@ -3331,19 +3576,19 @@ const SA_KATALOG=[{
       material:[], uebungen:[{bereich:"zahlen", kinds:["ordnen"], label:"Zahlen › Ordnen"}],
       merksatz:"Die natürlichen Zahlen stehen auf dem Zahlenstrahl. Weiter links liegt die kleinere Zahl. Die Längeneinheit wählst du passend, zum Beispiel 1 LE = 1 cm."},
     {id:"1.2", t:"Das Dezimalsystem", stich:["Dezimalsystem","Stellenwert","Zehnerpotenzen","große Zahlen"],
-      material:[], uebungen:[{bereich:"zahlen", kinds:["stellen","schreiben"], label:"Zahlen › Stellenwert"},{bereich:"muldiv", kinds:["pow"], label:"Zehnerpotenzen"}],
+      material:[], uebungen:[{bereich:"zahlen", kinds:["stellen","schreiben"], label:"Zahlen › Stellenwert"},{bereich:"zahlen", kinds:["dezimal"], label:"Dezimalsystem", neu:true},{bereich:"muldiv", kinds:["pow"], label:"Zehnerpotenzen"},{bereich:"muldiv", kinds:["zehn"], label:"Zehnerpotenz · 3·10⁶", neu:true}],
       merksatz:"Jede Stelle ist zehnmal so viel wert wie die Stelle rechts daneben. 10² = 100 und 10³ = 1 000. Eine Million hat 6 Nullen, eine Milliarde 9, eine Billion 12."},
     {id:"1.3", t:"Zahlenmengen, Teilbarkeit", stich:["Teilermenge T(n)","Vielfachenmenge V(n)","Primzahlen","Teilbarkeitsregeln"],
-      material:["AH S. 8"], uebungen:[{bereich:"muldiv", kinds:["teilbar","prim"], label:"Teilbarkeit · Primfaktoren"}],
+      material:["AH S. 8"], uebungen:[{bereich:"muldiv", kinds:["teilbar","prim"], label:"Teilbarkeit 2–10 · Primfaktoren"},{bereich:"muldiv", kinds:["teiler"], label:"Teilermenge T(n)", neu:true},{bereich:"muldiv", kinds:["vielfach"], label:"Vielfache V(n)", neu:true}],
       merksatz:"T(n) ist die Teilermenge, V(n) die Menge der Vielfachen. Eine Primzahl hat genau zwei Teiler: 1 und sich selbst. Durch 2, 5 und 10 schaust du auf die letzte Ziffer, durch 3 und 9 auf die Quersumme."},
     {id:"1.4", t:"Runden", stich:["Runden","Rundungsstelle","Sachzusammenhänge"],
-      material:["AH S. 9"], uebungen:[{bereich:"zahlen", kinds:["runden"], label:"Zahlen › Runden"},{bereich:"addsub", kinds:["ueberschlag"], label:"Überschlag"},{bereich:"groessen", kinds:["umrechnen"], label:"Größen › Umrechnen"}],
+      material:["AH S. 9"], uebungen:[{bereich:"zahlen", kinds:["runden"], label:"Zahlen › Runden"},{bereich:"groessen", kinds:["rund-einheit"], label:"Runden mit Einheiten", neu:true},{bereich:"addsub", kinds:["ueberschlag"], label:"Überschlag"},{bereich:"groessen", kinds:["umrechnen"], label:"Größen › Umrechnen"}],
       merksatz:"Steht rechts von der Rundungsstelle 0, 1, 2, 3 oder 4, wird abgerundet. Steht dort 5, 6, 7, 8 oder 9, wird aufgerundet."},
     {id:"1.5", t:"Negative Zahlen", stich:["negative Zahlen","Gegenzahl","Koordinatensystem","4 Quadranten"],
-      material:["AH S. 10–11"], uebungen:[{bereich:"geo-zeichnen", kinds:["koord","punkt"], label:"Koordinaten"}],
+      material:["AH S. 10–11"], uebungen:[{bereich:"zahlen", kinds:["mitte","abstand"], label:"Zahlengerade › Mitte", neu:true},{bereich:"zahlen", kinds:["gegen"], label:"Gegenzahl", neu:true},{bereich:"geo-zeichnen", kinds:["koord","punkt"], label:"Koordinaten"},{bereich:"geo-zeichnen", kinds:["quadrant"], label:"4 Quadranten", neu:true},{bereich:"geo-zeichnen", kinds:["eintragen"], label:"Punkt ablesen", neu:true},{bereich:"geo-zeichnen", kinds:["spiegel"], label:"Punkt spiegeln", neu:true}],
       merksatz:"Zahlen unter null sind negativ. +4 und −4 sind Gegenzahlen: sie liegen gleich weit von der Null. Das Koordinatensystem teilt die Ebene in 4 Quadranten. Die x-Achse geht waagerecht, die y-Achse senkrecht."},
     {id:"1.6", t:"Anordnung und Betrag", stich:["Betrag","Ungleichungskette","Zahlengerade"],
-      material:[], uebungen:[{bereich:"zahlen", kinds:["betrag","ordnen"], label:"Betrag · Ordnen"}],
+      material:[], uebungen:[{bereich:"zahlen", kinds:["betrag"], label:"Betrag"},{bereich:"zahlen", kinds:["betrag-schreib"], label:"Betrag |a|", neu:true},{bereich:"zahlen", kinds:["kette"], label:"Ungleichungskette", neu:true},{bereich:"zahlen", kinds:["ordnen"], label:"Zahlen › Ordnen"}],
       merksatz:"Der Betrag |a| ist der Abstand von a zur Null. |−15| = 15. Weiter rechts auf der Zahlengeraden liegt die größere Zahl, zum Beispiel −45 < −15 < 25 < 52."}
   ],
   probe:{n:20, nKompakt:10, minProThema:3}
@@ -3628,7 +3873,7 @@ function saThemaFrage(thema, rnd){
     const kind=u.kinds[Math.floor(rnd()*u.kinds.length)];
     const lv=u.bereich==="geo-zeichnen" ? 3 : 2;
     let q=null;
-    try{ q=MAKERS[u.bereich](lv, rnd); }catch(e){ q=null; }
+    try{ q=MAKERS[u.bereich](lv, rnd, kind); }catch(e){ q=null; }
     if(q && q.kind===kind){
       q.saThema=thema.id;
       q.saThemaName=thema.t;
@@ -3788,7 +4033,7 @@ function renderSa(fid, kat){
     const arr=Array.isArray(zuletzt[t.id])?zuletzt[t.id]:[];
     const richtig=arr.filter(function(x){ return x===1; }).length;
     const chip=arr.length?`<span class="chip">App ${richtig}/${arr.length}</span>`:"";
-    const tags=(t.uebungen||[]).filter(function(u){ return u.label; }).map(function(u){ return `<span class="satag ueb">${esc(u.label)}</span>`; }).join("")+(t.material||[]).map(function(m){ return `<span class="satag mat">${esc(m)}</span>`; }).join("");
+    const tags=(t.uebungen||[]).filter(function(u){ return u.label; }).map(function(u){ return `<span class="satag ${u.neu?"neu":"ueb"}">${esc(u.label)}</span>`; }).join("")+(t.material||[]).map(function(m){ return `<span class="satag mat">${esc(m)}</span>`; }).join("");
     const sel=[0,1,2].map(function(v){
       const lab=v===0?"😕 unsicher":v===1?"🙂 geht":"😀 sicher";
       const on=selbst[t.id]===v?" on":"";
@@ -3938,6 +4183,11 @@ function startSaRound(fach, kat, questions, mode, thema){
   setDock("start");
   fillSaCrumb(fach, kat);
   mGoNext(true);
+}
+function saZeigeFragen(questions){
+  const kat=saEintrag("mathe", null);
+  if(!kat || !questions || !questions.length) return;
+  startSaRound("mathe", kat, questions, "thema", questions[0].saThema||null);
 }
 function startSaProbe(fid, kat){
   const it=saReadItem(fid, kat.id)||{};
@@ -4344,7 +4594,7 @@ const mathAPI = {
 
 markBadges(state, true); save(); // migrierten Stand (nur Ergänzungen) sichern
 renderSel();
-window.VT = {say, pickEnVoice, speechText, get enVoice(){return enVoice;}, check, norm, pickNext, record, weight, level, pool, get state(){return state;}, set state(s){state=s;}, importJSON, defaultState, newCard, get current(){return current;}, migrate, dayKey, addDays, countGelernt, dayStreak, sharedDayStreak, bestDayStreak, sharedBestDayStreak, hardest, renderStats, updateTop, setNow(fn){ nowFn = fn || (()=>Date.now()); }, get fokus(){return fokus;}, APP_VERSION, STORE_KEY, FAECHER, go, parseRoute, mDayStreak, adapter(id){ const f=fachById(id); return f?f.adapter:null; }, G:{GRAMMATIK, THEMEN:G_THEMEN, TYPEN:G_TYPEN, start:gStart, answer:gAnswer, level:gLevel, record:gRecord, get round(){return gRound;}, get task(){return gTask();}, showStart:gShowStart}, quer:{areas:querAreas, spread:querSpread, go:querGo, advance:querAdvance, gradeText:querGradeText, gradeOpt:querGradeOpt, get item(){return querItem;}, get bag(){return querBag.slice();}, get count(){return querCount;}, get ok(){return querOk;}}, mathe: mathAPI, fmtDatum, saPlan, saPruefeDatum, parseDeDatum, isRealIso, saProbeFragen, SA_KATALOG, SA_MAX_LERNTAGE, SA_MAX_VORAUS};
+window.VT = {say, pickEnVoice, speechText, get enVoice(){return enVoice;}, check, norm, pickNext, record, weight, level, pool, get state(){return state;}, set state(s){state=s;}, importJSON, defaultState, newCard, get current(){return current;}, migrate, dayKey, addDays, countGelernt, dayStreak, sharedDayStreak, bestDayStreak, sharedBestDayStreak, hardest, renderStats, updateTop, setNow(fn){ nowFn = fn || (()=>Date.now()); }, get fokus(){return fokus;}, APP_VERSION, STORE_KEY, FAECHER, go, parseRoute, mDayStreak, adapter(id){ const f=fachById(id); return f?f.adapter:null; }, G:{GRAMMATIK, THEMEN:G_THEMEN, TYPEN:G_TYPEN, start:gStart, answer:gAnswer, level:gLevel, record:gRecord, get round(){return gRound;}, get task(){return gTask();}, showStart:gShowStart}, quer:{areas:querAreas, spread:querSpread, go:querGo, advance:querAdvance, gradeText:querGradeText, gradeOpt:querGradeOpt, get item(){return querItem;}, get bag(){return querBag.slice();}, get count(){return querCount;}, get ok(){return querOk;}}, mathe: mathAPI, fmtDatum, saPlan, saPruefeDatum, parseDeDatum, isRealIso, saProbeFragen, saZeigeFragen, SA_KATALOG, SA_MAX_LERNTAGE, SA_MAX_VORAUS};
 if(!location.hash || location.hash==="#" || location.hash==="#/") go("#/start");
 else applyRoute(parseRoute(location.hash));
 })();
