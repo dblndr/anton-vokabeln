@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Lerntrainer – v0.7</title>
+<title>Lerntrainer – v0.8</title>
 <link rel="manifest" href="manifest.webmanifest">
 <style>
 :root{--bg:#eef6ff;--card:#fff;--ink:#1d2b3a;--muted:#6b7a8c;--blue:#2f7cf6;--green:#22b573;--red:#f2545b;--orange:#ff9f1c;--yellow:#ffd23f;--radius:18px}
@@ -204,6 +204,62 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
 .drawbox{margin:8px 0;background:#f8fbff;border:2px solid #e5eef8;border-radius:14px;padding:8px}
 .drawsvg{display:block;width:100%;height:auto;max-height:320px}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.sastrip{display:block;width:100%;margin-top:10px;text-align:left;background:repeating-linear-gradient(-45deg,#fff8ee,#fff8ee 10px,#fff 10px,#fff 20px);border:2px dashed #ff9f1c;border-radius:14px;padding:10px 12px;font-weight:800;color:#8a4b00;line-height:1.35}
+.sahero{background:linear-gradient(160deg,var(--sa,#7a5af8),#c4b5fd);color:#fff;border-radius:22px;padding:16px;margin:4px 0 12px}
+.sahero h2{margin:8px 0 2px;font-size:1.28rem;line-height:1.2}
+.sahero p{margin:0}
+.saband{display:inline-block;background:#ff9f1c;color:#1d2b3a;font-weight:800;font-size:.72rem;letter-spacing:.03em;border-radius:999px;padding:4px 10px}
+.sacount{display:flex;gap:12px;align-items:center;margin-top:12px}
+.sanum{min-width:76px;background:rgba(255,255,255,.18);border-radius:16px;text-align:center;padding:8px 6px}
+.sanum b{display:block;font-size:2.4rem;line-height:1}
+.sanum span{font-weight:800;font-size:.85rem}
+.sanum.word b{font-size:1.2rem;padding:6px 0}
+.sadate{font-size:1.15rem;font-weight:800}
+.salink{background:transparent;color:#fff;font-weight:800;padding:2px 0;text-decoration:underline}
+.sabar{height:10px;background:rgba(255,255,255,.28);border-radius:999px;overflow:hidden;margin-top:12px}
+.sabar>div{height:100%;background:#ffe08a}
+.sasub{font-weight:700;font-size:.9rem;margin-top:4px}
+.sahin{margin-top:8px}
+.saday{border:2px solid #e5eef8;border-radius:16px;padding:10px 12px;margin:8px 0;background:#fff}
+.saday.today{border-color:#ff9f1c;background:#fff8ee}
+.saday.sa{border-color:#f2545b;background:#fff5f5}
+.sadayh{font-weight:800;margin-bottom:4px}
+.sapill{display:inline-block;background:#fff;color:#a35d00;border-radius:999px;padding:2px 8px;font-size:.75rem;font-weight:800;margin-left:4px}
+.sapill.exam{color:#b3262d}
+.sastep{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-weight:700}
+.sastep input{width:22px;height:22px;flex:0 0 auto;margin-top:1px}
+.sastep span{min-width:0}
+.sathemen{display:grid;gap:10px}
+.sathema{background:#fff;border-radius:18px;box-shadow:0 6px 20px rgba(30,60,110,.08);padding:12px}
+.satop{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.satop b{font-size:1.05rem}
+.sasel{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.saselbtn{background:#f1f5fb;border-radius:999px;padding:8px 10px;font-weight:800}
+.saselbtn.on[data-wert="0"]{background:#fde8e9}
+.saselbtn.on[data-wert="1"]{background:#fff4e0}
+.saselbtn.on[data-wert="2"]{background:#e3f8ee}
+.satag{display:inline-block;border-radius:999px;padding:3px 8px;font-weight:800;font-size:.75rem;margin:2px 4px 0 0}
+.satag.ueb{background:#efeaff;color:#5b43c6}
+.satag.mat{background:#e3f8ee;color:#137a4a}
+.satag.nach{background:#fff4e0;color:#a35d00}
+.saprobe{display:block;width:100%;text-align:left;background:#1d2b3a;color:#fff;border-radius:18px;padding:14px 16px;margin:12px 0}
+.saprobe-t{display:block;font-weight:800;font-size:1.05rem}
+.saprobe .small{color:#d5deea}
+.sadim{position:fixed;inset:0;z-index:40;background:rgba(20,30,50,.45);display:flex;align-items:flex-end;justify-content:center;padding:10px}
+.sadlg{background:#fff;color:var(--ink);border-radius:22px;padding:16px;width:min(440px,100%);max-height:88vh;overflow:auto}
+.sadlg h2{margin:4px 0 6px;font-size:1.25rem}
+.sadlg input[type=date],.sadlg input[type=text]{width:100%;font-size:1.15rem;padding:12px 14px;border-radius:14px;border:3px solid #2f7cf6;margin:6px 0 8px}
+.sapreview{background:#f4f0ff;border-radius:16px;padding:12px;margin:8px 0;font-weight:800}
+.sachips{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0 8px}
+.sachip{background:#e8f1ff;border-radius:999px;padding:4px 8px;font-weight:800;font-size:.78rem}
+.sachip.today{background:#fff4e0}
+.sachip.probe{background:#efeaff}
+.sachip.exam{background:#fde8e9}
+.saold{margin:8px 0 12px}
+.saold summary{font-weight:800;cursor:pointer}
+.saresrow{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid #edf1f7;font-weight:700}
+.dots.many i{width:10px;height:10px;margin:0 2px}
+@media(min-width:900px){.sathemen{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -216,7 +272,7 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
 <div class="wrap">
 <header>
   <div class="brand">
-    <h1 id="appTitle">Lerntrainer – v0.7</h1>
+    <h1 id="appTitle">Lerntrainer – v0.8</h1>
     <p class="subtitle" id="appSub">Englisch · Mathe</p>
   </div>
   <button type="button" class="ghost hidden" id="switchFach">Fach wechseln</button>
@@ -297,6 +353,7 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
       <div class="gstars" id="mStars"></div>
       <div class="big" style="text-align:center" id="mResText"></div>
       <p class="msg" style="text-align:center" id="mResMsg"></p>
+      <div id="mSaExtra"></div>
       <div class="row">
         <button type="button" class="primary" id="mAgain">Nochmal 🔁</button>
         <button type="button" class="ghost" id="mResultHome">Zur Übersicht</button>
@@ -580,7 +637,7 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
   <div class="card">
     <h3 class="t">Info</h3>
     <p id="mehrVersion" style="font-weight:800;margin:0 0 6px"></p>
-    <p class="small">Englisch übt Vokabeln und Grammatik. Mathe übt sieben Bereiche, dazu Geometrie zum Zeichnen auf dem Gitter. Der Fortschritt bleibt in diesem Browser. Export, Import und Zurücksetzen liegen hier unter Daten.</p>
+    <p class="small">Englisch übt Vokabeln und Grammatik. Mathe übt sieben Bereiche, dazu Geometrie zum Zeichnen auf dem Gitter. Die Schulaufgaben-Vorbereitung rechnet den Plan aus dem Datum, das du einträgst. Der Fortschritt bleibt in diesem Browser. Export, Import und Zurücksetzen liegen hier unter Daten.</p>
   </div>
 </section>
 <section id="v-lesen" class="hidden">
@@ -589,10 +646,12 @@ h3.t{margin:0 0 8px;font-size:1.1rem}
     <div id="vLesenBody"></div>
   </div>
 </section>
+<section id="page-sa" class="hidden"></section>
+<div id="saDialog" class="sadim hidden"></div>
 </div>
 
 <script>
-const APP_VERSION="0.7"; // einzige Versionsstelle; Titel und Überschrift werden daraus gesetzt
+const APP_VERSION="0.8"; // einzige Versionsstelle; Titel und Überschrift werden daraus gesetzt
 document.title = "Lerntrainer – v"+APP_VERSION;
 document.getElementById("appTitle").textContent = "Lerntrainer – v"+APP_VERSION;
 const appSubEl = document.getElementById("appSub");
@@ -681,6 +740,67 @@ const pad2 = n=>String(n).padStart(2,"0");
 function dayKey(ts){ const d=new Date(ts===undefined?nowFn():ts); return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate()); }
 function parseDay(k){ const [y,m,d]=k.split("-").map(Number); return new Date(y,m-1,d); }
 function addDays(k,n){ const d=parseDay(k); d.setDate(d.getDate()+n); return dayKey(d.getTime()); }
+const SA_MAX_LERNTAGE = 10;
+const SA_MAX_VORAUS = 366;
+const SA_WT_K = ["So","Mo","Di","Mi","Do","Fr","Sa"];
+const SA_WT_L = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
+function isRealIso(iso){
+  if(typeof iso!=="string" || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return false;
+  const y=+iso.slice(0,4), m=+iso.slice(5,7), d=+iso.slice(8,10);
+  if(m<1 || m>12 || d<1 || d>31) return false;
+  const dt=new Date(y, m-1, d);
+  return dt.getFullYear()===y && dt.getMonth()===m-1 && dt.getDate()===d;
+}
+function fmtDatum(iso, opt){
+  if(!isRealIso(iso)) return "";
+  const num=iso.slice(8,10)+"."+iso.slice(5,7)+"."+iso.slice(0,4);
+  if(!opt || (opt.wt!=="kurz" && opt.wt!=="lang")) return num;
+  const wd=parseDay(iso).getDay();
+  return opt.wt==="lang" ? SA_WT_L[wd]+", "+num : SA_WT_K[wd]+" "+num;
+}
+function daysBetween(a, b){
+  if(!isRealIso(a) || !isRealIso(b)) return null;
+  if(a===b) return 0;
+  const dir=a<b ? 1 : -1;
+  let n=0, d=a;
+  while(d!==b && n<4000){ d=addDays(d, dir); n++; }
+  return dir*n;
+}
+function parseDeDatum(text){
+  const m=String(text||"").trim().match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+  if(!m) return null;
+  const iso=m[3]+"-"+pad2(+m[2])+"-"+pad2(+m[1]);
+  return isRealIso(iso) ? iso : null;
+}
+function saPruefeDatum(iso, heute){
+  heute=heute||dayKey();
+  if(!iso) return {ok:false, grund:"leer"};
+  if(!isRealIso(iso)) return {ok:false, grund:"ungueltig"};
+  const tage=daysBetween(heute, iso);
+  if(tage>SA_MAX_VORAUS) return {ok:false, grund:"weit", tage:tage};
+  return {ok:true, tage:tage, vergangen:tage<0, iso:iso};
+}
+function saLeer(){
+  return {datum:null, archiviert:false, gestartet:null, selbst:{}, erledigt:{}, zuletzt:{}, probe:[]};
+}
+function repairSa(s){
+  if(!("sa" in s)) return;
+  if(!isObj(s.sa)){ s.sa={}; return; }
+  for(const fach of Object.keys(s.sa)){
+    if(!isObj(s.sa[fach])){ s.sa[fach]={aktiv:null, items:{}}; continue; }
+    const node=s.sa[fach];
+    if(!isObj(node.items)) node.items={};
+    for(const id of Object.keys(node.items)){
+      const it=node.items[id];
+      if(!isObj(it)){ node.items[id]=saLeer(); continue; }
+      if(it.datum!=null && !isRealIso(it.datum)) it.datum=null;
+      if(!isObj(it.selbst)) it.selbst={};
+      if(!isObj(it.erledigt)) it.erledigt={};
+      if(!isObj(it.zuletzt)) it.zuletzt={};
+      if(!Array.isArray(it.probe)) it.probe=[];
+    }
+  }
+}
 function mondayOf(k){ const d=parseDay(k); return addDays(k, -((d.getDay()+6)%7)); }
 function isoWeek(k){ const d=parseDay(k); d.setDate(d.getDate()+3-((d.getDay()+6)%7)); const w1=new Date(d.getFullYear(),0,4); return 1+Math.round(((d-w1)/864e5-3+((w1.getDay()+6)%7))/7); }
 const num = x=>{ const n=Number(x); return isFinite(n)&&n>0 ? n : 0; };
@@ -737,6 +857,7 @@ function migrate(raw){
     if(!("bereich" in s.ui)) s.ui.bereich = null;
     if(!("modus" in s.ui)) s.ui.modus = null;
   }
+  repairSa(s);
   return s;
 }
 const LEGACY_BACKUP_KEY = STORE_KEY + "-sicherung-vor-statistik";
@@ -2679,7 +2800,7 @@ function timeUp(){
   document.querySelectorAll("#mPad button, #mOpts .gopt").forEach(b=>{ b.disabled=true; });
   mShowFb("almost", `<div><b>Zeit um! ⏱️ Nicht gelöst.</b></div><div class="small">Das ist kein Fehler und gibt keine Punkte.</div><div>Lösung: <b>${esc(q.answerText||q.answer)}</b></div><div class="steps">${esc((q.steps||[]).join(" → "))}</div>`);
   if($("mNextRow")) $("mNextRow").classList.remove("hidden");
-  if($("mNext")) $("mNext").textContent=mRound.i+1<M_ROUND?"Weiter ➜":"Ergebnis 🏁";
+  if($("mNext")) $("mNext").textContent=mRound.i+1<(mRound.questions?mRound.questions.length:M_ROUND)?"Weiter ➜":"Ergebnis 🏁";
 }
 function sayDe(text){
   if(!canSpeak()) return;
@@ -2698,7 +2819,8 @@ function setText(id, t){ const n=$(id); if(n) n.textContent=t; }
 function mShowFb(kind, html){ const fb=$("mFb"); if(!fb) return; fb.className="fb show pop "+kind; fb.innerHTML=html; }
 function mRenderDots(){
   const el=$("mDots"); if(!el || !mRound) return;
-  el.innerHTML=Array.from({length:M_ROUND}, function(_,k){
+  const n=mRound.questions?mRound.questions.length:M_ROUND;
+  el.innerHTML=Array.from({length:n}, function(_,k){
     const r=mRound.results[k];
     const c=r===true?"ok":r===false?"bad":r==="timeout"?"to":"";
     return `<i class="${c}"></i>`;
@@ -2718,6 +2840,12 @@ function mShowQ(){
   setText("mProg", "Aufgabe "+(mRound.i+1)+" von "+M_ROUND);
   setText("mScore", "✔ "+mRound.ok);
   setText("mKind", "Stufe "+(q.level||1)+(q.input==="mc"?" · tippe die richtige Antwort an":""));
+  if(mRound.questions){
+    if(q.saThema) setText("mTopic", q.saThema+" "+(q.saThemaName||""));
+    setText("mProg", "Aufgabe "+(mRound.i+1)+" von "+mRound.questions.length);
+    setText("mKind", "Ohne Zeitdruck. Der Lösungsweg kommt nach der Antwort.");
+    if($("mDots")) $("mDots").classList.toggle("many", mRound.questions.length>12);
+  } else if($("mDots")) $("mDots").classList.remove("many");
   if($("mPrompt")) $("mPrompt").textContent=q.text;
   const draw=$("mDraw");
   if(draw){
@@ -2766,6 +2894,7 @@ function mGrade(raw){
   mRound.results[mRound.i]=ok;
   if(ok) mRound.ok++;
   recordMath(q, ok?"richtig":"falsch");
+  if(mRound.sa && q.saThema) saNote(mRound.sa.fach, mRound.sa.id, q.saThema, ok);
   if(q.input==="mc"){
     document.querySelectorAll("#mOpts .gopt").forEach(b=>{
       b.disabled=true; const o=b.getAttribute("data-mopt");
@@ -2779,15 +2908,16 @@ function mGrade(raw){
   else mShowFb("wrong", `<div><b>Das war leider falsch.</b></div><div>Richtig ist: <b>${sol}</b></div><div class="steps">${esc(q.steps.join(" → "))}</div>`);
   mRenderDots();
   if($("mNextRow")) $("mNextRow").classList.remove("hidden");
-  if($("mNext")) $("mNext").textContent=mRound.i+1<M_ROUND?"Weiter ➜":"Ergebnis 🏁";
+  if($("mNext")) $("mNext").textContent=mRound.i+1<(mRound.questions?mRound.questions.length:M_ROUND)?"Weiter ➜":"Ergebnis 🏁";
   return ok;
 }
 function mGoNext(first){
   mClearAdv();
   if(!mRound) return;
   if(!first){ if(!mRound.answered) return; mRound.i++; }
-  if(mRound.i>=M_ROUND) return mFinish();
-  const q=nextMathQ(mRound.mode, Math.random);
+  const mTotal=mRound.questions?mRound.questions.length:M_ROUND;
+  if(mRound.i>=mTotal) return mFinish();
+  const q=mRound.questions?mRound.questions[mRound.i]:nextMathQ(mRound.mode, Math.random);
   if(!q) return;
   mLastKey=q.key;
   mRound.q=q; mRound.answered=false; mRound.input="";
@@ -2796,6 +2926,7 @@ function mGoNext(first){
 }
 function mFinish(){
   stopBlitz();
+  if(mRound && mRound.sa) return saFinishRound();
   const m=mState();
   const stars=starsFor(mRound.ok, M_ROUND);
   const timeouts=mRound.results.filter(r=>r==="timeout").length;
@@ -2809,6 +2940,8 @@ function mFinish(){
   setText("mStars", stars?"⭐".repeat(stars):"💪");
   setText("mResText", mRound.ok+" richtig · "+wrong+" falsch · "+timeouts+" nicht gelöst");
   setText("mResMsg", stars===3?"Drei Sterne! Dafür gibt es 20 Extra-Punkte.": stars>=1?"Gut gemacht. Die falschen Aufgaben übst du gleich nochmal.":"Schau dir die 💡 Regel an und versuch es noch einmal.");
+  if($("mAgain")) $("mAgain").textContent="Nochmal 🔁";
+  if($("mSaExtra")) $("mSaExtra").innerHTML="";
 }
 function startMath(mode, opt){
   mClearAdv(); stopBlitz();
@@ -2960,7 +3093,16 @@ function bindMath(){
   if($("mSpeak")) $("mSpeak").onclick=function(){ if(mRound && mRound.q) sayDe(mRound.q.say); };
   if($("mStop")) $("mStop").onclick=function(){ mClearAdv(); stopBlitz(); showMathPane("home"); renderMathHome(); };
   if($("mNext")) $("mNext").onclick=function(){ if(mRound && mRound.answered) mGoNext(false); };
-  if($("mAgain")) $("mAgain").onclick=function(){ if(mRound) startMath(mRound.mode); };
+  if($("mAgain")) $("mAgain").onclick=function(){
+  if(mRound && mRound.sa){
+    const s=mRound.sa, kat=saEintrag(s.fach, s.id);
+    if(s.mode==="probe") startSaProbe(s.fach, kat);
+    else if(s.mode==="thema") startSaThema(s.fach, kat, s.thema);
+    else if(s.mode==="fehler") startSaFehler();
+    return;
+  }
+  if(mRound) startMath(mRound.mode);
+};
   if($("mResultHome")) $("mResultHome").onclick=function(){ showMathPane("home"); renderMathHome(); };
   if($("mStatsHome")) $("mStatsHome").onclick=function(){ showMathPane("home"); renderMathHome(); };
   if($("mExport")) $("mExport").onclick=function(){ if($("exportBtn")) $("exportBtn").click(); };
@@ -3148,7 +3290,7 @@ function knownMode(fach, bereich, modus){
   const b=(f.bereiche||[]).find(x=>x.id===bereich);
   return !!(b && b.modi.indexOf(modus)>=0);
 }
-const SHELL_PAGES=["v-start","page-fach","page-statistik","v-lernen","v-auswahl","v-grammatik","v-alles","v-statistik","v-mathe","page-abzeichen","page-mehr","v-lesen"];
+const SHELL_PAGES=["v-start","page-fach","page-statistik","v-lernen","v-auswahl","v-grammatik","v-alles","v-statistik","v-mathe","page-abzeichen","page-mehr","v-lesen","page-sa"];
 function showOnly(ids){
   for(const id of SHELL_PAGES){ const n=$(id); if(n) n.classList.toggle("hidden", ids.indexOf(id)<0); }
 }
@@ -3169,6 +3311,761 @@ function fachIcon(f){
   if(f.id==="mathe") return `<span class="numicon" aria-hidden="true"><b>1</b><b>2</b><b>3</b><b>4</b></span>`;
   return `<span class="iconbox" aria-hidden="true">${f.icon}</span>`;
 }
+// ---------- Schulaufgaben-Vorbereitung (v0.8, nur Mathe) ----------
+let saDlg=null, saLastWrongs=[], saLastMeta=null;
+const SA_KATALOG=[{
+  id:"mathe-sa1-kap1", fach:"mathe", titel:"1. Schulaufgabe",
+  untertitel:"Kapitel I · Themen 1.1 bis 1.6 · Klasse 5c",
+  quelle:"Zettel, Foto 14.11.2026",
+  lehrplan:["M5 1.1","M5 3.1","M5 2"],
+  vorgehen:[
+    {id:"heft", t:"Heftaufschrieb, Merksätze, neue Wörter", jeThema:true},
+    {id:"buch", t:"Kapitel-Beispiele im Buch", jeThema:true},
+    {id:"app", t:"10 Aufgaben in der App", jeThema:true},
+    {id:"teste", t:"Teste dich – nur Unsicheres", jeThema:true},
+    {id:"rueck", t:"Rückblick S. 36 lesen", abschluss:true},
+    {id:"test", t:"Test S. 37 (Lösung hinten)", abschluss:true}
+  ],
+  themen:[
+    {id:"1.1", t:"Veranschaulichung von Zahlen", stich:["Zahlenstrahl","Skalierung","Längeneinheit","Zahlen anordnen"],
+      material:[], uebungen:[{bereich:"zahlen", kinds:["ordnen"], label:"Zahlen › Ordnen"}],
+      merksatz:"Die natürlichen Zahlen stehen auf dem Zahlenstrahl. Weiter links liegt die kleinere Zahl. Die Längeneinheit wählst du passend, zum Beispiel 1 LE = 1 cm."},
+    {id:"1.2", t:"Das Dezimalsystem", stich:["Dezimalsystem","Stellenwert","Zehnerpotenzen","große Zahlen"],
+      material:[], uebungen:[{bereich:"zahlen", kinds:["stellen","schreiben"], label:"Zahlen › Stellenwert"},{bereich:"muldiv", kinds:["pow"], label:"Zehnerpotenzen"}],
+      merksatz:"Jede Stelle ist zehnmal so viel wert wie die Stelle rechts daneben. 10² = 100 und 10³ = 1 000. Eine Million hat 6 Nullen, eine Milliarde 9, eine Billion 12."},
+    {id:"1.3", t:"Zahlenmengen, Teilbarkeit", stich:["Teilermenge T(n)","Vielfachenmenge V(n)","Primzahlen","Teilbarkeitsregeln"],
+      material:["AH S. 8"], uebungen:[{bereich:"muldiv", kinds:["teilbar","prim"], label:"Teilbarkeit · Primfaktoren"}],
+      merksatz:"T(n) ist die Teilermenge, V(n) die Menge der Vielfachen. Eine Primzahl hat genau zwei Teiler: 1 und sich selbst. Durch 2, 5 und 10 schaust du auf die letzte Ziffer, durch 3 und 9 auf die Quersumme."},
+    {id:"1.4", t:"Runden", stich:["Runden","Rundungsstelle","Sachzusammenhänge"],
+      material:["AH S. 9"], uebungen:[{bereich:"zahlen", kinds:["runden"], label:"Zahlen › Runden"},{bereich:"addsub", kinds:["ueberschlag"], label:"Überschlag"},{bereich:"groessen", kinds:["umrechnen"], label:"Größen › Umrechnen"}],
+      merksatz:"Steht rechts von der Rundungsstelle 0, 1, 2, 3 oder 4, wird abgerundet. Steht dort 5, 6, 7, 8 oder 9, wird aufgerundet."},
+    {id:"1.5", t:"Negative Zahlen", stich:["negative Zahlen","Gegenzahl","Koordinatensystem","4 Quadranten"],
+      material:["AH S. 10–11"], uebungen:[{bereich:"geo-zeichnen", kinds:["koord","punkt"], label:"Koordinaten"}],
+      merksatz:"Zahlen unter null sind negativ. +4 und −4 sind Gegenzahlen: sie liegen gleich weit von der Null. Das Koordinatensystem teilt die Ebene in 4 Quadranten. Die x-Achse geht waagerecht, die y-Achse senkrecht."},
+    {id:"1.6", t:"Anordnung und Betrag", stich:["Betrag","Ungleichungskette","Zahlengerade"],
+      material:[], uebungen:[{bereich:"zahlen", kinds:["betrag","ordnen"], label:"Betrag · Ordnen"}],
+      merksatz:"Der Betrag |a| ist der Abstand von a zur Null. |−15| = 15. Weiter rechts auf der Zahlengeraden liegt die größere Zahl, zum Beispiel −45 < −15 < 25 < 52."}
+  ],
+  probe:{n:20, nKompakt:10, minProThema:3}
+}];
+function saEintrag(fach, id){
+  const list=SA_KATALOG.filter(function(e){ return e.fach===fach; });
+  if(id) return list.find(function(e){ return e.id===id; })||null;
+  return list[0]||null;
+}
+function saReadNode(fach){
+  if(!isObj(state.sa) || !isObj(state.sa[fach])) return null;
+  return state.sa[fach];
+}
+function saReadItem(fach, id){
+  const node=saReadNode(fach);
+  if(!node || !isObj(node.items)) return null;
+  return isObj(node.items[id]) ? node.items[id] : null;
+}
+function saEnsureItem(fach, id){
+  if(!isObj(state.sa)) state.sa={};
+  if(!isObj(state.sa[fach])) state.sa[fach]={aktiv:id, items:{}};
+  const node=state.sa[fach];
+  if(!isObj(node.items)) node.items={};
+  if(!node.aktiv) node.aktiv=id;
+  if(!isObj(node.items[id])) node.items[id]=saLeer();
+  return node.items[id];
+}
+function saCountdown(n){
+  if(n<0) return "vorbei";
+  if(n===0) return "heute";
+  if(n===1) return "morgen";
+  return "noch "+n+" Tage";
+}
+function saDialogWann(n){
+  if(n<0) return "liegt in der Vergangenheit";
+  if(n===0) return "heute";
+  if(n===1) return "morgen";
+  return "in "+n+" Tagen";
+}
+function saLerntageText(L){
+  if(L<=0) return "Schulaufgabe ist heute";
+  return L+" "+(L===1?"Lerntag":"Lerntage")+" + Schulaufgabe";
+}
+function saPhase(it, heute){
+  if(it && it.archiviert) return "archiv";
+  if(!it || !isRealIso(it.datum)) return "neu";
+  const bis=daysBetween(heute, it.datum);
+  if(bis>=0) return "aktiv";
+  if(daysBetween(it.datum, heute)<=7) return "vorbei";
+  return "frueher";
+}
+function saGruppen(themen, selbst){
+  const unsicher=[], ungeprueft=[], rest=[];
+  themen.forEach(function(t){
+    const v=selbst[t.id];
+    if(v===0) unsicher.push(t);
+    else if(v===1 || v===2) rest.push(t);
+    else ungeprueft.push(t);
+  });
+  return {unsicher:unsicher, ungeprueft:ungeprueft, rest:rest};
+}
+function saJeSteps(t, vor, mode){
+  if(mode==="merk") return [{id:t.id+":merk", text:"💡 Merksatz: "+t.t, thema:t.id, art:"merk"}];
+  let je=vor.filter(function(v){ return v.jeThema; });
+  if(mode==="voll"){
+    const prefer=je.filter(function(v){ return v.id==="heft" || v.id==="app"; });
+    if(prefer.length) je=prefer;
+  }
+  const arts=[];
+  je.forEach(function(v){ if(arts.indexOf(v.id)<0) arts.push(v.id); });
+  if(mode==="normal") arts.push("mat");
+  return {arts:arts, je:je};
+}
+function saStepsFor(topics, vor, mode){
+  const meta=saJeSteps({id:"", t:""}, vor, mode);
+  if(mode==="merk") return topics.map(function(t){ return {id:t.id+":merk", text:"💡 Merksatz: "+t.t, thema:t.id, art:"merk"}; });
+  const out=[];
+  meta.arts.forEach(function(art){
+    topics.forEach(function(t){
+      if(art==="mat"){
+        if(t.material && t.material.length) out.push({id:t.id+":mat", text:t.material.join(", "), thema:t.id, art:"mat"});
+        return;
+      }
+      const v=vor.find(function(x){ return x.id===art; });
+      out.push({id:t.id+":"+art, text:v?v.t:art, thema:t.id, art:art});
+    });
+  });
+  return out;
+}
+function saAbschluss(vor){
+  return vor.filter(function(v){ return v.abschluss; }).map(function(v){
+    return {id:v.id, text:v.t, art:v.id};
+  });
+}
+function saProbeStep(n){ return {id:"probe", text:"Probe-Schulaufgabe ("+n+" Aufgaben)", art:"probe"}; }
+function saKurzStep(){ return {id:"kurz", text:"kurz: Merksätze lesen 🍀", art:"kurz"}; }
+function saDaily(vor, datum){
+  return vor.filter(function(v){ return v.taeglich; }).map(function(v){
+    return {id:v.id+"@"+datum, text:v.t, art:v.id};
+  });
+}
+function saWithDaily(steps, vor, datum){ return steps.concat(saDaily(vor, datum)); }
+function saDay(iso, rolle, steps, heute){
+  return {datum:iso, rolle:rolle, heute:iso===heute, schritte:steps};
+}
+function saPlan(eintrag, datum, heute, stand, opt){
+  opt=opt||{};
+  stand=isObj(stand)?stand:{};
+  const selbst=isObj(stand.selbst)?stand.selbst:{};
+  const vor=eintrag.vorgehen||[];
+  const themen=(eintrag.themen||[]).slice();
+  const gruppen=saGruppen(themen, selbst);
+  const conf=eintrag.probe||{};
+  if(!isRealIso(datum) || !isRealIso(heute)) return {lage:"keindatum", L:0, tageBis:null, countdown:"", hinweis:null, tage:[], datum:datum||null, probeN:conf.n||20};
+  const tageBis=daysBetween(heute, datum);
+  const countdown=saCountdown(tageBis);
+  if(tageBis<0) return {lage:"vorbei", L:0, tageBis:tageBis, countdown:countdown, hinweis:"Schulaufgabe vorbei", tage:[], datum:datum, probeN:conf.n||20};
+  const probeN=tageBis===1 ? (conf.nKompakt||10) : (conf.n||20);
+  let tage;
+  let L=tageBis;
+  let hinweis=null;
+  let planStart=heute;
+  if(tageBis===0){
+    tage=[saDay(heute, "sa", [saKurzStep()], heute)];
+  } else if(tageBis===1){
+    const order=gruppen.unsicher.concat(gruppen.ungeprueft);
+    const steps=saStepsFor(order, vor, "voll").concat(saStepsFor(gruppen.rest, vor, "merk")).concat(saAbschluss(vor)).concat([saProbeStep(probeN)]);
+    tage=[
+      saDay(heute, "lernen", saWithDaily(steps, vor, heute), heute),
+      saDay(datum, "sa", [saKurzStep()], heute)
+    ];
+  } else if(tageBis===2){
+    const order=gruppen.unsicher.concat(gruppen.ungeprueft, gruppen.rest);
+    const s1=saWithDaily(saStepsFor(order, vor, "voll"), vor, heute);
+    const morgen=addDays(heute, 1);
+    const wdh=gruppen.unsicher.map(function(t){ return {id:t.id+":wdh", text:"Noch einmal: "+t.id+" "+t.t, thema:t.id, art:"wdh"}; });
+    const s2=saWithDaily([saProbeStep(probeN)].concat(saAbschluss(vor)).concat(wdh), vor, morgen);
+    tage=[saDay(heute, "lernen", s1, heute), saDay(morgen, "abschluss", s2, heute), saDay(datum, "sa", [saKurzStep()], heute)];
+  } else {
+    if(L>SA_MAX_LERNTAGE){
+      planStart=addDays(datum, -SA_MAX_LERNTAGE);
+      hinweis="bis "+fmtDatum(addDays(planStart, -1))+" frei, Plan startet "+fmtDatum(planStart);
+      L=SA_MAX_LERNTAGE;
+    }
+    const dates=[];
+    for(let i=0;i<L;i++) dates.push(addDays(planStart, i));
+    const pause={};
+    if(L>themen.length+1){
+      for(let i=0;i<L-1;i++) if((i+1)%3===0) pause[dates[i]]=true;
+    }
+    const content=[];
+    for(let i=0;i<L-1;i++) if(!pause[dates[i]]) content.push(i);
+    const assign={};
+    if(themen.length<=content.length){
+      content.forEach(function(di, k){ assign[dates[di]] = k<themen.length ? [themen[k]] : []; });
+    } else {
+      const slots=content.length;
+      const base=Math.floor(themen.length/slots);
+      const extra=themen.length%slots;
+      let p=0;
+      content.forEach(function(di, k){
+        const count=base+((slots-1-k)<extra ? 1 : 0);
+        assign[dates[di]]=themen.slice(p, p+count);
+        p+=count;
+      });
+    }
+    tage=[];
+    for(let i=0;i<L;i++){
+      const iso=dates[i];
+      if(i===L-1){
+        const wdh=gruppen.unsicher.map(function(t){ return {id:t.id+":wdh", text:"Noch einmal: "+t.id+" "+t.t, thema:t.id, art:"wdh"}; });
+        const steps=saWithDaily(saAbschluss(vor).concat([saProbeStep(probeN)]).concat(wdh), vor, iso);
+        tage.push(saDay(iso, "abschluss", steps, heute));
+      } else if(pause[iso]){
+        tage.push(saDay(iso, "pause", [{id:"pause@"+iso, text:"10 Min. Wiederholung", art:"pause"}], heute));
+      } else {
+        const topics=assign[iso]||[];
+        const steps=topics.length ? saStepsFor(topics, vor, "normal") : [{id:"wdhblock@"+iso, text:"Wiederholung 😕/🙂", art:"wdh"}];
+        tage.push(saDay(iso, "lernen", saWithDaily(steps, vor, iso), heute));
+      }
+    }
+    tage.push(saDay(datum, "sa", [saKurzStep()], heute));
+  }
+  if(opt.carry!==false){
+    saApplyCarry(eintrag, datum, heute, stand, tage);
+    saApplyVor(tage, heute, gruppen);
+  }
+  return {lage:tageBis===0?"heute":"zukunft", L:L, tageBis:tageBis, countdown:countdown, hinweis:hinweis, tage:tage, datum:datum, probeN:probeN, planStart:planStart};
+}
+function saApplyCarry(eintrag, datum, heute, stand, tage){
+  if(!isRealIso(stand.gestartet) || addDays(heute, -1)<stand.gestartet) return;
+  const yday=addDays(heute, -1);
+  const prev=saPlan(eintrag, datum, yday, stand, {carry:false});
+  const y=(prev.tage||[]).find(function(t){ return t.datum===yday; });
+  const today=tage.find(function(t){ return t.datum===heute; });
+  if(!y || !today) return;
+  const erledigt=isObj(stand.erledigt)?stand.erledigt:{};
+  const open=y.schritte.filter(function(s){ return s.id.indexOf("@")<0 && !erledigt[s.id]; });
+  const have={};
+  today.schritte.forEach(function(s){ have[s.id]=s; });
+  const add=[];
+  open.forEach(function(s){
+    if(have[s.id]) have[s.id].nachholen=true;
+    else add.push({id:s.id, text:s.text, thema:s.thema||null, art:s.art, nachholen:true});
+  });
+  if(add.length) today.schritte=add.concat(today.schritte);
+  const moved={};
+  add.forEach(function(s){ moved[s.id]=true; });
+  tage.forEach(function(t){
+    if(t===today || !add.length) return;
+    t.schritte=t.schritte.filter(function(s){ return !moved[s.id]; });
+    if(!t.schritte.length && t.rolle!=="sa") t.schritte.push({id:"wdhblock@"+t.datum, text:"Wiederholung 😕/🙂", art:"wdh"});
+  });
+}
+function saApplyVor(tage, heute, gruppen){
+  const today=tage.find(function(t){ return t.datum===heute && t.rolle!=="sa"; });
+  if(!today) return;
+  const have={};
+  today.schritte.forEach(function(s){ if(s.thema) have[s.thema]=true; });
+  const add=[];
+  gruppen.unsicher.forEach(function(t){
+    if(have[t.id]) return;
+    const later=tage.some(function(d){ return d.datum>heute && d.schritte.some(function(s){ return s.thema===t.id; }); });
+    if(!later) return;
+    add.push({id:t.id+":zuerst", text:"Zuerst: "+t.id+" "+t.t, thema:t.id, art:"wdh", zuerst:true});
+  });
+  if(add.length) today.schritte=add.concat(today.schritte);
+}
+function saSetDatum(fach, id, iso){
+  const it=saEnsureItem(fach, id);
+  it.datum=iso;
+  it.archiviert=false;
+  if(!isRealIso(it.gestartet)) it.gestartet=dayKey();
+  state.sa[fach].aktiv=id;
+  save();
+}
+function saSetSelbst(fach, id, tid, wert){
+  const it=saEnsureItem(fach, id);
+  if(!isObj(it.selbst)) it.selbst={};
+  if(it.selbst[tid]===wert) delete it.selbst[tid];
+  else it.selbst[tid]=wert;
+  save();
+}
+function saToggleSteps(fach, id, ids, on){
+  const it=saEnsureItem(fach, id);
+  if(!isObj(it.erledigt)) it.erledigt={};
+  const today=dayKey();
+  ids.forEach(function(sid){
+    if(!sid) return;
+    if(on) it.erledigt[sid]=today;
+    else delete it.erledigt[sid];
+  });
+  save();
+}
+function saArchivieren(fach, id){
+  const it=saReadItem(fach, id);
+  if(!it) return;
+  it.archiviert=true;
+  if(isObj(state.sa) && isObj(state.sa[fach])) state.sa[fach].aktiv=null;
+  save();
+}
+function saNote(fach, id, tid, ok){
+  const it=saEnsureItem(fach, id);
+  if(!isObj(it.zuletzt)) it.zuletzt={};
+  const arr=Array.isArray(it.zuletzt[tid]) ? it.zuletzt[tid].slice() : [];
+  arr.push(ok?1:0);
+  it.zuletzt[tid]=arr.slice(-10);
+  save();
+}
+function saPushProbe(fach, id, r, n, by){
+  const it=saEnsureItem(fach, id);
+  if(!Array.isArray(it.probe)) it.probe=[];
+  const themen={};
+  Object.keys(by).forEach(function(k){ themen[k]={r:by[k].r, n:by[k].n}; });
+  it.probe.push({d:dayKey(), r:r, n:n, themen:themen});
+}
+function saThemaFrage(thema, rnd){
+  const pool=(thema.uebungen||[]).filter(function(u){ return u.bereich && u.kinds && u.kinds.length && MAKERS[u.bereich]; });
+  if(!pool.length) return null;
+  for(let t=0;t<80;t++){
+    const u=pool[Math.floor(rnd()*pool.length)];
+    const kind=u.kinds[Math.floor(rnd()*u.kinds.length)];
+    const lv=u.bereich==="geo-zeichnen" ? 3 : 2;
+    let q=null;
+    try{ q=MAKERS[u.bereich](lv, rnd); }catch(e){ q=null; }
+    if(q && q.kind===kind){
+      q.saThema=thema.id;
+      q.saThemaName=thema.t;
+      return q;
+    }
+  }
+  return null;
+}
+function saProbeFragen(eintrag, n, rnd, stand){
+  rnd=rnd||Math.random;
+  stand=isObj(stand)?stand:{};
+  const selbst=isObj(stand.selbst)?stand.selbst:{};
+  const themen=eintrag.themen||[];
+  const conf=eintrag.probe||{};
+  n=n||conf.n||20;
+  const minRaw=conf.minProThema||1;
+  const base=Math.min(minRaw, Math.floor(n/Math.max(1, themen.length)));
+  const counts={};
+  themen.forEach(function(t){ counts[t.id]=base; });
+  let left=n-base*themen.length;
+  const unsicher=themen.filter(function(t){ return selbst[t.id]===0; });
+  const order=unsicher.concat(themen.filter(function(t){ return selbst[t.id]!==0; }));
+  let i=0;
+  while(left>0 && order.length){ counts[order[i%order.length].id]++; left--; i++; }
+  const out=[];
+  themen.forEach(function(t){
+    let guard=0;
+    while(out.filter(function(q){ return q.saThema===t.id; }).length<counts[t.id] && guard++<counts[t.id]*120){
+      const q=saThemaFrage(t, rnd);
+      if(q) out.push(q);
+    }
+  });
+  return mShuffle(out, rnd);
+}
+function saProbeAnzahl(eintrag, heute, stand){
+  const conf=eintrag.probe||{n:20, nKompakt:10};
+  if(!stand || !isRealIso(stand.datum)) return conf.n||20;
+  const plan=saPlan(eintrag, stand.datum, heute||dayKey(), stand, {carry:false});
+  return plan.L===1 ? (conf.nKompakt||10) : (conf.n||20);
+}
+function saStripHtml(fid){
+  const kat=saEintrag(fid, null);
+  if(!kat) return "";
+  const it=saReadItem(fid, kat.id);
+  const phase=saPhase(it, dayKey());
+  if(phase==="archiv" || phase==="frueher") return "";
+  let label;
+  if(phase==="neu") label="📅 Datum eintragen";
+  else label="📝 "+kat.titel+" · "+fmtDatum(it.datum,{wt:"kurz"})+" · "+saCountdown(daysBetween(dayKey(), it.datum));
+  return `<button type="button" class="sastrip" data-go="#/f/${fid}/sa/${kat.id}">${esc(label)}</button>`;
+}
+function saFrueherHtml(fid){
+  const node=saReadNode(fid);
+  if(!node || !isObj(node.items)) return "";
+  const heute=dayKey();
+  const rows=[];
+  Object.keys(node.items).forEach(function(id){
+    const it=node.items[id];
+    if(!isObj(it)) return;
+    const phase=saPhase(it, heute);
+    if(phase!=="archiv" && phase!=="frueher") return;
+    const kat=saEintrag(fid, id);
+    const title=kat?kat.titel:id;
+    const when=isRealIso(it.datum)?fmtDatum(it.datum,{wt:"kurz"}):"ohne Datum";
+    rows.push(`<button type="button" class="brow" data-go="#/f/${fid}/sa/${id}"><span class="nm">${esc(title)}<span class="small">${esc(when)}</span></span></button>`);
+  });
+  if(!rows.length) return "";
+  return `<details class="saold"><summary>Frühere Schulaufgaben</summary>${rows.join("")}</details>`;
+}
+function saRange(themen, kat){
+  const order=(kat.themen||[]).map(function(t){ return t.id; });
+  const idx=themen.map(function(id){ return order.indexOf(id); }).filter(function(i){ return i>=0; }).sort(function(a,b){ return a-b; });
+  if(!idx.length) return "";
+  if(idx[idx.length-1]-idx[0]+1!==idx.length) return themen.join(", ");
+  const a=order[idx[0]], b=order[idx[idx.length-1]];
+  return a===b ? a : a+" bis "+b;
+}
+function saGroupSteps(steps){
+  const merge={heft:1, buch:1, app:1, teste:1, mat:1};
+  const groups=[];
+  steps.forEach(function(s){
+    const prev=groups[groups.length-1];
+    if(prev && prev.art===s.art && merge[s.art] && s.thema){
+      prev.ids.push(s.id);
+      if(s.thema) prev.themen.push(s.thema);
+      if(s.art==="mat") prev.texts.push(s.text);
+      prev.nachholen=prev.nachholen||!!s.nachholen;
+    } else {
+      groups.push({art:s.art, ids:[s.id], themen:s.thema?[s.thema]:[], text:s.text, texts:s.art==="mat"?[s.text]:[], nachholen:!!s.nachholen});
+    }
+  });
+  return groups;
+}
+function saGroupLabel(g, kat){
+  const range=saRange(g.themen, kat);
+  if(g.art==="heft") return (range?range+": ":"")+"Heftaufschrieb, Merksätze";
+  if(g.art==="buch") return "Buch: Kapitel-Beispiele"+(range?" "+range:"");
+  if(g.art==="app") return "App: 10 Aufgaben"+(range?" · "+range:"");
+  if(g.art==="teste") return "Teste dich: nur Unsicheres";
+  if(g.art==="mat") return g.texts.filter(function(t,i,a){ return a.indexOf(t)===i; }).join(" · ");
+  if(g.art==="probe") return "📝 "+g.text;
+  return g.text;
+}
+function saPaintChecks(host, erledigt){
+  host.querySelectorAll("[data-sa-steps]").forEach(function(input){
+    const ids=input.getAttribute("data-sa-steps").split(",").filter(Boolean);
+    const n=ids.filter(function(id){ return erledigt[id]; }).length;
+    input.checked=n===ids.length && n>0;
+    input.indeterminate=n>0 && n<ids.length;
+  });
+}
+function renderSa(fid, kat){
+  const host=$("page-sa"); if(!host || !kat) return;
+  const f=fachById(fid);
+  const heute=dayKey();
+  const it=saReadItem(fid, kat.id);
+  const erledigt=it && isObj(it.erledigt) ? it.erledigt : {};
+  const selbst=it && isObj(it.selbst) ? it.selbst : {};
+  const datum=it && isRealIso(it.datum) ? it.datum : null;
+  const phase=saPhase(it, heute);
+  const plan=datum ? saPlan(kat, datum, heute, it||{}) : null;
+  host.setAttribute("data-fach", fid);
+  host.setAttribute("data-said", kat.id);
+  let hero;
+  if(!plan || phase==="neu"){
+    hero=`<div class="sahero" style="--sa:${f?f.farbe:"#7a5af8"}"><span class="saband">📝 Schulaufgaben-Vorbereitung</span><h2>${esc(f?f.name:"")} · ${esc(kat.titel)}</h2><p>${esc(kat.untertitel)}</p><button type="button" class="primary" data-sa-datum>📅 Datum eintragen</button></div>`;
+  } else if(plan.lage==="vorbei"){
+    hero=`<div class="sahero" style="--sa:${f?f.farbe:"#7a5af8"}"><span class="saband">📝 Schulaufgaben-Vorbereitung</span><h2>${esc(f?f.name:"")} · ${esc(kat.titel)}</h2><p>${esc(kat.untertitel)}</p><div class="sacount"><div class="sanum word"><b>vorbei</b></div><div><div class="sadate">${esc(fmtDatum(datum,{wt:"lang"}))}</div><button type="button" class="salink" data-sa-datum>📅 Datum ändern</button></div></div><p class="sahin">Schulaufgabe vorbei. Du kannst das Datum ändern oder die Schulaufgabe archivieren.</p></div>`;
+  } else {
+    let done=0, all=0;
+    plan.tage.forEach(function(tag){ saGroupSteps(tag.schritte).forEach(function(g){ all++; if(g.ids.every(function(id){ return erledigt[id]; })) done++; }); });
+    const pct=all?Math.round(100*done/all):0;
+    const unit=plan.tageBis===1?"Tag":"Tage";
+    hero=`<div class="sahero" style="--sa:${f?f.farbe:"#7a5af8"}"><span class="saband">📝 Schulaufgaben-Vorbereitung</span><h2>${esc(f?f.name:"")} · ${esc(kat.titel)}</h2><p>${esc(kat.untertitel)}</p><div class="sacount"><div class="sanum"><b>${plan.tageBis}</b><span>${unit}</span></div><div><div class="sadate">${esc(fmtDatum(datum,{wt:"lang"}))}</div><button type="button" class="salink" data-sa-datum>📅 Datum ändern</button></div></div><div class="sabar"><div style="width:${pct}%"></div></div><div class="sasub">Plan ${done} von ${all} Schritten</div></div>`;
+  }
+  let planHtml="";
+  if(plan && plan.lage!=="vorbei" && plan.tage.length){
+    const rows=plan.tage.map(function(tag){
+      const kurz=fmtDatum(tag.datum,{wt:"kurz"});
+      const wd=kurz.split(" ")[0], rest=kurz.split(" ").slice(1).join(" ");
+      const pill=tag.heute?"<span class=\"sapill\">heute</span>":tag.rolle==="sa"?"<span class=\"sapill exam\">Schulaufgabe</span>":"";
+      const steps=saGroupSteps(tag.schritte).map(function(g){
+        const nach=g.nachholen?' <span class="satag nach">nachholen</span>':"";
+        return `<label class="sastep"><input type="checkbox" data-sa-steps="${esc(g.ids.join(","))}"><span>${esc(saGroupLabel(g, kat))}${nach}</span></label>`;
+      }).join("");
+      return `<div class="saday ${esc(tag.rolle)}${tag.heute?" today":""}"><div class="sadayh"><b>${esc(wd)}</b> ${esc(rest)} ${pill}</div>${steps}</div>`;
+    }).join("");
+    const hinweis=plan.hinweis?`<p class="small">${esc(plan.hinweis)}</p>`:"";
+    planHtml=`<h2 class="h2">Dein Plan bis ${esc(fmtDatum(datum,{wt:"kurz"}))}</h2><p class="small">Berechnet aus deinem Datum: ${esc(saLerntageText(plan.L))}.</p>${hinweis}${rows}`;
+  } else if(plan && plan.lage==="vorbei"){
+    planHtml=`<div class="card"><p><b>Schulaufgabe vorbei.</b></p><div class="row"><button type="button" class="primary" data-sa-datum>📅 Datum ändern</button><button type="button" class="ghost" data-sa-archiv>Archivieren</button></div></div>`;
+  } else {
+    planHtml=`<p class="small">Trag das Datum ein. Daraus rechnet die App deinen Plan. Es steht kein Datum fest im Programm.</p>`;
+  }
+  const zuletzt=it && isObj(it.zuletzt)?it.zuletzt:{};
+  const themenHtml=(kat.themen||[]).map(function(t){
+    const arr=Array.isArray(zuletzt[t.id])?zuletzt[t.id]:[];
+    const richtig=arr.filter(function(x){ return x===1; }).length;
+    const chip=arr.length?`<span class="chip">App ${richtig}/${arr.length}</span>`:"";
+    const tags=(t.uebungen||[]).filter(function(u){ return u.label; }).map(function(u){ return `<span class="satag ueb">${esc(u.label)}</span>`; }).join("")+(t.material||[]).map(function(m){ return `<span class="satag mat">${esc(m)}</span>`; }).join("");
+    const sel=[0,1,2].map(function(v){
+      const lab=v===0?"😕 unsicher":v===1?"🙂 geht":"😀 sicher";
+      const on=selbst[t.id]===v?" on":"";
+      return `<button type="button" class="saselbtn${on}" data-sa-selbst="${esc(t.id)}" data-wert="${v}">${lab}</button>`;
+    }).join("");
+    return `<article class="sathema"><div class="satop"><b>${esc(t.id)} ${esc(t.t)}</b>${chip}</div><div class="small">${esc((t.stich||[]).join(" · "))}</div><div class="sasel">${sel}</div><div class="satags">${tags}</div><div class="row"><button type="button" class="ghost" data-sa-ueben="${esc(t.id)}">▶ 10 Aufgaben</button><button type="button" class="ghost" data-sa-merk="${esc(t.id)}">💡 Merksatz</button></div><div id="merk-${esc(t.id)}" class="ghelp hidden">${esc(t.merksatz||"")}</div></article>`;
+  }).join("");
+  const nProbe=saProbeAnzahl(kat, heute, it);
+  const probeBtn=`<button type="button" class="saprobe" data-sa-probe><span class="saprobe-t">Probe-Schulaufgabe ${esc(f?f.name:"")}</span><span class="small">${nProbe} Aufgaben aus 1.1 bis 1.6 · Ergebnis je Thema · ohne Note</span></button>`;
+  host.innerHTML=`<p class="crumbline"><a href="#/start">🏠 Start</a> › ${f?f.icon:""} <a href="#/f/${fid}">${esc(f?f.name:"")}</a> › 📝 <b>Schulaufgabe</b></p>${hero}${planHtml}<h2 class="h2">Themen: Wie sicher bist du?</h2><div class="sathemen">${themenHtml}</div>${probeBtn}<p class="small">Häkchen und deine Einschätzung hängen an den Themen, nicht am Tag. Wenn du das Datum änderst, bleiben sie erhalten. Englisch bekommt eine eigene Vorbereitung später.</p>`;
+  saPaintChecks(host, erledigt);
+}
+function dateInputSupported(){
+  try{ const el=document.createElement("input"); el.setAttribute("type","date"); return el.type==="date"; }
+  catch(e){ return false; }
+}
+function maskDatum(v){
+  const d=String(v||"").replace(/\D/g,"").slice(0,8);
+  if(d.length<=2) return d;
+  if(d.length<=4) return d.slice(0,2)+"."+d.slice(2);
+  return d.slice(0,2)+"."+d.slice(2,4)+"."+d.slice(4);
+}
+function saReadInput(el){
+  if(!el) return "";
+  const v=String(el.value||"").trim();
+  if(isRealIso(v)) return v;
+  return parseDeDatum(v)||"";
+}
+function saChipHtml(plan, kat){
+  if(!plan || !plan.tage) return "";
+  return plan.tage.map(function(tag){
+    const wd=fmtDatum(tag.datum,{wt:"kurz"}).split(" ")[0]||"";
+    let cls="sachip", label=wd;
+    if(tag.rolle==="sa"){ cls+=" exam"; label=wd+" SA"; }
+    else if(tag.rolle==="pause") label=wd+" Pause";
+    else if(tag.schritte.some(function(s){ return s.id==="probe"; })){ cls+=" probe"; label=wd+" Probe"; }
+    else {
+      const th=[];
+      tag.schritte.forEach(function(s){ if(s.thema && (s.art==="heft"||s.art==="app"||s.art==="buch") && th.indexOf(s.thema)<0) th.push(s.thema); });
+      const range=saRange(th, kat);
+      if(range) label=wd+" "+range.replace(" bis ","–");
+    }
+    if(tag.heute) cls+=" today";
+    return `<span class="${cls}">${esc(label)}</span>`;
+  }).join("");
+}
+function openSaDialog(fach, kat, mode){
+  const box=$("saDialog"); if(!box || !kat) return;
+  const it=saReadItem(fach, kat.id);
+  const cur=it && isRealIso(it.datum) ? it.datum : "";
+  const useDate=dateInputSupported();
+  saDlg={fach:fach, id:kat.id, mode:mode||(cur?"aendern":"neu")};
+  const field=useDate
+    ? `<input id="saDateInput" type="date" value="${esc(cur)}" max="${esc(addDays(dayKey(), SA_MAX_VORAUS))}">`
+    : `<input id="saDateInput" type="text" inputmode="numeric" placeholder="TT.MM.JJJJ" autocomplete="off" value="${esc(cur?fmtDatum(cur):"")}">`;
+  const archiv=it?`<button type="button" class="linkish" id="saArchiv">Schulaufgabe archivieren</button>`:"";
+  box.innerHTML=`<div class="sadlg" role="dialog" aria-labelledby="saDlgTitle"><p class="small">${esc((fachById(fach)||{}).name||"")} · ${esc(kat.titel)}</p><h2 id="saDlgTitle">Wann schreibst du die Schulaufgabe?</h2><p class="small">Daraus berechnet die App deinen Lernplan. Du kannst das Datum später ändern.</p><label class="small" for="saDateInput">Datum</label>${field}<div class="sapreview" id="saPreview"></div><div class="sachips" id="saChips"></div><p class="small" id="saWarn"></p><p class="small">Abgehakte Schritte und deine Einschätzung bleiben erhalten.</p><div class="row"><button type="button" class="ghost" id="saAbbrechen">Abbrechen</button><button type="button" class="primary" id="saSpeichern">✓ Plan erstellen</button></div>${archiv}</div>`;
+  box.classList.remove("hidden");
+  saDialogRefresh();
+}
+function saDialogRefresh(){
+  if(!saDlg) return;
+  const el=$("saDateInput"); if(!el) return;
+  const iso=saReadInput(el);
+  const heute=dayKey();
+  const pruefe=saPruefeDatum(iso, heute);
+  const kat=saEintrag(saDlg.fach, saDlg.id);
+  const it=saReadItem(saDlg.fach, saDlg.id)||{};
+  const prev=$("saPreview"), chips=$("saChips"), warn=$("saWarn"), btn=$("saSpeichern");
+  if(!pruefe.ok){
+    if(prev) prev.innerHTML=iso?"":"Wähle ein Datum. Die Anzeige ist immer TT.MM.JJJJ.";
+    if(chips) chips.innerHTML="";
+    if(warn) warn.textContent=pruefe.grund==="weit"?"Höchstens 366 Tage im Voraus.":pruefe.grund==="ungueltig"?"Dieses Datum gibt es nicht.":"";
+    if(btn) btn.disabled=true;
+    return;
+  }
+  const plan=saPlan(kat, iso, heute, Object.assign({}, it, {datum:iso}), {carry:false});
+  if(prev) prev.innerHTML=`<div class="sadate">${esc(fmtDatum(iso,{wt:"lang"}))}</div><span class="sapill ${pruefe.vergangen?"exam":""}">${esc(saDialogWann(pruefe.tage))}</span><div class="small">${esc(plan.lage==="vorbei"?"Schulaufgabe vorbei":plan.lage==="heute"?"Schulaufgabe ist heute":saLerntageText(plan.L))}</div>`;
+  if(chips) chips.innerHTML=saChipHtml(plan, kat);
+  if(warn) warn.textContent=pruefe.vergangen?"Liegt in der Vergangenheit.":"";
+  if(btn) btn.disabled=false;
+}
+function closeSaDialog(){
+  const box=$("saDialog"); if(box) box.classList.add("hidden");
+  saDlg=null;
+}
+function saDialogClick(e){
+  if(!saDlg) return;
+  if(e.target.closest("#saAbbrechen")){
+    const mode=saDlg.mode, fach=saDlg.fach, id=saDlg.id;
+    closeSaDialog();
+    const it=saReadItem(fach, id);
+    if(mode==="neu" && (!it || !isRealIso(it.datum))) go("#/start");
+    return;
+  }
+  if(e.target.closest("#saSpeichern")){
+    const iso=saReadInput($("saDateInput"));
+    const pruefe=saPruefeDatum(iso, dayKey());
+    if(!pruefe.ok) return;
+    const fach=saDlg.fach, id=saDlg.id;
+    saSetDatum(fach, id, iso);
+    closeSaDialog();
+    const kat=saEintrag(fach, id);
+    renderSa(fach, kat);
+    return;
+  }
+  if(e.target.closest("#saArchiv")){
+    if(!confirm("Schulaufgabe archivieren? Sie verschwindet von Start.")) return;
+    const fach=saDlg.fach, id=saDlg.id;
+    saArchivieren(fach, id);
+    closeSaDialog();
+    go("#/f/"+fach);
+  }
+}
+function saDialogInput(e){
+  const el=e.target;
+  if(!el || el.id!=="saDateInput") return;
+  if(el.type!=="date" && !isRealIso(el.value)){
+    const next=maskDatum(el.value);
+    if(next!==el.value){
+      const pos=next.length;
+      el.value=next;
+      try{ el.setSelectionRange(pos, pos); }catch(err){}
+    }
+  }
+  saDialogRefresh();
+}
+function fillSaCrumb(fid, kat){
+  const f=fachById(fid);
+  const c=$("crumb"); if(!c || !f) return;
+  c.classList.remove("hidden");
+  c.innerHTML=`<button type="button" class="linkish" id="crumbHome">🏠 Start</button><span aria-hidden="true">›</span><span>${f.icon} ${esc(f.name)}</span><span aria-hidden="true">›</span><span>📝 Schulaufgabe</span><span class="spacer"></span><button type="button" class="ghost" id="crumbExit">✖ Beenden</button>`;
+  $("crumbHome").onclick=function(){ mClearAdv(); stopBlitz(); go("#/start"); };
+  $("crumbExit").onclick=function(){ mClearAdv(); stopBlitz(); go("#/f/"+fid+"/sa"+(kat?"/"+kat.id:"")); };
+}
+function saBack(){
+  const s=mRound && mRound.sa;
+  mClearAdv(); stopBlitz();
+  if(s) go("#/f/"+s.fach+"/sa/"+s.id);
+  else go("#/f/"+((state.ui&&state.ui.fach)||"mathe"));
+}
+function startSaRound(fach, kat, questions, mode, thema){
+  mClearAdv(); stopBlitz();
+  mRound={mode:"sa", i:0, results:[], ok:0, q:null, input:"", answered:false, questions:questions, sa:{fach:fach, id:kat.id, mode:mode, thema:thema||null}};
+  showOnly(["v-mathe"]);
+  showMathPane("quiz");
+  setDock("start");
+  fillSaCrumb(fach, kat);
+  mGoNext(true);
+}
+function startSaProbe(fid, kat){
+  const it=saReadItem(fid, kat.id)||{};
+  const n=saProbeAnzahl(kat, dayKey(), it);
+  const qs=saProbeFragen(kat, n, Math.random, it);
+  if(!qs.length) return;
+  startSaRound(fid, kat, qs, "probe");
+}
+function startSaThema(fid, kat, tid){
+  const t=(kat.themen||[]).find(function(x){ return x.id===tid; });
+  if(!t){ renderSa(fid, kat); return; }
+  const qs=[];
+  let guard=0;
+  while(qs.length<10 && guard++<500){
+    const q=saThemaFrage(t, Math.random);
+    if(q) qs.push(q);
+  }
+  if(!qs.length) return;
+  startSaRound(fid, kat, qs, "thema", tid);
+}
+function startSaFehler(){
+  if(!saLastWrongs.length || !saLastMeta) return;
+  const kat=saEintrag(saLastMeta.fach, saLastMeta.id);
+  if(!kat) return;
+  const qs=saLastWrongs.map(function(q){ return JSON.parse(JSON.stringify(q)); });
+  startSaRound(saLastMeta.fach, kat, qs, "fehler", saLastMeta.thema);
+}
+function saFinishRound(){
+  const sa=mRound.sa;
+  const qs=mRound.questions||[];
+  const by={};
+  const wrongs=[];
+  qs.forEach(function(q,i){
+    const id=q.saThema||"?";
+    if(!by[id]) by[id]={id:id, name:q.saThemaName||id, r:0, n:0};
+    by[id].n++;
+    if(mRound.results[i]===true) by[id].r++;
+    else if(mRound.results[i]===false) wrongs.push(q);
+  });
+  if(sa.mode==="probe") saPushProbe(sa.fach, sa.id, mRound.ok, qs.length, by);
+  if(sa.mode!=="fehler"){
+    const m=mState();
+    m.runden=num(m.runden)+1;
+    mMarkBadges();
+  }
+  save();
+  saLastWrongs=wrongs;
+  saLastMeta=sa;
+  showMathPane("result");
+  if($("mAgain")) $("mAgain").textContent="Nochmal";
+  const r=mRound.ok, n=qs.length;
+  if(sa.mode==="probe"){
+    setText("mStars","📝");
+    setText("mResText", r+" von "+n+" richtig");
+    setText("mResMsg","Ohne Note. Du siehst nur, welches Thema noch üben will.");
+    const weak=Object.keys(by).map(function(k){ return by[k]; }).filter(function(t){ return t.n && t.r/t.n<0.5; }).sort(function(a,b){ return a.r/a.n-b.r/b.n; });
+    let html='<div class="sares">';
+    Object.keys(by).forEach(function(k){
+      const t=by[k];
+      html+=`<div class="saresrow"><span>${esc(t.id+" "+t.name)}</span><b>${t.r}/${t.n}</b></div>`;
+    });
+    if(weak.length){
+      html+=`<p class="msg">Vorschlag: ${esc(weak[0].id)} morgen zuerst.</p><button type="button" class="ghost" id="saUnsicherBtn" data-tid="${esc(weak[0].id)}">😕 ${esc(weak[0].id)} als unsicher merken</button>`;
+    }
+    if(wrongs.length) html+=`<button type="button" class="primary" id="saFehlerBtn">💪 Fehler üben</button>`;
+    html+="</div>";
+    if($("mSaExtra")) $("mSaExtra").innerHTML=html;
+  } else {
+    setText("mStars", r===n?"🎉":"💪");
+    setText("mResText", r+" von "+n+" richtig");
+    setText("mResMsg", wrongs.length?"Die falschen Aufgaben kannst du gleich nochmal üben.":"Gut gemacht.");
+    if($("mSaExtra")) $("mSaExtra").innerHTML=wrongs.length?'<button type="button" class="primary" id="saFehlerBtn">💪 Fehler üben</button>':"";
+  }
+}
+function openSaRoute(r){
+  const fid=r.fach;
+  const f=fachById(fid);
+  if(!f){ go("#/start"); return; }
+  const kat=saEintrag(fid, r.saId);
+  if(!kat){ showFachPage(fid); return; }
+  setDock("start");
+  if(r.sub==="probe"){ startSaProbe(fid, kat); return; }
+  if(r.sub==="thema"){ startSaThema(fid, kat, r.thema); return; }
+  showOnly(["page-sa"]);
+  const it=saReadItem(fid, kat.id);
+  const need=!(it && isRealIso(it.datum)) && !(it && it.archiviert);
+  renderSa(fid, kat);
+  if(need) openSaDialog(fid, kat, "neu");
+}
+function onSaClick(e){
+  const host=$("page-sa"); if(!host) return;
+  const fid=host.getAttribute("data-fach"), id=host.getAttribute("data-said");
+  const kat=saEintrag(fid, id); if(!kat) return;
+  const merk=e.target.closest("[data-sa-merk]");
+  if(merk){ const box=$("merk-"+merk.getAttribute("data-sa-merk")); if(box) box.classList.toggle("hidden"); return; }
+  const ueb=e.target.closest("[data-sa-ueben]");
+  if(ueb){ go("#/f/"+fid+"/sa/"+id+"/thema/"+ueb.getAttribute("data-sa-ueben")); return; }
+  if(e.target.closest("[data-sa-probe]")){ go("#/f/"+fid+"/sa/"+id+"/probe"); return; }
+  if(e.target.closest("[data-sa-datum]")){ const it=saReadItem(fid, id); openSaDialog(fid, kat, it && isRealIso(it.datum)?"aendern":"neu"); return; }
+  if(e.target.closest("[data-sa-archiv]")){ if(confirm("Schulaufgabe archivieren? Sie verschwindet von Start.")){ saArchivieren(fid, id); go("#/f/"+fid); } return; }
+  const selbst=e.target.closest("[data-sa-selbst]");
+  if(selbst){ saSetSelbst(fid, id, selbst.getAttribute("data-sa-selbst"), +selbst.getAttribute("data-wert")); renderSa(fid, kat); }
+}
+function onSaChange(e){
+  const input=e.target.closest && e.target.closest("[data-sa-steps]");
+  if(!input) return;
+  const host=$("page-sa");
+  const fid=host.getAttribute("data-fach"), id=host.getAttribute("data-said");
+  const kat=saEintrag(fid, id); if(!kat) return;
+  saToggleSteps(fid, id, input.getAttribute("data-sa-steps").split(",").filter(Boolean), input.checked);
+  renderSa(fid, kat);
+}
+if($("page-sa")){
+  $("page-sa").addEventListener("click", onSaClick);
+  $("page-sa").addEventListener("change", onSaChange);
+}
+if($("saDialog")){
+  $("saDialog").addEventListener("click", saDialogClick);
+  $("saDialog").addEventListener("input", saDialogInput);
+}
+if($("mResult")) $("mResult").addEventListener("click", function(e){
+  if(e.target.closest("#saFehlerBtn")){ startSaFehler(); return; }
+  const u=e.target.closest("#saUnsicherBtn");
+  if(u && saLastMeta){
+    saSetSelbst(saLastMeta.fach, saLastMeta.id, u.getAttribute("data-tid"), 0);
+    go("#/f/"+saLastMeta.fach+"/sa/"+saLastMeta.id);
+  }
+});
 function renderStart(){
   const host=$("v-start"); if(!host) return;
   let r=0, fsum=0;
@@ -3192,7 +4089,7 @@ function renderStart(){
       mid=`<div class="top" style="margin-top:8px"><span class="pill">📅 ${md.n} Mathe-${md.n===1?"Tag":"Tage"}</span><span class="pill">Heute: ${h.r} ✔ / ${h.r+h.f}</span></div>`+
         `<div class="bar"><div style="width:${pct}%"></div></div><div class="small">Bereiche auf Stufe 2+: ${up} von ${M_LEARN.length}</div>`;
     }
-    cards+=`<article class="fcard" style="--accent:${fac.farbe}"><div class="fcard-top">${fachIcon(fac)}<div class="grow"><h2>${esc(fac.name)}</h2><div class="small">${esc(fac.kurz)}</div></div><button type="button" class="primary openbtn" data-open="${fac.id}">Öffnen →</button></div>${mid}<button type="button" class="weiter" data-weiter="${fac.id}"><span>▶ Weiter: ${esc(w.label)}</span><span class="small">${esc(w.meta||"")}</span></button></article>`;
+    cards+=`<article class="fcard" style="--accent:${fac.farbe}"><div class="fcard-top">${fachIcon(fac)}<div class="grow"><h2>${esc(fac.name)}</h2><div class="small">${esc(fac.kurz)}</div></div><button type="button" class="primary openbtn" data-open="${fac.id}">Öffnen →</button></div>${mid}${saStripHtml(fac.id)}<button type="button" class="weiter" data-weiter="${fac.id}"><span>▶ Weiter: ${esc(w.label)}</span><span class="small">${esc(w.meta||"")}</span></button></article>`;
   }
   host.innerHTML=`<div class="card"><h2 class="h2" style="margin-top:0">Heute</h2><div class="top"><span class="pill">🔗 Gemeinsam: ${sh.n} ${sh.n===1?"Tag":"Tage"}</span><span class="pill">Heute: ${r} ✔ / ${r+fsum}</span></div><p class="small" style="margin:8px 0 0">Gemeinsame Serie = Englisch oder Mathe geübt. Neue Fächer zählen mit.</p></div><h2 class="h2">Deine Fächer</h2>${cards}<div class="soon"><div>＋ Weitere Fächer folgen</div><p class="small" style="font-weight:600;margin:6px 0 0">Neue Fächer erscheinen hier automatisch als gleiche Karte.</p></div>`;
 }
@@ -3235,7 +4132,7 @@ function renderFach(fid){
   }
   const badges=f.adapter.abzeichen();
   const got=badges.filter(b=>b.got).length;
-  host.innerHTML=`<p class="crumbline"><a href="#/start">🏠 Start</a> › ${f.icon} <b>${esc(f.name)}</b></p><article class="fcard" style="--accent:${f.farbe}"><div class="fcard-top">${fachIcon(f)}<div class="grow"><h2>${esc(f.name)}</h2><div class="small">${esc(f.kurz)}</div></div></div>${pills}</article><div class="fachcols"><div><h2 class="h2">Bereiche</h2>${blocks}</div><div><h2 class="h2">Für das ganze Fach</h2><div class="wide">${wide}</div><h2 class="h2">Fortschritt</h2><div class="pair"><button type="button" data-go="#/statistik/${fid}">📊 ${esc(f.name)}-Statistik<span class="small">Verlauf, Bereiche</span></button><button type="button" data-go="#/abzeichen/${fid}">🏅 ${esc(f.name)}-Abzeichen<span class="small">${got} von ${badges.length}</span></button></div></div></div>`;
+  host.innerHTML=`<p class="crumbline"><a href="#/start">🏠 Start</a> › ${f.icon} <b>${esc(f.name)}</b></p><article class="fcard" style="--accent:${f.farbe}"><div class="fcard-top">${fachIcon(f)}<div class="grow"><h2>${esc(f.name)}</h2><div class="small">${esc(f.kurz)}</div></div></div>${pills}</article>${saStripHtml(fid)}${saFrueherHtml(fid)}<div class="fachcols"><div><h2 class="h2">Bereiche</h2>${blocks}</div><div><h2 class="h2">Für das ganze Fach</h2><div class="wide">${wide}</div><h2 class="h2">Fortschritt</h2><div class="pair"><button type="button" data-go="#/statistik/${fid}">📊 ${esc(f.name)}-Statistik<span class="small">Verlauf, Bereiche</span></button><button type="button" data-go="#/abzeichen/${fid}">🏅 ${esc(f.name)}-Abzeichen<span class="small">${got} von ${badges.length}</span></button></div></div></div>`;
 }
 function lastDays(n){ const T=dayKey(), out=[]; for(let i=n-1;i>=0;i--) out.push(addDays(T,-i)); return out; }
 function sumMap(tage, days){ let r=0,f=0; for(const d of days){ const e=tage&&tage[d]; if(isObj(e)){ r+=num(e.r); f+=num(e.f); } } return {r:r, f:f}; }
@@ -3347,7 +4244,7 @@ function parseRoute(hash){
   const raw=String(hash||"#/start").replace(/^#/,"");
   const p=raw.split("/").filter(Boolean);
   if(!p.length || p[0]==="start") return {name:"start"};
-  if(p[0]==="f") return {name:"fach", fach:p[1]||"", bereich:p[2]||null, modus:p[3]||null};
+  if(p[0]==="f"){ if(p[2]==="sa") return {name:"sa", fach:p[1]||"", saId:p[3]||null, sub:p[4]||null, thema:p[5]||null}; return {name:"fach", fach:p[1]||"", bereich:p[2]||null, modus:p[3]||null}; }
   if(p[0]==="statistik") return {name:"statistik", fach:p[1]||"gesamt"};
   if(p[0]==="abzeichen") return {name:"abzeichen", fach:p[1]||null};
   if(p[0]==="mehr") return {name:"mehr"};
@@ -3356,13 +4253,15 @@ function parseRoute(hash){
 let applying=false;
 let routeKey="";
 function applyRoute(r){
-  const key=[r.name, r.fach||"", r.bereich||"", r.modus||""].join("|");
+  const key=[r.name, r.fach||"", r.bereich||"", r.modus||"", r.saId||"", r.sub||"", r.thema||""].join("|");
   if(r.modus && key===routeKey) return;
   routeKey=key;
   if($("crumb")) $("crumb").classList.add("hidden");
+  closeSaDialog();
   if(r.name==="start"){ setDock("start"); showOnly(["v-start"]); renderStart(); }
   else if(r.name==="fach" && r.modus) openExercise(r.fach, r.bereich, r.modus);
   else if(r.name==="fach") showFachPage(r.fach);
+  else if(r.name==="sa") openSaRoute(r);
   else if(r.name==="statistik") renderStatistik(r.fach||"gesamt");
   else if(r.name==="abzeichen") renderAbzeichen(r.fach);
   else if(r.name==="mehr"){ setDock("mehr"); showOnly(["page-mehr"]); if($("mehrVersion")) $("mehrVersion").textContent="Lerntrainer – v"+APP_VERSION; }
@@ -3384,6 +4283,8 @@ function startMode(fach, bereich, modus){
 }
 window.addEventListener("hashchange", ()=>{ if(applying) return; applyRoute(parseRoute(location.hash||"#/start")); });
 if($("v-start")) $("v-start").addEventListener("click", e=>{
+  const g=e.target.closest("[data-go]");
+  if(g){ go(g.getAttribute("data-go")); return; }
   const w=e.target.closest("[data-weiter]");
   if(w){ const fid=w.getAttribute("data-weiter"); const info=weiterInfo(fid); startMode(fid, info.bereich, info.modus); return; }
   const o=e.target.closest("[data-open]");
@@ -3420,8 +4321,8 @@ if($("fachFilter")) $("fachFilter").addEventListener("click", e=>{
 });
 if($("mehrSayEn")) $("mehrSayEn").onclick=()=>say("Hello. How are you?", false);
 if($("mehrSayDe")) $("mehrSayDe").onclick=()=>sayDe("Drei plus vier ist sieben.");
-if($("mStop")) $("mStop").onclick=function(){ mClearAdv(); stopBlitz(); go("#/f/"+((state.ui&&state.ui.fach)||"mathe")); };
-if($("mResultHome")) $("mResultHome").onclick=function(){ go("#/f/"+((state.ui&&state.ui.fach)||"mathe")); };
+if($("mStop")) $("mStop").onclick=function(){ saBack(); };
+if($("mResultHome")) $("mResultHome").onclick=function(){ saBack(); };
 if($("mStatsHome")) $("mStatsHome").onclick=function(){ go("#/f/mathe"); };
 if($("mehrVersion")) $("mehrVersion").textContent="Lerntrainer – v"+APP_VERSION;
 
@@ -3443,7 +4344,7 @@ const mathAPI = {
 
 markBadges(state, true); save(); // migrierten Stand (nur Ergänzungen) sichern
 renderSel();
-window.VT = {say, pickEnVoice, speechText, get enVoice(){return enVoice;}, check, norm, pickNext, record, weight, level, pool, get state(){return state;}, set state(s){state=s;}, importJSON, defaultState, newCard, get current(){return current;}, migrate, dayKey, addDays, countGelernt, dayStreak, sharedDayStreak, bestDayStreak, sharedBestDayStreak, hardest, renderStats, updateTop, setNow(fn){ nowFn = fn || (()=>Date.now()); }, get fokus(){return fokus;}, APP_VERSION, STORE_KEY, FAECHER, go, parseRoute, mDayStreak, adapter(id){ const f=fachById(id); return f?f.adapter:null; }, G:{GRAMMATIK, THEMEN:G_THEMEN, TYPEN:G_TYPEN, start:gStart, answer:gAnswer, level:gLevel, record:gRecord, get round(){return gRound;}, get task(){return gTask();}, showStart:gShowStart}, quer:{areas:querAreas, spread:querSpread, go:querGo, advance:querAdvance, gradeText:querGradeText, gradeOpt:querGradeOpt, get item(){return querItem;}, get bag(){return querBag.slice();}, get count(){return querCount;}, get ok(){return querOk;}}, mathe: mathAPI};
+window.VT = {say, pickEnVoice, speechText, get enVoice(){return enVoice;}, check, norm, pickNext, record, weight, level, pool, get state(){return state;}, set state(s){state=s;}, importJSON, defaultState, newCard, get current(){return current;}, migrate, dayKey, addDays, countGelernt, dayStreak, sharedDayStreak, bestDayStreak, sharedBestDayStreak, hardest, renderStats, updateTop, setNow(fn){ nowFn = fn || (()=>Date.now()); }, get fokus(){return fokus;}, APP_VERSION, STORE_KEY, FAECHER, go, parseRoute, mDayStreak, adapter(id){ const f=fachById(id); return f?f.adapter:null; }, G:{GRAMMATIK, THEMEN:G_THEMEN, TYPEN:G_TYPEN, start:gStart, answer:gAnswer, level:gLevel, record:gRecord, get round(){return gRound;}, get task(){return gTask();}, showStart:gShowStart}, quer:{areas:querAreas, spread:querSpread, go:querGo, advance:querAdvance, gradeText:querGradeText, gradeOpt:querGradeOpt, get item(){return querItem;}, get bag(){return querBag.slice();}, get count(){return querCount;}, get ok(){return querOk;}}, mathe: mathAPI, fmtDatum, saPlan, saPruefeDatum, parseDeDatum, isRealIso, saProbeFragen, SA_KATALOG, SA_MAX_LERNTAGE, SA_MAX_VORAUS};
 if(!location.hash || location.hash==="#" || location.hash==="#/") go("#/start");
 else applyRoute(parseRoute(location.hash));
 })();
